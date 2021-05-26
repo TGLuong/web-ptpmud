@@ -33,3 +33,7 @@
     .header-context{
         align-items: center;
     }
+.nav-bar{
+    min-height: 60px;
+    background-color: #AEB3E7;
+}

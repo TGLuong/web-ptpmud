@@ -1,5 +1,5 @@
-import {Fragment} from 'react'
-import {Row, Col, Image} from 'antd'
+import {Fragment, useState} from 'react'
+import {Row, Col, Image, Menu} from 'antd'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom'
 import logo from '../img/core-img/logo.png'
 import signUpIcon from '../img/core-img/sign-up-icon.png'
 import searchIcon from '../img/core-img/search.png'
+import shoppingCartIcon from '../img/core-img/shopping-cart-icon.png'
 
 const Input = styled.input`
     padding: 20px;
@@ -17,7 +18,7 @@ const Input = styled.input`
     height:56px;
     border-radius:15px 0px 0px 15px;
 `;
-const Button = styled.button`
+const SearchButton = styled.button`
     background-color:#F9FAFF;
     border:none;
     height:56px;
@@ -25,7 +26,28 @@ const Button = styled.button`
     border-radius:0px 15px 15px 0px;
 `;
 
+const ShoppingCartButton = styled.button`
+    background-color: #FFFFFF;
+    width: 90%;
+    border-radius:15px;
+    border: none;
+    font-size:18px;
+    text-transform: uppercase;
+    height: 70px;
+`;
+const NumberIteam = styled.h2`
+    display:inline;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background-color: #FF4A4A;
+    align-item:center;
+    margin: 0px 15px;
+    color: #FFFFFF;
+`;
+
 function Home(){
+    let [collapsed,setCollapsed] = useState({collapsed: false})
     return(
         <Fragment>
             <Row className="header-nav" align="middle" justify="space-around">
@@ -43,10 +65,17 @@ function Home(){
                 <Col sm={13}>
                     <Row style={{height:'100%'}} justify="center" align="middle">
                         <Input placeholder="SEARCH"/>
-                        <Button><img style={{width:'32px',height:'30px'}} src={searchIcon} /></Button>
+                        <SearchButton><img style={{width:'32px',height:'30px'}} src={searchIcon} /></SearchButton>
                     </Row>
                 </Col>
-                <Col style={{border:'1px solid black'}} sm={7}></Col>
+                <Col sm={7}>
+                    <Row style={{height:'100%'}} align="middle" justify="center">
+                        <ShoppingCartButton><Row align="middle" justify="center"><img style={{margin:'0px 15px',width:'70px',height:'70px'}} src={shoppingCartIcon} />Giỏ Hàng<NumberIteam>0</NumberIteam></Row></ShoppingCartButton>
+                    </Row>
+                </Col>
+            </Row>
+            <Row className="nav-bar">
+
             </Row>
         </Fragment>
     );
