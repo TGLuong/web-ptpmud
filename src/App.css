@@ -31,7 +31,7 @@
     }
 .header{
     /* border: 1px solid black; */
-    height: 100px;
+    min-height: 100px;
     background-color: #2C3E50;
 }
     .header-context{
