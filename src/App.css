@@ -51,16 +51,15 @@
     margin: 0px 10px;
     font-size: 20px;
 }
-.nav-bar .item1{
-}
+
 .product-area{
     border: 1px solid black;
     width: 100%;
 }
 .product-cell{
     /* border: 1px solid black; */
-    width: 25%;
-    height: 400px;
+    width: 350px;
+    height: 350px;
     padding: 15px;
 }
 .product-content{
