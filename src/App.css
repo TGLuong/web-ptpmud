@@ -19,7 +19,7 @@
         text-align: center;
         text-transform: uppercase;
         color: white;
-        font-size: 13px;
+        font-size: 18px;
     }
     .header-nav-content a{
         color: white;
@@ -37,15 +37,26 @@
     .header-context{
         align-items: center;
     }
+    .shopping-card-icon{
+        margin: 0px 15px;
+        width: 50px;
+        height: 46,43px;
+    }
+    .heart-icon{
+        
+        margin: 0px 20px;
+        width: 46.43px;
+        height: 46.43px;
+    }
 .nav-bar{
     min-height: 36px;
     background-color: #34495E;
-    font-size: 13px;
+    font-size: 18px;
     text-transform: uppercase;
     color:white;
 }
 .nav-bar .item{
-    margin: 0px 35px;
+    margin: 0px 60px;
 }
 .nav-bar .item i{
     margin: 0px 10px;

@@ -10,19 +10,20 @@ import searchIcon from '../img/core-img/search.png'
 import shoppingCartIcon from '../img/core-img/shopping-cart-icon.png'
 
 const Input = styled.input`
-    padding: 5px;
+    padding: 0px 20px;
     width:70%;
     background-color:#F9FAFF;
     font-size:18px;
     border:none;
     height:30px;
+    width:532px;
     border-radius:10px 0px 0px 10px;
 `;
 const SearchButton = styled.button`
-    background-color:#F9FAFF;
+    background-color:red;
     border:none;
     height:30px;
-    width:70px;
+    width:132px;
     border-radius:0px 10px 10px 0px;
 `;
 
@@ -46,18 +47,18 @@ function Home(){
                 <Col sm={13}>
                     <Row style={{height:'100%'}} justify="center" align="middle">
                         <Input placeholder="Search Hear"/>
-                        <SearchButton><img style={{width:'25px',height:'25px'}} src={searchIcon} /></SearchButton>
+                        <SearchButton><h2 style={{height:'100%',color:'white',fontWeight:'900'}}>Search</h2></SearchButton>
                     </Row>
                 </Col>
                 <Col sm={7}>
                     <Row style={{height:'100%'}} align="middle" justify="space-around">
-                        <Badge count={1} style={{border:'1px solid white'}}>
-                            <img className="icon" src="./img/core-img/shopping-cart.png" />
-                            <h5 style={{color:'white',textAlign:'center',margin:'10px'}}>Giỏ hàng</h5>
+                        <Badge count={1}>
+                                <img className="shopping-card-icon" src="./img/core-img/shopping-cart.png" />
+                                <h3 style={{color:'white',textAlign:'center',margin:'5px'}}>Giỏ hàng</h3>
                         </Badge>
                         <Badge count={1}>
-                            <img className="icon" src="./img/core-img/love.png" />
-                            <h5 style={{color:'white',textAlign:'center',margin:'10px'}}>Yêu Thích</h5>
+                            <img className="heart-icon" src="./img/core-img/love.png" />
+                            <h3 style={{color:'white',textAlign:'center',margin:'10px'}}>Yêu Thích</h3>
                         </Badge>
                         
                     </Row>
