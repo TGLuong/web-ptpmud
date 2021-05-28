@@ -76,7 +76,7 @@ function Home(){
                             <Row justify="end">
                                 <Col >                                   
                                     <Row justify="center">
-                                        <Badge showZero size="small" count={1}>
+                                        <Badge showZero size="small" count={0}>
                                             <img className="shopping-card-icon" src="./img/core-img/shopping-cart.png" />
                                         </Badge>
                                     </Row>        
@@ -88,7 +88,7 @@ function Home(){
                             <Row justify="end" align="bottom">
                                 <Col>
                                     <Row justify="center">
-                                        <Badge showZero size="small" count={1}>
+                                        <Badge showZero size="small" count={0}>
                                                 <img className="heart-icon" src="./img/core-img/love.png" />
                                         </Badge>
                                     </Row>

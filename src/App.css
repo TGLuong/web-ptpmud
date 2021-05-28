@@ -5,8 +5,8 @@
     font-family: 'Roboto', sans-serif;
 }
 .icon{
-    width: 9%;
-    
+    width: 6.3%;
+    margin-bottom: 4px;
 }
 .header-nav{
     /* border: 1px solid black; */
@@ -18,7 +18,7 @@
         text-align: start;
         text-transform: uppercase;
         color: white;
-        font-size: 18px;
+        font-size: 100%;
     }
     .header-nav-content a{
         color: white;
@@ -51,7 +51,7 @@
     min-height: 3%;
     padding: 0% 6%;
     background-color: #34495E;
-    font-size: 18px;
+    font-size: 100%;
     text-transform: uppercase;
     color:white;
 }
