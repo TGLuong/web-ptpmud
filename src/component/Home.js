@@ -57,13 +57,13 @@ function Home(){
                     </div>
                 </Col>
             </Row>
-            <Row className="header" align="middle">
+            <Row className="header" align="bottom">
                 <Col sm={3}>
                     <Row justify="start">
-                        <Image height={100} width={100} src={logo} />
+                        <Image height={73} width={73} src={logo} />
                     </Row>
                 </Col>
-                <Col sm={13}>
+                <Col style={{height:'74px'}} sm={13}>
                     <Row style={{height:'100%'}} justify="start" align="middle">
                         <Input placeholder="Search Here"/>
                         <SearchButton><h2 style={{color:'white'}}><b>Search</b></h2></SearchButton>
@@ -76,23 +76,23 @@ function Home(){
                             <Row justify="end">
                                 <Col >                                   
                                     <Row justify="center">
-                                        <Badge count={1}>
+                                        <Badge showZero size="small" count={1}>
                                             <img className="shopping-card-icon" src="./img/core-img/shopping-cart.png" />
                                         </Badge>
                                     </Row>        
-                                    <h3 style={{color:'white',textAlign:'center',margin:''}}>Giỏ hàng</h3>
+                                    <h4 style={{marginBottom:'0px',color:'white',textAlign:'center',margin:''}}>Giỏ hàng</h4>
                                 </Col>
                             </Row>
                         </Col>
-                        <Col xs={8}>
-                            <Row justify="end">
+                        <Col style={{height:'100%'}} xs={8}>
+                            <Row justify="end" align="bottom">
                                 <Col>
                                     <Row justify="center">
-                                        <Badge count={1}>
+                                        <Badge showZero size="small" count={1}>
                                                 <img className="heart-icon" src="./img/core-img/love.png" />
                                         </Badge>
                                     </Row>
-                                    <h3 style={{color:'white',textAlign:'center'}}>Yêu Thích</h3>
+                                    <h4 style={{marginBottom:'0px',paddingBottom:'0px',color:'white',textAlign:'center'}}>Yêu Thích</h4>
                                 </Col>
                             </Row>
                         </Col>
