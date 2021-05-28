@@ -72,8 +72,7 @@
 }
 .nav-bar .item .drowdown{
     width: 150px;
-    
-    background-color: rgba(66, 66, 66, 0.81);
+    background-color: rgba(66, 66, 66, 0.95);
     left: -35%;
     overflow: visible;
     position: absolute;

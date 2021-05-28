@@ -75,18 +75,18 @@ function Home(){
         });
     },[]);
 
-    function changeLapDropdown()
+    function changeLapDropdown(bool)
     {
-        if(dropdownVisible[0]==='hidden')
+        if(bool)
         {
             setDropdownVisible(['visible','hidden']);
         }else{
             setDropdownVisible(['hidden','hidden'])
         }
     }
-    function changeCamDropdown()
+    function changeCamDropdown(bool)
     {
-        if(dropdownVisible[1]==='hidden')
+        if(bool)
         {
             setDropdownVisible(['hidden','visible']);
         }else{
@@ -182,7 +182,7 @@ function Home(){
                         <NavButton>HOME</NavButton> 
                     </Col>
                     <Col className="item">
-                        <NavButton onClick={changeLapDropdown}>LAPTOP</NavButton>
+                        <NavButton onMouseEnter={()=>{changeLapDropdown(true)}} onMouseLeave={()=>{changeLapDropdown(false)}}>LAPTOP</NavButton>
                         <div style={{visibility:dropdownVisible[0]}} className="drowdown">
                             <ul className="list-dropdown">
                                 {data.laptop_brands.map((element,index)=>{
@@ -194,7 +194,7 @@ function Home(){
                         </div>
                     </Col>
                     <Col className="item"> 
-                        <NavButton onClick={changeCamDropdown}>CAMERA</NavButton>
+                        <NavButton onMouseEnter={()=>{changeCamDropdown(true)}} onMouseLeave={()=>{changeCamDropdown(false)}}   >CAMERA</NavButton>
                         <div style={{visibility:dropdownVisible[1]}} className="drowdown">
                             <ul className="list-dropdown">
                                 {data.camera_brands.map((element,index)=>{
