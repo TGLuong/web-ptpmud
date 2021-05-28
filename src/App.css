@@ -4,6 +4,12 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+.head{
+    width: 100%;
+    position: fixed;
+    top:0px;
+    z-index: 10;
+}
 .icon{
     width: 6.3%;
     margin-bottom: 4px;
@@ -48,7 +54,7 @@
        
     }
 .nav-bar{
-    min-height: 3%;
+    height: 3%;
     padding: 0% 6%;
     background-color: #34495E;
     font-size: 100%;
@@ -57,26 +63,95 @@
 }
 .nav-bar .item{
     width: 11.6%;
+    position: relative;
    
 }
 .nav-bar .item i{
     margin: 0px 10px;
     font-size: 20px;
 }
-
-.product-area{
-    border: 1px solid black; 
+.nav-bar .item .drowdown{
+    width: 150px;
     
+    background-color: rgba(66, 66, 66, 0.81);
+    left: -35%;
+    overflow: visible;
+    position: absolute;
+    z-index: 4;
 }
-.product-cell{
-    /* border: 1px solid black; */
-    width: 350px;
-    height: 350px;
+.nav-bar .item .drowdown .list-dropdown{
+    list-style: none;
     padding: 15px;
 }
-.product-content{
-    height: 100%;
-    width: 100%;
-    border: 1px solid black;
+.nav-bar .item .drowdown .list-dropdown li{
+    padding: 10px 0px;
 }
+.nav-bar .item button:hover{
+    color: yellow;
+}
+.product-area{
+    /* border: 1px solid black;  */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10%;
+    margin: 12% 6% 4%;
     
+} 
+
+
+.product-cell{
+    /* border: 1px solid black; */
+    width: 24%;
+    height: 400px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    position: relative;
+    
+}
+
+.product-cell img{
+    width: 100%;
+    height: 70%;
+}
+.product-cell .display-content{
+    position: absolute;
+    bottom:0px;
+    z-index: 2;
+    transition-duration: 200ms;
+    left: 10px;
+    margin-top: 10px;
+    color: black;
+}
+.product-cell .link::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    background-color: rgba(66, 66, 66, 0.61);
+    opacity: 0;
+    visibility: visible;
+    transition-duration: 200ms;
+}
+.product-cell:hover .link::after{
+    opacity: 1;
+}
+.product-cell:hover h3{
+    color: white;
+}
+.panigation{
+    /* border: 1px solid black; */
+    width: 100%;
+    display: flex;
+    position: fixed;
+    height: 50px;
+    background-color: white;
+    align-items: center;
+    z-index: 3;
+    bottom: 0px;
+    
+    justify-content: center;
+
+}
