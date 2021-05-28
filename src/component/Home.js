@@ -13,18 +13,23 @@ const Input = styled.input`
     padding: 0px 20px;
     width:80%;
     background-color:#F9FAFF;
-    font-size:18px;
+    font-size:100%;
     border:none;
-    height:30px;
-    
-    border-radius:10px 0px 0px 10px;
+    height:25px;
+    border-radius:15px 0px 0px 15px;
+    &:focus{
+        outline:none;
+    }
 `;
 const SearchButton = styled.button`
     background-color:#E74C3C;
     border:none;
-    height:30px;
+    height:25px;
     width:18%;
-    border-radius:0px 10px 10px 0px;
+    border-radius:0px 15px 15px 0px;
+    &:focus{
+        outline:none;
+    }
 `;
 
 
@@ -66,7 +71,7 @@ function Home(){
                 <Col style={{height:'74px'}} sm={13}>
                     <Row style={{height:'100%'}} justify="start" align="middle">
                         <Input placeholder="Search Here"/>
-                        <SearchButton><h2 style={{color:'white'}}><b>Search</b></h2></SearchButton>
+                        <SearchButton><h3 style={{marginLeft:'4px',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'white',fontSize:'100%',fontWeight:'590'}}>Search</h3></SearchButton>
                     </Row>
                 </Col>
                 <Col sm={8}>
