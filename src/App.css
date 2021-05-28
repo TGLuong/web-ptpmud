@@ -2,21 +2,20 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: serif;
+    font-family: 'Roboto', sans-serif;
 }
 .icon{
-    width: 36px;
-    height: 36px;
-    margin: 0px 20px;
+    width: 10.5%;
+    
 }
 .header-nav{
     /* border: 1px solid black; */
-    
-    min-height: 36px;
+    padding: 0% 6%;
+    min-height: 3%;
     background-color: #34495E;
 }
     .header-nav-content{
-        text-align: center;
+        text-align: start;
         text-transform: uppercase;
         color: white;
         font-size: 18px;
@@ -30,33 +29,35 @@
         text-decoration: underline;
     }
 .header{
-    /* border: 1px solid black; */
-    min-height: 100px;
+    /* border: 1px solid white; */
+    height: 9%;
+    padding: 0% 6%;
     background-color: #2C3E50;
 }
     .header-context{
         align-items: center;
     }
     .shopping-card-icon{
-        margin: 0px 15px;
-        width: 50px;
-        height: 46,43px;
+        
+        width: 40px;
+        height: 40px;
     }
     .heart-icon{
-        
-        margin: 0px 20px;
-        width: 46.43px;
-        height: 46.43px;
+        width: 40px;
+        height: 40px;
+       
     }
 .nav-bar{
-    min-height: 36px;
+    min-height: 3%;
+    padding: 0% 6%;
     background-color: #34495E;
     font-size: 18px;
     text-transform: uppercase;
     color:white;
 }
 .nav-bar .item{
-    margin: 0px 60px;
+    width: 11.6%;
+   
 }
 .nav-bar .item i{
     margin: 0px 10px;
@@ -65,7 +66,8 @@
 
 .product-area{
     border: 1px solid black;
-    width: 100%;
+    
+    
 }
 .product-cell{
     /* border: 1px solid black; */
