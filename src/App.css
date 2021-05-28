@@ -100,13 +100,11 @@
 
 
 .product-cell{
-    /* border: 1px solid black; */
     width: 24%;
     height: 250px;
     margin-bottom: 10px;
-    border: 1px solid black;
     position: relative;
-    
+    border: 1px solid black;
 }
 
 .product-cell img{
@@ -114,12 +112,8 @@
     
 }
 .product-cell .display-content{
-    bottom:0px;
-    z-index: 2;
-    transition-duration: 200ms;
-    left: 10px;
-    display: flex;
-    vertical-align: center;
+    
+    
     
     color: black;
 }

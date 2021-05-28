@@ -99,6 +99,12 @@ function Home(){
             setData(res.data.data)
         })
     }
+
+    function convertLongString(string){
+        if(string.length>58) return(string.slice(0,58)+'...');
+        else return(string);
+    }
+
     return(
         <Fragment>
             
@@ -207,19 +213,23 @@ function Home(){
                     return(
                         <div key={index} className="product-cell">
                             <Link className="link" >
-                                <Row justify="center" >
-                                    <img src={element.images[0]}  />
+                                <Row justify="center" style={{height:'65%'}}>
+                                    <img src={element.images[0]} alt="product" />
                                 </Row>
-                                <Row style={{height:'56px',border:'1px solid black'}}>
-                                    <div className="display-content" style={{textAlign:'center',fontSize:'14px',overflow:'hidden'}}>
-                                        <h3>{element.productName.slice(0,17)}</h3>
-                                    </div>
+                                <Row style={{height:'19%'}}>
+                                    <p style={{color:'black',fontSize:'15px',textAlign:'center'}}>{convertLongString(element.productName)}</p>
                                 </Row>
                                     
-                                <Row align="middle">
-                                    <div className="display-content">
-                                        <h3 style={{color:'#C0392B'}}>{element.price}</h3>
-                                    </div>
+                                <Row style={{height:'16%',backgroundColor:'#95A5A6'}}>
+                                    <Col xs={16}>
+                                        <h3 style={{color:'#C0392B',marginLeft:'5px',height:'100%',display:'flex',alignItems:'center'}}>{element.price}</h3>
+                                    </Col>
+                                    <Col  xs={8}>
+                                        <Row justify="space-between" align="middle">
+                                            <img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' />
+                                            <img style={{width:'37px',height:'37px'}} src='./img/core-img/love.png' />
+                                        </Row>
+                                    </Col>
                                 </Row>
                             </Link>
                         </div>    
@@ -235,6 +245,7 @@ function Home(){
             <div className="panigation">
             <Pagination 
                 defaultCurrent={data.products.paging.current_page} 
+                showSizeChanger={false}
                 pageSize={20}
                 total={data.products.paging.total_count}
                 onChange={load_page}/>
