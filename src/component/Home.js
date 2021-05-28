@@ -207,12 +207,20 @@ function Home(){
                     return(
                         <div key={index} className="product-cell">
                             <Link className="link" >
-                                <img src={element.images[0]}  />
-                                <div className="display-content">
-                                    <h3>Giá: {element.price} VNĐ</h3>
-                                    <h3>Hãng: {element.brand}</h3>
+                                <Row justify="center" >
+                                    <img src={element.images[0]}  />
+                                </Row>
+                                <Row style={{height:'56px',border:'1px solid black'}}>
+                                    <div className="display-content" style={{textAlign:'center',fontSize:'14px',overflow:'hidden'}}>
+                                        <h3>{element.productName.slice(0,17)}</h3>
+                                    </div>
+                                </Row>
                                     
-                                </div>
+                                <Row align="middle">
+                                    <div className="display-content">
+                                        <h3 style={{color:'#C0392B'}}>{element.price}</h3>
+                                    </div>
+                                </Row>
                             </Link>
                         </div>    
                     );
