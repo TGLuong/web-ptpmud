@@ -20,7 +20,7 @@ const Input = styled.input`
     border-radius:10px 0px 0px 10px;
 `;
 const SearchButton = styled.button`
-    background-color:red;
+    background-color:#E74C3C;
     border:none;
     height:30px;
     width:18%;
