@@ -30,6 +30,9 @@ const SearchButton = styled.button`
     &:focus{
         outline:none;
     }
+    &:hover{
+        background-color:#F74C3C;
+    }
 `;
 
 
@@ -92,6 +95,13 @@ function Home(){
             </Menu>
         );
     }
+    function search() {
+        const keyword = document.getElementById('search-input').value;
+        const res = axios.get('http://47.254.253.64:5000/home?search='+keyword)
+        res.then((res)=>{
+            setData(res.data.data)
+        })
+    }
 
     return(
         <Fragment>
@@ -130,8 +140,10 @@ function Home(){
                     </Col>
                     <Col style={{height:'74px'}} sm={13}>
                         <Row style={{height:'100%'}} justify="start" align="middle">
-                            <Input placeholder="Search Here"/>
-                            <SearchButton><h3 style={{marginLeft:'4px',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'white',fontSize:'100%',fontWeight:'590'}}>Search</h3></SearchButton>
+                            <Input id="search-input" placeholder="Search Here"/>
+                            <SearchButton  onClick={search}>
+                                <h3 style={{marginLeft:'4px',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'white',fontSize:'100%',fontWeight:'590'}}>Search</h3>
+                            </SearchButton>
                         </Row>
                     </Col>
                     <Col sm={8}>
