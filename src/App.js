@@ -1,4 +1,4 @@
-import React,{ Fragment } from 'react'
+import React from 'react'
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 import Home from './component/Home'
 
@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/"><Home/></Route>
+        <Route path="/"><Home/></Route>
       </Switch>
     </Router>
   );

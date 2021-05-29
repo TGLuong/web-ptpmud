@@ -85,8 +85,11 @@
 .nav-bar .item .drowdown .list-dropdown li{
     padding: 10px 0px;
 }
-.nav-bar .item button:hover{
-    color: yellow;
+.nav-bar .item a{
+    color: white;
+}
+.nav-bar .item a:hover{
+    text-decoration: underline;
 }
 .product-area{
     /* border: 1px solid black;  */

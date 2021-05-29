@@ -1,9 +1,10 @@
 import {Fragment, useState, useEffect} from 'react'
 import axios from 'axios'
-import {Row, Col, Image, Badge, Pagination } from 'antd'
+import {Row, Col, Image, Badge, Pagination, Dropdown, Menu } from 'antd'
 import styled from 'styled-components'
-import {Link} from 'react-router-dom'
-
+import {Link,BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import NormalDisplay from './SubHome/NormalDisplay'
+import ProductDisplay from './SubHome/ProductDisplay'
 
 import logo from '../img/core-img/logo.png'
 
@@ -30,13 +31,7 @@ const SearchButton = styled.button`
         outline:none;
     }
 `;
-const NavButton = styled.button`
-    background-color:#34495E;
-    border:none;
-    &:focus{
-        outline:none;
-    }
-`;
+
 
 
 function Home(){
@@ -65,7 +60,7 @@ function Home(){
             }
         }
     });
-    const [dropdownVisible,setDropdownVisible] = useState(['hidden','hidden']);
+    
     
 
     useEffect(()=>{
@@ -75,24 +70,7 @@ function Home(){
         });
     },[]);
 
-    function changeLapDropdown(bool)
-    {
-        if(bool)
-        {
-            setDropdownVisible(['visible','hidden']);
-        }else{
-            setDropdownVisible(['hidden','hidden'])
-        }
-    }
-    function changeCamDropdown(bool)
-    {
-        if(bool)
-        {
-            setDropdownVisible(['hidden','visible']);
-        }else{
-            setDropdownVisible(['hidden','hidden'])
-        }
-    }
+    
     function load_page(page,pageSize){
         const res = axios.get('http://47.254.253.64:5000/home?page='+page)
         res.then((res)=>{
@@ -100,9 +78,19 @@ function Home(){
         })
     }
 
-    function convertLongString(string){
-        if(string.length>58) return(string.slice(0,58)+'...');
-        else return(string);
+    
+    function renderMenu(data) {
+        return(
+            <Menu>
+                {data.map((element,index)=>{
+                    return(
+                        <Menu.Item key={index}>
+                            <h3>{element.brand}</h3>
+                        </Menu.Item>
+                    );
+                })}
+            </Menu>
+        );
     }
 
     return(
@@ -179,77 +167,40 @@ function Home(){
                 </Row>
                 <Row className="nav-bar" justify="start" align="middle">
                     <Col className="item">
-                        <NavButton>HOME</NavButton> 
+                        <Link>
+                            HOME
+                        </Link>
                     </Col>
                     <Col className="item">
-                        <NavButton onMouseEnter={()=>{changeLapDropdown(true)}} onMouseLeave={()=>{changeLapDropdown(false)}}>LAPTOP</NavButton>
-                        <div style={{visibility:dropdownVisible[0]}} className="drowdown">
-                            <ul className="list-dropdown">
-                                {data.laptop_brands.map((element,index)=>{
-                                    return(
-                                        <li key={index}>{element.brand}</li>
-                                    );
-                                })}
-                            </ul>
-                        </div>
+                        <Dropdown overlay={renderMenu(data.laptop_brands)}>
+                            <Link>LAPTOP</Link>
+                        </Dropdown>
                     </Col>
                     <Col className="item"> 
-                        <NavButton onMouseEnter={()=>{changeCamDropdown(true)}} onMouseLeave={()=>{changeCamDropdown(false)}}   >CAMERA</NavButton>
-                        <div style={{visibility:dropdownVisible[1]}} className="drowdown">
-                            <ul className="list-dropdown">
-                                {data.camera_brands.map((element,index)=>{
-                                    return(
-                                        <li key={index}>{element.brand}</li>
-                                    );
-                                })}
-                            </ul>
-                        </div>
+                        <Dropdown overlay={renderMenu(data.camera_brands)}>
+                            <Link>CAMERA</Link>
+                        </Dropdown>
                     </Col>
                 </Row>
             </div>
-            {console.log(data.products.data[0].images[0])}
-            <Row className="product-area">
-                {data.products.data.map((element,index)=>{
-                    return(
-                        <div key={index} className="product-cell">
-                            <Link className="link" >
-                                <Row justify="center" style={{height:'65%'}}>
-                                    <img src={element.images[0]} alt="product" />
-                                </Row>
-                                <Row style={{height:'19%'}}>
-                                    <p style={{color:'black',fontSize:'15px',textAlign:'center'}}>{convertLongString(element.productName)}</p>
-                                </Row>
-                                    
-                                <Row style={{height:'16%',backgroundColor:'#95A5A6'}}>
-                                    <Col xs={16}>
-                                        <h3 style={{color:'#C0392B',marginLeft:'5px',height:'100%',display:'flex',alignItems:'center'}}>{element.price}</h3>
-                                    </Col>
-                                    <Col  xs={8}>
-                                        <Row justify="space-between" align="middle">
-                                            <img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' />
-                                            <img style={{width:'37px',height:'37px'}} src='./img/core-img/love.png' />
-                                        </Row>
-                                    </Col>
-                                </Row>
-                            </Link>
-                        </div>    
-                    );
-                })}
-                
-                
-                
-            </Row>
-            <div style={{height:'10px'}}>
-
-            </div>
-            <div className="panigation">
-            <Pagination 
-                defaultCurrent={data.products.paging.current_page} 
-                showSizeChanger={false}
-                pageSize={20}
-                total={data.products.paging.total_count}
-                onChange={load_page}/>
-            </div>
+            <Router>
+                <Switch>
+                    <Route path="/product"><ProductDisplay /></Route>
+                    <Route path="/">
+                        <NormalDisplay products={data.products}/>
+                        <div style={{height:'10px'}}></div>
+                        <div className="panigation">
+                            <Pagination 
+                                defaultCurrent={data.products.paging.current_page} 
+                                showSizeChanger={false}
+                                pageSize={20}
+                                total={data.products.paging.total_count}
+                                onChange={load_page}/>
+                        </div>
+                    </Route>
+                </Switch>
+            </Router>
+            
         </Fragment>
     );
 }
