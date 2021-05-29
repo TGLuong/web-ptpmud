@@ -54,9 +54,9 @@ function ProductDisplay(params) {
                                 <Row className="brand">
                                     <h2 style={{color:'white',marginLeft:'10px'}}>{element.brand}</h2>
                                 </Row>
-                                <Row className="content">
+                                <Row className="content" justify="space-between "  style={{overflowX:'auto'}}>
                                     {element.products.map((element,index)=>{
-                                        render(
+                                        return(
                                             <div key={index} className="product-cell">
                                                 <Link className="link" >
                                                     <Row justify="center" style={{height:'65%'}}>
