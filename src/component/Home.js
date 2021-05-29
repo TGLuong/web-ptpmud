@@ -102,6 +102,16 @@ function Home(){
             setData(res.data.data)
         })
     }
+    function saerchEnter(e) {
+        console.log(e.key)
+        if(e.key==='Enter'){
+            const keyword = document.getElementById('search-input').value;
+            const res = axios.get('http://47.254.253.64:5000/home?search='+keyword)
+            res.then((res)=>{
+                setData(res.data.data)
+            })
+        }
+    }
 
     return(
         <Fragment>
@@ -140,7 +150,7 @@ function Home(){
                     </Col>
                     <Col style={{height:'74px'}} sm={13}>
                         <Row style={{height:'100%'}} justify="start" align="middle">
-                            <Input id="search-input" placeholder="Search Here"/>
+                            <Input onKeyPress={saerchEnter} id="search-input" placeholder="Search Here"/>
                             <SearchButton  onClick={search}>
                                 <h3 style={{marginLeft:'4px',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'white',fontSize:'100%',fontWeight:'590'}}>Search</h3>
                             </SearchButton>
