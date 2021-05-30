@@ -50,11 +50,9 @@ function CameraRender(params) {
                 </div>
                 <div className="content">
                     <div className="cell">
-                        <div style={{width:'100%',height:'65%',display:'flex',flexWrap:'wrap',justifyContent:'center'}}>
-                            
-                        </div>
+                        
                         <div style={{width:'100%',height:'20%',border:'1px solid black'}}>
-                             
+                        sa     
                         </div>
                         <div style={{width:'100%',height:'15%',border:'1px solid black'}}>
 
