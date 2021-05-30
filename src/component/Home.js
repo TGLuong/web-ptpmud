@@ -108,7 +108,7 @@ function Home(){
         <Fragment>
             <Header logo={logo} searchEnter={searchEnter} search={search} renderMenu={renderMenu} data={data} />
             <Switch>
-                <Route path="/laptop"></Route>
+                <Route path="/laptop"><LaptopRender/></Route>
                 <Route path="/camera"><CameraRender/></Route>
                 <Route path='/'>
                     <NormalDisplay load_page={load_page} products={data.products}/>

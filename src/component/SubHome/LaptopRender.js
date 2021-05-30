@@ -1,11 +1,12 @@
-import {useState, useEffect} from 'react'
 import {Row, Col} from 'antd'
+import {useState, useEffect, Fragment} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import './ProductDisplay.css'
 
 
-function LaptopRender(props) {
+
+function LaptopRender(params) {
     const [data,setData] = useState({
         data:[
             {
@@ -31,64 +32,60 @@ function LaptopRender(props) {
     });
     useEffect(()=>{
         const res = axios.get('http://47.254.253.64:5000/product/laptop')
-            res.then((res)=>{
-                setData(res.data)
-            })
+        res.then((res)=>{
+            setData(res.data)
+            
+        })
     },[])
-
+    
     function convertLongString(string){
         if(string.length>58) return(string.slice(0,58)+'...');
         else return(string);
     }
 
     return(
-        <Row className="product-display">
-            <Col style={{width:'100%',height:'100%'}}>
-                {data.data.map((element,index)=>{
-                    return(
-                        <Row key={index} className="product-brand">
-                            <Col style={{width:'100%',height:'100%'}}>
-                                <Row className="brand">
-                                    <h2 style={{color:'white',marginLeft:'10px'}}>{element.brand}</h2>
-                                </Row>
-                                <Row className="content" justify="start "  style={{overflowX:'scroll'}}>
-                                    {element.products.map((element,index)=>{
-                                        return(
-                                            <div key={index} className="product-cell">
-                                                <Link className="link" >
-                                                    <Row justify="center" style={{height:'65%'}}>
-                                                        <img src={element.images[0]} alt="product" />
+        <div className="product-display">
+           
+            {data.data.map((element,index)=>{
+                return(
+                    <div id={element.brand_id} key={index} className="product-brand">
+                        <div className="brand">
+                            {element.brand}
+                        </div>
+                        <div className="wrapper">
+                            {element.products.map((element,index)=>{
+                                return(
+                                    <Link key={index} to="/">
+                                        <div key={index} className="item">
+                                            <Row justify="center" style={{height:'65%'}}>
+                                                <img src={element.images[0]} alt="product" />
+                                            </Row>
+                                            <Row style={{height:'19%'}} justify="center">
+                                                <div className="name">
+                                                    {convertLongString(element.productName)}
+                                                </div>
+                                            </Row>
+                                            <Row style={{height:'16%',backgroundColor:'#95A5A6'}}>
+                                                <Col xs={16}>
+                                                    <h3 style={{color:'#C0392B',marginLeft:'5px',height:'100%',display:'flex',alignItems:'center'}}>{element.price}</h3>
+                                                </Col>
+                                                <Col  xs={8}>
+                                                    <Row justify="space-between" align="middle">
+                                                        <img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' />
+                                                        <img style={{width:'37px',height:'37px'}} src='./img/core-img/love.png' />
                                                     </Row>
-                                                    <Row style={{height:'19%'}}>
-                                                        <p style={{color:'black',fontSize:'15px',textAlign:'center'}}>{convertLongString(element.productName)}</p>
-                                                    </Row>
-                                                        
-                                                    <Row style={{height:'16%',backgroundColor:'#95A5A6'}}>
-                                                        <Col xs={16}>
-                                                            <h3 style={{color:'#C0392B',marginLeft:'5px',height:'100%',display:'flex',alignItems:'center'}}>{element.price}</h3>
-                                                        </Col>
-                                                        <Col  xs={8}>
-                                                            <Row justify="space-between" align="middle">
-                                                                <img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' />
-                                                                <img style={{width:'37px',height:'37px'}} src='./img/core-img/love.png' />
-                                                            </Row>
-                                                        </Col>
-                                                    </Row>
-                                                </Link>
-                                            </div>
-                                        );
-                                        
-                                    })}
-                                </Row>
-                            </Col>
-                        </Row>
-                    );
-                })}
-                
-               
-            </Col>
-        </Row>
+                                                </Col>
+                                            </Row>
+                                        </div>
+                                    </Link>
+                                );
+                            })}
+                                
+                        </div>    
+                    </div>   
+                );
+            })}
+        </div>
     );
-    
 }
 export default LaptopRender

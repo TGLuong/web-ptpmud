@@ -3,39 +3,44 @@
     margin: 12% 6% 4%;
     width: 88%;
     height: 900px;
-    border: 1px solid black;
+    
     
 }
 .product-brand{
     width: 100%;
     height: 280px;
     
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 .product-brand .brand{
     width: 100%;
     height: 30px;
     background-color: #7F8C8D;
+    color: white;
+    font-size: 18px;
+    line-height: 30px;
+    padding-left: 3px;
     
 }
-.product-brand .content{
-    width: 100%;
-    height: 340px;
+.wrapper{
+    max-height: 280px;
+    height: 270px;
+    
+    display: flex;
     overflow-x: auto;
     overflow-y: hidden;
-    /* display: flex; */
-    white-space: nowrap;
-    
-    border: 1px solid black;
-    
-    text-align: center;
-    
 }
-.product-brand .content .cell{
-    display: inline-block;
-    width: 250px;
+.wrapper .item{
+    min-width: 250px;
+    max-width: 250px;
     height: 250px;
-    margin-top: 0px;
+    margin-right: 49.41px;
     border: 1px solid black;
-    margin-right: 15px;
+}
+.wrapper .item .name{
+    text-align: center;
+    color: black;
+}
+.wrapper .item img{
+    height: 100%;
 }
