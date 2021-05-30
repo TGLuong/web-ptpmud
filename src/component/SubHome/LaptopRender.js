@@ -1,12 +1,11 @@
-import {Row, Col } from 'antd'
-import {useState,useEffect} from 'react'
+import {useState, useEffect} from 'react'
+import {Row, Col} from 'antd'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import './ProductDisplay.css'
 
 
-
-function ProductDisplay(params) {
+function LaptopRender(props) {
     const [data,setData] = useState({
         data:[
             {
@@ -30,16 +29,13 @@ function ProductDisplay(params) {
             },
         ]
     });
-
-
     useEffect(()=>{
-        const res = axios.get('http://47.254.253.64:5000/product/laptop');
-        res.then((res)=>{
-            console.log(res.data)
-            setData(res.data)
-        });
+        const res = axios.get('http://47.254.253.64:5000/product/laptop')
+            res.then((res)=>{
+                setData(res.data)
+            })
     },[])
-    
+
     function convertLongString(string){
         if(string.length>58) return(string.slice(0,58)+'...');
         else return(string);
@@ -55,7 +51,7 @@ function ProductDisplay(params) {
                                 <Row className="brand">
                                     <h2 style={{color:'white',marginLeft:'10px'}}>{element.brand}</h2>
                                 </Row>
-                                <Row className="content" justify="space-between "  style={{overflowX:'auto'}}>
+                                <Row className="content" justify="start "  style={{overflowX:'scroll'}}>
                                     {element.products.map((element,index)=>{
                                         return(
                                             <div key={index} className="product-cell">
@@ -93,5 +89,6 @@ function ProductDisplay(params) {
             </Col>
         </Row>
     );
+    
 }
-export default ProductDisplay
+export default LaptopRender

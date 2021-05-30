@@ -112,12 +112,12 @@ function Header(props) {
                 </Col>
                 <Col className="item">
                     <Dropdown overlay={props.renderMenu(props.data.laptop_brands)}>
-                        <Link to="/product">LAPTOP</Link>
+                        <Link to="/laptop">LAPTOP</Link>
                     </Dropdown>
                 </Col>
                 <Col className="item"> 
                     <Dropdown overlay={props.renderMenu(props.data.camera_brands)}>
-                        <Link to="/product">CAMERA</Link>
+                        <Link to="/camera">CAMERA</Link>
                     </Dropdown>
                 </Col>
             </Row>

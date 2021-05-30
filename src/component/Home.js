@@ -1,9 +1,13 @@
 import {Fragment, useState, useEffect} from 'react'
 import axios from 'axios'
-import {Pagination, Menu } from 'antd'
-
+import { Menu } from 'antd'
+import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
 import NormalDisplay from './SubHome/NormalDisplay'
+
 import Header from './header/Header'
+
+import LaptopRender from './SubHome/LaptopRender'
+import CameraRender from './SubHome/CameraRender'
 
 import logo from '../img/core-img/logo.png'
 
@@ -14,7 +18,7 @@ import logo from '../img/core-img/logo.png'
 
 
 
-function NormalHome(){
+function Home(){
     const [data,setData] = useState({
         camera_brands:[],
         laptop_brands:[],
@@ -61,12 +65,19 @@ function NormalHome(){
 
     
     function renderMenu(data) {
+        function item(element) {
+            if(element.is_laptop==true){
+                return(<Link to={"/laptop?brand="+element.brand}>{element.brand}</Link>);
+            }else{
+                return(<Link to={"/camera?brand="+element.brand}>{element.brand}</Link>);
+            }
+        }
         return(
             <Menu>
                 {data.map((element,index)=>{
                     return(
                         <Menu.Item key={index}>
-                            <h3>{element.brand}</h3>
+                            {item(element)}
                         </Menu.Item>
                     );
                 })}
@@ -96,17 +107,14 @@ function NormalHome(){
     return(
         <Fragment>
             <Header logo={logo} searchEnter={searchEnter} search={search} renderMenu={renderMenu} data={data} />
-            <NormalDisplay products={data.products}/>
-            <div style={{height:'10px'}}></div>
-            <div className="panigation">
-                <Pagination 
-                    defaultCurrent={data.products.paging.current_page} 
-                    showSizeChanger={false}
-                    pageSize={20}
-                    total={data.products.paging.total_count}
-                    onChange={load_page}/>
-            </div>    
+            <Switch>
+                <Route path="/laptop"></Route>
+                <Route path="/camera"><CameraRender/></Route>
+                <Route path='/'>
+                    <NormalDisplay load_page={load_page} products={data.products}/>
+                </Route>
+            </Switch>
         </Fragment>
     );
 }
-export default NormalHome
+export default Home
