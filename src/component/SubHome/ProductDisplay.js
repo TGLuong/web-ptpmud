@@ -3,7 +3,7 @@ import {useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import './ProductDisplay.css'
-import { render } from '@testing-library/react'
+
 
 
 function ProductDisplay(params) {
@@ -35,6 +35,7 @@ function ProductDisplay(params) {
     useEffect(()=>{
         const res = axios.get('http://47.254.253.64:5000/product/laptop');
         res.then((res)=>{
+            console.log(res.data)
             setData(res.data)
         });
     },[])
