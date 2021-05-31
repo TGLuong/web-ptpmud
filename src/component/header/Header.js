@@ -28,6 +28,13 @@ const SearchButton = styled.button`
         background-color:#F74C3C;
     }
 `;
+const HomeButton = styled.button`
+    background-color:#34495E;
+    border:none;
+    &:focus{
+        outline:none;
+    }
+`;
 
 function Header(props) {
     
@@ -69,7 +76,9 @@ function Header(props) {
                     <Row style={{height:'100%'}} justify="start" align="middle">
                         <Input onKeyPress={props.searchEnter} id="search-input" placeholder="Search Here"/>
                         <SearchButton  onClick={props.search}>
+                            <Link to="/">
                             <h3 style={{marginLeft:'4px',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'white',fontSize:'100%',fontWeight:'590'}}>Search</h3>
+                            </Link>
                         </SearchButton>
                     </Row>
                 </Col>
@@ -106,13 +115,19 @@ function Header(props) {
             </Row>
             <Row className="nav-bar" justify="start" align="middle">
                 <Col className="item">
-                    <Link to="/" >
+                <Link to="/"  >
+                    <HomeButton  onClick={()=>{props.load_page(1,20)}}>
                         HOME
-                    </Link>
+                    </HomeButton>
+                        
+                </Link>
+                
+                    
                 </Col>
                 <Col className="item">
                     <Dropdown overlay={props.renderMenu(props.data.laptop_brands)}>
                         <Link to="/laptop">LAPTOP</Link>
+                        
                     </Dropdown>
                 </Col>
                 <Col className="item"> 

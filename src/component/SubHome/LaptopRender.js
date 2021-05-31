@@ -1,5 +1,5 @@
 import {Row, Col} from 'antd'
-import {useState, useEffect, Fragment} from 'react'
+import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import './ProductDisplay.css'
@@ -48,15 +48,17 @@ function LaptopRender(params) {
            
             {data.data.map((element,index)=>{
                 return(
-                    <div id={element.brand_id} key={index} className="product-brand">
+                    <div id="abc" key={index} className="product-brand">
                         <div className="brand">
                             {element.brand}
                         </div>
                         <div className="wrapper">
+                            
+                            
                             {element.products.map((element,index)=>{
                                 return(
-                                    <Link key={index} to="/">
-                                        <div key={index} className="item">
+                                    <div key={index} className="item">
+                                        <Link>
                                             <Row justify="center" style={{height:'65%'}}>
                                                 <img src={element.images[0]} alt="product" />
                                             </Row>
@@ -71,13 +73,13 @@ function LaptopRender(params) {
                                                 </Col>
                                                 <Col  xs={8}>
                                                     <Row justify="space-between" align="middle">
-                                                        <img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' />
-                                                        <img style={{width:'37px',height:'37px'}} src='./img/core-img/love.png' />
+                                                        <img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' alt="cart" />
+                                                        <img style={{width:'37px',height:'37px'}} src='./img/core-img/love.png' alt="love" />
                                                     </Row>
                                                 </Col>
                                             </Row>
-                                        </div>
-                                    </Link>
+                                        </Link>
+                                    </div>
                                 );
                             })}
                                 

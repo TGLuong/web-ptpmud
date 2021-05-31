@@ -1,7 +1,7 @@
 import {Fragment, useState, useEffect} from 'react'
 import axios from 'axios'
 import { Menu } from 'antd'
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
+import { Route, Link, Switch} from 'react-router-dom'
 import NormalDisplay from './SubHome/NormalDisplay'
 
 import Header from './header/Header'
@@ -48,7 +48,8 @@ function Home(){
     
 
     useEffect(()=>{
-        const res = axios.get('http://47.254.253.64:5000/home?page='+data.products.paging.current_page)
+        const page = data.products.paging.current_page;
+        const res = axios.get('http://47.254.253.64:5000/home?page='+page)
         res.then((res)=>{
             setData(res.data.data)
         });
@@ -66,10 +67,11 @@ function Home(){
     
     function renderMenu(data) {
         function item(element) {
-            if(element.is_laptop==true){
-                return(<Link to={"/laptop?brand="+element.brand}>{element.brand}</Link>);
+            
+            if(element.is_laptop===true){
+                return(<Link to={"/laptop?brand="+element.id}>{element.brand}</Link>);
             }else{
-                return(<Link to={"/camera?brand="+element.brand}>{element.brand}</Link>);
+                return(<Link to={"/camera?brand="+element.id}>{element.brand}</Link>);
             }
         }
         return(
@@ -106,7 +108,7 @@ function Home(){
 
     return(
         <Fragment>
-            <Header logo={logo} searchEnter={searchEnter} search={search} renderMenu={renderMenu} data={data} />
+            <Header logo={logo} searchEnter={searchEnter} search={search} load_page={load_page} renderMenu={renderMenu} data={data} />
             <Switch>
                 <Route path="/laptop"><LaptopRender/></Route>
                 <Route path="/camera"><CameraRender/></Route>

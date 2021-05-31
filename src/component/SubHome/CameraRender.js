@@ -1,6 +1,6 @@
 import {Row, Col} from 'antd'
-import {useState, useEffect, Fragment} from 'react'
-import {Link} from 'react-router-dom'
+import {useState, useEffect} from 'react'
+import {Link, useLocation} from 'react-router-dom'
 import axios from 'axios'
 import './ProductDisplay.css'
 
@@ -30,21 +30,22 @@ function CameraRender(params) {
             },
         ]
     });
+    const search = useLocation().search;
+    const brand = new URLSearchParams(search).get('brand')
     useEffect(()=>{
         const res = axios.get('http://47.254.253.64:5000/product/camera')
         res.then((res)=>{
             setData(res.data)
-            
         })
+
     },[])
-    function test() {
-        const res = axios.get('http://47.254.253.64:5000/product/laptop')
-        res.then((res)=>{
-            setData(res.data)
-            
-        })
-        
+    function toBrand() {
+        {if(brand!==null){
+            console.log('tobrand')
+            document.getElementById(brand).scrollIntoView()
+        }}
     }
+    
     function convertLongString(string){
         if(string.length>58) return(string.slice(0,58)+'...');
         else return(string);
@@ -52,7 +53,7 @@ function CameraRender(params) {
 
     return(
         <div className="product-display">
-            {/* <button onClick={test}>dsada</button> */}
+            {/* {toBrand()} */}
             {data.data.map((element,index)=>{
                 return(
                     <div id={element.brand_id} key={index} className="product-brand">
@@ -62,8 +63,8 @@ function CameraRender(params) {
                         <div className="wrapper">
                             {element.products.map((element,index)=>{
                                 return(
-                                    <Link key={index} to="/">
-                                        <div key={index} className="item">
+                                    <div key={index} className="item">
+                                        <Link>
                                             <Row justify="center" style={{height:'65%'}}>
                                                 <img src={element.images[0]} alt="product" />
                                             </Row>
@@ -78,13 +79,13 @@ function CameraRender(params) {
                                                 </Col>
                                                 <Col  xs={8}>
                                                     <Row justify="space-between" align="middle">
-                                                        <img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' />
-                                                        <img style={{width:'37px',height:'37px'}} src='./img/core-img/love.png' />
+                                                        <img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' alt="cart"/>
+                                                        <img style={{width:'37px',height:'37px'}} src='./img/core-img/love.png' alt="love" />
                                                     </Row>
                                                 </Col>
                                             </Row>
-                                        </div>
-                                    </Link>
+                                        </Link>
+                                    </div>
                                 );
                             })}
                                 

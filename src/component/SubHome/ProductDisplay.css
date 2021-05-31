@@ -25,16 +25,19 @@
 .wrapper{
     max-height: 280px;
     height: 270px;
-    
+    width: 100%;
     display: flex;
+    justify-content: left;
+    
     overflow-x: auto;
     overflow-y: hidden;
+    /* border: 1px solid black; */
 }
 .wrapper .item{
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 24%;
+    max-width: 24%;
     height: 250px;
-    margin-right: 49.41px;
+    margin-right: 1.33%;
     border: 1px solid black;
 }
 .wrapper .item .name{
