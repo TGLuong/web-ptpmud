@@ -34,6 +34,9 @@ const HomeButton = styled.button`
     &:focus{
         outline:none;
     }
+    &:hover{
+        text-decoration: underline;
+    }
 `;
 
 function Header(props) {

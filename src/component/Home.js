@@ -69,9 +69,9 @@ function Home(){
         function item(element) {
             
             if(element.is_laptop===true){
-                return(<Link to={"/laptop?brand="+element.id}>{element.brand}</Link>);
+                return(<Link to={"/laptop?brand="+element.id} >{element.brand}</Link>);
             }else{
-                return(<Link to={"/camera?brand="+element.id}>{element.brand}</Link>);
+                return(<Link to={"/camera?brand="+element.id} >{element.brand}</Link>);
             }
         }
         return(
