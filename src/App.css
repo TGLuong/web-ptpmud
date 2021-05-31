@@ -92,7 +92,7 @@
     text-decoration: underline;
 }
 .product-area{
-    border: 1px solid black; 
+    /* border: 1px solid black;  */
     display: flex;
     justify-content: space-between;
     margin-top: 10%;

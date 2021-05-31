@@ -53,8 +53,6 @@ function LaptopRender(params) {
                             {element.brand}
                         </div>
                         <div className="wrapper">
-                            
-                            
                             {element.products.map((element,index)=>{
                                 return(
                                     <div key={index} className="item">
