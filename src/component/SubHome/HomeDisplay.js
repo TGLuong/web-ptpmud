@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 
 
-function NormalDisplay(props) {
+function HomeDisplay(props) {
 
     function convertLongString(string){
         if(string.length>58) return(string.slice(0,58)+'...');
@@ -54,4 +54,4 @@ function NormalDisplay(props) {
         </Fragment>
     );
 }
-export default NormalDisplay;
+export default HomeDisplay;

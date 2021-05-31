@@ -2,7 +2,7 @@ import {Fragment, useState, useEffect} from 'react'
 import axios from 'axios'
 import { Menu } from 'antd'
 import { Route, Link, Switch} from 'react-router-dom'
-import NormalDisplay from './SubHome/NormalDisplay'
+import HomeDisplay from './SubHome/HomeDisplay'
 
 import Header from './header/Header'
 
@@ -113,7 +113,7 @@ function Home(){
                 <Route path="/laptop"><LaptopRender/></Route>
                 <Route path="/camera"><CameraRender/></Route>
                 <Route path='/'>
-                    <NormalDisplay load_page={load_page} products={data.products}/>
+                    <HomeDisplay load_page={load_page} products={data.products}/>
                 </Route>
             </Switch>
         </Fragment>
