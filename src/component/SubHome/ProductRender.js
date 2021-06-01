@@ -48,8 +48,8 @@ function LaptopRender(props) {
                                                     </Col>
                                                     <Col  xs={8}>
                                                         <Row justify="space-between" align="middle">
-                                                            <img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' alt="cart" />
-                                                            <img style={{width:'37px',height:'37px'}} src='./img/core-img/love.png' alt="love" />
+                                                            <Link to="/sign-in"><img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' alt="cart" /></Link>
+                                                            <Link to="/sign-in"><img style={{width:'37px',height:'37px'}} src='./img/core-img/love.png' alt="love" /></Link>
                                                         </Row>
                                                     </Col>
                                                 </Row>

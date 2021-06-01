@@ -17,8 +17,8 @@ function HomeDisplay(props) {
                 {props.products.data.map((element,index)=>{
                     return(
                             <div key={index} className="product-cell">
-                                <Link className="link" to="/">
-                                    <Row justify="center" style={{height:'65%'}}>
+                                <Link className="link" to="/product">
+                                    <Row justify="center" style={{height:'65%',width:'100%'}}>
                                         <img src={element.images[0]} alt="product" />
                                     </Row>
                                     <Row style={{height:'19%'}}>
@@ -31,8 +31,8 @@ function HomeDisplay(props) {
                                         </Col>
                                         <Col  xs={8}>
                                             <Row justify="space-between" align="middle">
-                                                <img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' alt="cart"/>
-                                                <img style={{width:'37px',height:'37px'}} src='./img/core-img/love.png' alt="love" />
+                                                <Link to="sign-in"><img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' alt="cart"/></Link>
+                                                <Link to="sign-in"><img style={{width:'37px',height:'37px'}} src='./img/core-img/love.png' alt="love" /></Link>
                                             </Row>
                                         </Col>
                                     </Row>

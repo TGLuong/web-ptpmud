@@ -90,25 +90,29 @@ function Header(props) {
                         <Col xs={8}></Col>
                         <Col xs={8}>
                             <Row justify="end">
-                                <Col >                                   
-                                    <Row justify="center">
-                                        <Badge showZero size="small" count={0}>
-                                            <img className="shopping-card-icon" src="./img/core-img/shopping-cart.png" alt="img"/>
-                                        </Badge>
-                                    </Row>        
-                                    <h4 style={{marginBottom:'0px',color:'white',textAlign:'center',margin:''}}>Giỏ hàng</h4>
+                                <Col >
+                                    <Link to="/sign-in">
+                                        <Row justify="center">
+                                            <Badge showZero size="small" count={0}>
+                                                <img className="shopping-card-icon" src="./img/core-img/shopping-cart.png" alt="img"/>
+                                            </Badge>
+                                        </Row>        
+                                        <h4 style={{marginBottom:'0px',color:'white',textAlign:'center',margin:''}}>Giỏ hàng</h4>
+                                    </Link>
                                 </Col>
                             </Row>
                         </Col>
                         <Col style={{height:'100%'}} xs={8}>
                             <Row justify="end" align="bottom">
                                 <Col>
-                                    <Row justify="center">
-                                        <Badge showZero size="small" count={0}>
+                                    <Link to="/sign-in">
+                                        <Row justify="center">
+                                            <Badge showZero size="small" count={0}>
                                                 <img className="heart-icon" src="./img/core-img/love.png" alt="img"/>
-                                        </Badge>
-                                    </Row>
-                                    <h4 style={{marginBottom:'0px',paddingBottom:'0px',color:'white',textAlign:'center'}}>Yêu Thích</h4>
+                                            </Badge>
+                                        </Row>
+                                        <h4 style={{marginBottom:'0px',paddingBottom:'0px',color:'white',textAlign:'center'}}>Yêu Thích</h4>
+                                    </Link>
                                 </Col>
                             </Row>
                         </Col>
