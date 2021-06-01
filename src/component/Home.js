@@ -3,11 +3,8 @@ import axios from 'axios'
 import { Menu } from 'antd'
 import { Route, Link, Switch} from 'react-router-dom'
 import HomeDisplay from './SubHome/HomeDisplay'
-
 import Header from './header/Header'
-
-import LaptopRender from './SubHome/LaptopRender'
-import CameraRender from './SubHome/CameraRender'
+import ProductRender from './SubHome/ProductRender'
 
 import logo from '../img/core-img/logo.png'
 
@@ -44,8 +41,52 @@ function Home(){
             }
         }
     });
-    
-    
+    const [laptopData,setLaptopData] = useState({
+        data:[
+            {
+                brand:'',
+                id:0,
+                products:[
+                    {
+                        brand:'',
+                        brand_id:0,
+                        id:0,
+                        images:[
+                            '',
+                        ],
+                        price:0.0,
+                        productName:'',
+                        productSummary:'',
+                        quantity:'',
+                        warranty:''
+                    },
+                ]
+            },
+        ]
+    });
+    const [cameraData,setCameraData] = useState({
+        data:[
+            {
+                brand:'',
+                id:0,
+                products:[
+                    {
+                        brand:'',
+                        brand_id:0,
+                        id:0,
+                        images:[
+                            '',
+                        ],
+                        price:0.0,
+                        productName:'',
+                        productSummary:'',
+                        quantity:'',
+                        warranty:''
+                    },
+                ]
+            },
+        ]
+    });
 
     useEffect(()=>{
         const page = data.products.paging.current_page;
@@ -53,6 +94,14 @@ function Home(){
         res.then((res)=>{
             setData(res.data.data)
         });
+        const laptopres = axios.get('http://47.254.253.64:5000/product/laptop')
+        laptopres.then((res)=>{
+            setLaptopData(res.data)
+        })
+        const camerares = axios.get('http://47.254.253.64:5000/product/camera')
+        camerares.then((res)=>{
+            setCameraData(res.data)
+        })
     },[]);
 
     
@@ -110,8 +159,8 @@ function Home(){
         <Fragment>
             <Header logo={logo} searchEnter={searchEnter} search={search} load_page={load_page} renderMenu={renderMenu} data={data} />
             <Switch>
-                <Route path="/laptop"><LaptopRender/></Route>
-                <Route path="/camera"><CameraRender/></Route>
+                <Route path="/laptop"><ProductRender productData={laptopData}/></Route>
+                <Route path="/camera"><ProductRender productData={cameraData}/></Route>
                 <Route path='/'>
                     <HomeDisplay load_page={load_page} products={data.products}/>
                 </Route>

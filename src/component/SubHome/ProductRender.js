@@ -1,42 +1,11 @@
 import {Row, Col} from 'antd'
-import {useState, useEffect, Fragment} from 'react'
+import {Fragment} from 'react'
 import {Link,useLocation} from 'react-router-dom'
-import axios from 'axios'
 import './ProductDisplay.css'
 
 
 
-function LaptopRender() {
-    const [data,setData] = useState({
-        data:[
-            {
-                brand:'',
-                id:0,
-                products:[
-                    {
-                        brand:'',
-                        brand_id:0,
-                        id:0,
-                        images:[
-                            '',
-                        ],
-                        price:0.0,
-                        productName:'',
-                        productSummary:'',
-                        quantity:'',
-                        warranty:''
-                    },
-                ]
-            },
-        ]
-    });
-    useEffect(()=>{
-        const res = axios.get('http://47.254.253.64:5000/product/laptop')
-        res.then((res)=>{
-            setData(res.data)
-            
-        })
-    },[])
+function LaptopRender(props) {
     const search = useLocation().search;
     const brand = new URLSearchParams(search).get('brand');
     function convertLongString(string){
@@ -54,7 +23,7 @@ function LaptopRender() {
         <Fragment>
             {toBrand()}
             <div className="product-display" onLoad={toBrand}>
-                {data.data.map((element,index)=>{
+                {props.productData.data.map((element,index)=>{
                     return(
                         <div id={element.id} key={index} className="product-brand">
                             <div className="brand">
