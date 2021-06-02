@@ -23,12 +23,10 @@
     
 }
 .wrapper{
-    max-height: 280px;
-    height: 270px;
+    max-height: 280px;    
     width: 100%;
     display: flex;
     justify-content: left;
-    
     overflow-x: auto;
     overflow-y: hidden;
     /* border: 1px solid black; */

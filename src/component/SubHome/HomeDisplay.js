@@ -17,7 +17,7 @@ function HomeDisplay(props) {
                 {props.products.data.map((element,index)=>{
                     return(
                             <div key={index} className="product-cell">
-                                <Link className="link" to="/product">
+                                <Link className="link" to={"/product-detail?id="+element.id}>
                                     <Row justify="center" style={{height:'65%',width:'100%'}}>
                                         <img src={element.images[0]} alt="product" />
                                     </Row>

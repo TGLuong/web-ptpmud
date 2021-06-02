@@ -2,6 +2,7 @@ import {Fragment, useState, useEffect} from 'react'
 import axios from 'axios'
 import { Menu } from 'antd'
 import { Route, Link, Switch} from 'react-router-dom'
+import Product from './Product'
 import HomeDisplay from './SubHome/HomeDisplay'
 import Header from './header/Header'
 import ProductRender from './SubHome/ProductRender'
@@ -115,8 +116,7 @@ function Home(){
 
     
     function renderMenu(data) {
-        function item(element) {
-            
+        function item(element) {            
             if(element.is_laptop===true){
                 return(<Link to={"/laptop?brand="+element.id} >{element.brand}</Link>);
             }else{
@@ -135,6 +135,8 @@ function Home(){
             </Menu>
         );
     }
+
+
     function search() {
         const keyword = document.getElementById('search-input').value;
         const res = axios.get('http://47.254.253.64:5000/home?search='+keyword)
@@ -143,6 +145,8 @@ function Home(){
             setData(res.data.data)
         })
     }
+
+
     function searchEnter(e) {
         console.log(e.key)
         if(e.key==='Enter'){
@@ -161,6 +165,7 @@ function Home(){
             <Switch>
                 <Route path="/laptop"><ProductRender productData={laptopData}/></Route>
                 <Route path="/camera"><ProductRender productData={cameraData}/></Route>
+                <Route path="/product-detail"><Product/></Route>
                 <Route path='/'>
                     <HomeDisplay load_page={load_page} products={data.products}/>
                 </Route>

@@ -33,7 +33,7 @@ function LaptopRender(props) {
                                 {element.products.map((element,index)=>{
                                     return(
                                         <div key={index} className="item">
-                                            <Link to='/'>
+                                            <Link to={'/product-detail?id='+element.id}>
                                                 <Row justify="center" style={{height:'65%'}}>
                                                     <img src={element.images[0]} alt="product" />
                                                 </Row>
