@@ -2,6 +2,7 @@
     padding-top: 12%;
     margin-left: 6%;
     margin-right: 6%;
+    font-size: 18px;
 }
 .product-header{
     width: 100%;
@@ -13,8 +14,8 @@
     width: 100%;
 }
 .img-section .main-img{
-    width: 65%;
-    height: 300px;
+    width: 80%;
+    height: 350px;
     /* border: 1px solid black; */
 }
 .img-section .img{
@@ -31,7 +32,7 @@
     max-height: 140px;
     /* border: 1px solid black; */
     width: 100%;
-    justify-content: center;
+    justify-content: left;
 }
 .list-img .img-container{
     
