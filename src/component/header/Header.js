@@ -38,6 +38,14 @@ const HomeButton = styled.button`
         text-decoration: underline;
     }
 `;
+const LoginBtn = styled.button`
+    color:white;
+    background-color: #34495E;
+    border:none;
+    &:focus{
+        outline:none;
+    }
+`;
 
 function Header(props) {
     
@@ -65,7 +73,7 @@ function Header(props) {
                 </Col>
                 <Col xs={24} sm={6}>
                     <div className="header-nav-content">
-                        <Link to="sign-up"><img className="icon" src="./img/core-img/sign-up-icon.png" alt="img"/> Đăng ký</Link> | <Link to="sign-in">Đăng nhập</Link>
+                        <Link to="sign-up"><img className="icon" src="./img/core-img/sign-up-icon.png" alt="img"/> Đăng ký</Link> | <LoginBtn onClick={props.onPopup} > ĐĂNG NHẬP</LoginBtn>
                     </div>
                 </Col>
             </Row>

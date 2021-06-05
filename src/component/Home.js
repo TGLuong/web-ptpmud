@@ -2,6 +2,7 @@ import {Fragment, useState, useEffect} from 'react'
 import axios from 'axios'
 import { Menu } from 'antd'
 import { Route, Link, Switch} from 'react-router-dom'
+import Signin from './signinPopup/Signin'
 import Product from './Product'
 import HomeDisplay from './SubHome/HomeDisplay'
 import Header from './header/Header'
@@ -146,7 +147,12 @@ function Home(){
         })
     }
 
-
+    function onPopup() {
+        document.getElementById('popup').style.display="block"
+    }
+    function offPopup() {
+        document.getElementById('popup').style.display="none"
+    }
     function searchEnter(e) {
         console.log(e.key)
         if(e.key==='Enter'){
@@ -161,7 +167,8 @@ function Home(){
 
     return(
         <Fragment>
-            <Header logo={logo} searchEnter={searchEnter} search={search} load_page={load_page} renderMenu={renderMenu} data={data} />
+            <Signin offPopup={offPopup}/>
+            <Header logo={logo} searchEnter={searchEnter} search={search} load_page={load_page} onPopup={onPopup} renderMenu={renderMenu} data={data} />
             <Switch>
                 <Route path="/laptop"><ProductRender productData={laptopData}/></Route>
                 <Route path="/camera"><ProductRender productData={cameraData}/></Route>
@@ -170,6 +177,7 @@ function Home(){
                     <HomeDisplay load_page={load_page} products={data.products}/>
                 </Route>
             </Switch>
+
         </Fragment>
     );
 }

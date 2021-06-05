@@ -1,0 +1,46 @@
+.popup{
+    display: none;
+}
+.curtain{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(60,60,60,0.8);
+    z-index: 15;
+    top: 0;
+    left: 0;
+}
+.background{
+    position: fixed;
+    z-index: 16;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.container{
+    display: absolute;
+    top: 100px;
+    left: 100px;
+    border-radius: 15px;
+    width: 892px;
+    height: 563px;
+    background-color: white;
+}
+.slogan{
+    border-radius: 15px 0px 0px 15px;
+    background-color: #2C3E50;
+    height: 100%;
+    padding:0px 23px;
+}
+.slogan h1{
+    
+    color: white;
+    margin: 0px;
+    padding: 0px;
+    font-weight: 700;
+    font-size: 36px;
+}
+.slogan h2{
+    color: white;
+    font-size: 24px;
+}
