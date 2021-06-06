@@ -22,7 +22,7 @@ const AddTocartButton = styled.button`
     }
 `;
 
-function Product() {
+function Product(props) {
     const [detail, setDetail] = useState({
         data:{
             brand:'',
@@ -76,18 +76,16 @@ function Product() {
                         </Col>
                         <Col md={14} className="detail-section">
                             <Row>
-                                <AddTocartButton>
-                                    <Link to="/sign-in">
-                                        <Row style={{height:'100%'}} align="middle">
-                                            <Col md={18}>
-                                                <h4 style={{color:'white',margin:'0px'}}>THÊM VÀO GIỎ HÀNG</h4>
-                                                <h4 style={{color:'white'}}>GIAO HÀNG NHANH CHÓNG</h4>
-                                            </Col>
-                                            <Col md={6} >
-                                                <img style={{height:'100%', width:'100%'}} src="./img/core-img/shopping-cart.png"/>
-                                            </Col>
-                                        </Row>
-                                    </Link>
+                                <AddTocartButton onClick={props.onSignInPopup}>
+                                    <Row style={{height:'100%'}} align="middle">
+                                        <Col md={18}>
+                                            <h4 style={{color:'white',margin:'0px'}}>THÊM VÀO GIỎ HÀNG</h4>
+                                            <h4 style={{color:'white'}}>GIAO HÀNG NHANH CHÓNG</h4>
+                                        </Col>
+                                        <Col md={6} >
+                                            <img style={{height:'100%', width:'100%'}} src="./img/core-img/shopping-cart.png"/>
+                                        </Col>
+                                    </Row>
                                 </AddTocartButton>
                             </Row>
                             <Row>Kho hàng: {detail.data.quantity}</Row>

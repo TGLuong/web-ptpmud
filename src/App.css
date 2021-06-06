@@ -123,15 +123,8 @@
     
     color: black;
 }
-.product-cell .link{
-    
-}
-/* .product-cell:hover .link::after{
-    opacity: 1;
-}
-.product-cell:hover h3{
-    color: white;
-} */
+
+
 .panigation{
     /* border: 1px solid black; */
     width: 100%;
