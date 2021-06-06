@@ -40,10 +40,15 @@ const HomeButton = styled.button`
 `;
 const LoginBtn = styled.button`
     color:white;
+    cursor: pointer;
     background-color: #34495E;
     border:none;
     &:focus{
         outline:none;
+    }
+    &:hover{
+        text-decoration:underline;
+        color: yellow;
     }
 `;
 
