@@ -67,10 +67,10 @@ const LoginBtn = styled.button`
     }
 `;
 
-function Signin(props) {
+function Signup(props) {
     return(
         <Fragment>
-            <div id="signin-popup" className="popup">
+            <div id="signup-popup" className="popup">
                 <div className="curtain"></div>
                 <div className="background">
                     <div className="container">
@@ -86,7 +86,7 @@ function Signin(props) {
                             </Col>
                             <Col className="contend" xs={13}>
                                 <Row style={{height:'10%'}} align="middle" justify="end">
-                                    <CloseBtn onClick={props.offSignInPopup}><CloseCircleOutlined style={{fontSize:'30px',margin:'0px 15px',color:'red'}}></CloseCircleOutlined></CloseBtn>
+                                    <CloseBtn onClick={props.offSignUpPopup}><CloseCircleOutlined style={{fontSize:'30px',margin:'0px 15px',color:'red'}}></CloseCircleOutlined></CloseBtn>
                                 </Row>
                                 <Row align="bottom" style={{height:'30%'}}>
                                     <Col xs={24} >
@@ -114,7 +114,7 @@ function Signin(props) {
                                             <Input.Password style={{height:'45px',fontSize:'18px'}} placeholder={'Mật Khẩu'} ></Input.Password>
                                         </Row>
                                         <Row style={{margin:'10px 0px'}}>
-                                            <Link style={{fontSize:'16px', color:'#3B5998'}}><b>Quên mật khẩu?</b></Link>
+                                            <Input.Password style={{height:'45px',fontSize:'18px'}} placeholder={'Nhập Lại Mật Khẩu'} ></Input.Password>
                                         </Row>
                                         <Row style={{margin:'10px 0px'}}>
                                             <LoginBtn><b>Đăng Nhập</b></LoginBtn>
@@ -133,4 +133,4 @@ function Signin(props) {
         </Fragment>
     );
 }
-export default Signin
+export default Signup

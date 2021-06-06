@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Menu } from 'antd'
 import { Route, Link, Switch} from 'react-router-dom'
 import Signin from './signinPopup/Signin'
+import Singup from './signupPopup/Singup'
 import Product from './Product'
 import HomeDisplay from './SubHome/HomeDisplay'
 import Header from './header/Header'
@@ -147,11 +148,17 @@ function Home(){
         })
     }
 
-    function onPopup() {
-        document.getElementById('popup').style.display="block"
+    function onSignInPopup() {
+        document.getElementById('signin-popup').style.display="block"
     }
-    function offPopup() {
-        document.getElementById('popup').style.display="none"
+    function offSignInPopup() {
+        document.getElementById('signin-popup').style.display="none"
+    }
+    function onSignUpPopup() {
+        document.getElementById('signup-popup').style.display="block"
+    }
+    function offSignUpPopup() {
+        document.getElementById('signup-popup').style.display="none"
     }
     function searchEnter(e) {
         console.log(e.key)
@@ -167,14 +174,15 @@ function Home(){
 
     return(
         <Fragment>
-            <Signin offPopup={offPopup}/>
-            <Header logo={logo} searchEnter={searchEnter} search={search} load_page={load_page} onPopup={onPopup} renderMenu={renderMenu} data={data} />
+            <Signin offSignInPopup={offSignInPopup}/>
+            <Singup offSignUpPopup={offSignUpPopup}/>
+            <Header logo={logo} searchEnter={searchEnter} search={search} load_page={load_page} onSignInPopup={onSignInPopup} onSignUpPopup={onSignUpPopup} renderMenu={renderMenu} data={data} />
             <Switch>
-                <Route path="/laptop"><ProductRender productData={laptopData}/></Route>
-                <Route path="/camera"><ProductRender productData={cameraData}/></Route>
-                <Route path="/product-detail"><Product/></Route>
+                <Route path="/laptop"><ProductRender onSignInPopup={onSignInPopup} productData={laptopData}/></Route>
+                <Route path="/camera"><ProductRender onSignInPopup={onSignInPopup} productData={cameraData}/></Route>
+                <Route path="/product-detail"><Product onSignInPopup={onSignInPopup}/></Route>
                 <Route path='/'>
-                    <HomeDisplay load_page={load_page} products={data.products}/>
+                    <HomeDisplay onSignInPopup={onSignInPopup} load_page={load_page}  products={data.products}/>
                 </Route>
             </Switch>
 

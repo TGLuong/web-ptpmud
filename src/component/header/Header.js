@@ -51,6 +51,20 @@ const LoginBtn = styled.button`
         color: yellow;
     }
 `;
+const SignUpBtn = styled.button`
+    margin-left: 5px;
+    color:white;
+    cursor: pointer;
+    background-color: #34495E;
+    border:none;
+    &:focus{
+        outline:none;
+    }
+    &:hover{
+        text-decoration:underline;
+        color: yellow;
+    }
+`;
 
 function Header(props) {
     
@@ -78,7 +92,8 @@ function Header(props) {
                 </Col>
                 <Col xs={24} sm={6}>
                     <div className="header-nav-content">
-                        <Link to="sign-up"><img className="icon" src="./img/core-img/sign-up-icon.png" alt="img"/> Đăng ký</Link> | <LoginBtn onClick={props.onPopup} > ĐĂNG NHẬP</LoginBtn>
+                        <img className="icon"  src="./img/core-img/sign-up-icon.png" alt="img"/>
+                        <SignUpBtn onClick={props.onSignUpPopup} > ĐĂNG KÝ</SignUpBtn> | <LoginBtn onClick={props.onSignInPopup} > ĐĂNG NHẬP</LoginBtn>
                     </div>
                 </Col>
             </Row>
@@ -104,28 +119,28 @@ function Header(props) {
                         <Col xs={8}>
                             <Row justify="end">
                                 <Col >
-                                    <Link to="/sign-in">
+                                    <div onClick={props.onSignInPopup} style={{cursor:'pointer'}}>
                                         <Row justify="center">
                                             <Badge showZero size="small" count={0}>
                                                 <img className="shopping-card-icon" src="./img/core-img/shopping-cart.png" alt="img"/>
                                             </Badge>
                                         </Row>        
                                         <h4 style={{marginBottom:'0px',color:'white',textAlign:'center',margin:''}}>Giỏ hàng</h4>
-                                    </Link>
+                                    </div>
                                 </Col>
                             </Row>
                         </Col>
                         <Col style={{height:'100%'}} xs={8}>
                             <Row justify="end" align="bottom">
                                 <Col>
-                                    <Link to="/sign-in">
+                                    <div onClick={props.onSignInPopup} style={{cursor:'pointer'}}>
                                         <Row justify="center">
                                             <Badge showZero size="small" count={0}>
                                                 <img className="heart-icon" src="./img/core-img/love.png" alt="img"/>
                                             </Badge>
                                         </Row>
                                         <h4 style={{marginBottom:'0px',paddingBottom:'0px',color:'white',textAlign:'center'}}>Yêu Thích</h4>
-                                    </Link>
+                                    </div>
                                 </Col>
                             </Row>
                         </Col>

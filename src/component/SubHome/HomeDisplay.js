@@ -31,7 +31,7 @@ function HomeDisplay(props) {
                                         </Col>
                                         <Col  xs={8}>
                                             <Row justify="space-between" align="middle">
-                                                <Link to="sign-in"><img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' alt="cart"/></Link>
+                                                <div onClick={props.onSignInpopUp}><img style={{width:'37px',height:'37px'}} src='./img/core-img/shopping-cart.png' alt="cart"/></div>
                                                 <Link to="sign-in"><img style={{width:'37px',height:'37px'}} src='./img/core-img/love.png' alt="love" /></Link>
                                             </Row>
                                         </Col>
