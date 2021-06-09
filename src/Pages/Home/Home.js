@@ -168,8 +168,8 @@ function Home(props){
 
     return(
         <>
-            <Signin offSignInPopup={offSignInPopup}/>
-            <Signup offSignUpPopup={offSignUpPopup}/>
+            <Signin offSignInPopup={offSignInPopup} onSignUpPopup={onSignUpPopup} />
+            <Signup offSignUpPopup={offSignUpPopup} onSignInPopup={onSignInPopup} />
             <Header 
                 searchEnter={searchEnter} 
                 search={search} load_page={load_page} 

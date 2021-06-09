@@ -8,6 +8,10 @@ import { Line } from '../../component/Line'
 
 function Signin(props) {
     const history = useHistory()
+    const toSignup=()=>{
+        props.offSignInPopup()
+        props.onSignUpPopup()
+    }
     const login=()=>{
         
     }
@@ -168,14 +172,18 @@ function Signin(props) {
                                 <Row style={{height:'17%',padding:'0px 55px'}}>
                                     <h1 style={{fontSize:'16px'}}>
                                         Bạn chưa có tài khoản? 
-                                        <Link 
+                                        <button 
+                                            onClick={toSignup}
                                             style={{
                                                 fontSize:'16px', 
-                                                color:'#3B5998'
+                                                color:'#3B5998',
+                                                backgroundColor:'white',
+                                                border:'none',
+                                                outline:'none'
                                             }}
                                         >
                                             <b>Đăng Ký</b>
-                                        </Link>
+                                        </button>
                                     </h1>
                                 </Row>
                             </Col>

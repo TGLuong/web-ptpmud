@@ -6,6 +6,13 @@ import { CloseBtn, FacebookLoginBtn, GoogleLoginBtn, LoginBtn } from '../../comp
 import { Line } from '../../component/Line'
 
 function Signup(props) {
+
+    const toSignin = ()=>{
+        props.offSignUpPopup()
+        props.onSignInPopup()
+    }
+
+
     return(
         <>
             <div id="signup-popup" className="popup">
@@ -137,9 +144,18 @@ function Signup(props) {
                                 <Row style={{height:'17%',padding:'0px 55px'}}>
                                     <h1 style={{fontSize:'16px'}}>
                                         Bạn đẵ có tài khoản?
-                                        <Link style={{fontSize:'16px', color:'#3B5998'}}>
+                                        <button 
+                                            onClick={toSignin}
+                                            style={{
+                                                fontSize:'16px', 
+                                                color:'#3B5998',
+                                                backgroundColor:'white',
+                                                border:'none',
+                                                outline:'none'
+                                            }}
+                                            >
                                             <b>Đăng Nhập</b>
-                                        </Link>
+                                        </button>
                                     </h1>
                                 </Row>
                             </Col>
