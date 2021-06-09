@@ -1,5 +1,4 @@
 import '../../Style/Signin_up.css'
-import {Link} from 'react-router-dom'
 import {Row,Col, Input} from 'antd'
 import {CloseCircleOutlined} from '@ant-design/icons'
 import { CloseBtn, FacebookLoginBtn, GoogleLoginBtn, LoginBtn } from '../../component/Button'

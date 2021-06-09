@@ -134,4 +134,14 @@ export const ToSignupBtn = styled.button`
         color: yellow;
     }
 `;
-
+export const ProfileBtn = styled.button`
+    background-color:#34495E;
+    color: white;
+    text-transform:uppercase;
+    border:none;
+    outline:none;
+    &:hover{
+        color:yellow;
+        text-decoration:underline;
+    }
+`;

@@ -1,19 +1,50 @@
 import '../../Style/Signin_up.css'
+import axios from 'axios'
+import {useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
+import {BarLoader} from 'react-spinners'
 import {Row,Col, Input} from 'antd'
 import {CloseCircleOutlined} from '@ant-design/icons'
 import { CloseBtn, FacebookLoginBtn, GoogleLoginBtn, LoginBtn } from '../../component/Button'
 import { Line } from '../../component/Line'
 
 
+
 function Signin(props) {
     const history = useHistory()
+    const [loading,setLoading] = useState(false)
     const toSignup=()=>{
         props.offSignInPopup()
         props.onSignUpPopup()
     }
     const login=()=>{
-        
+        setLoading(true)
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        if(username.length===0||password.length===0){
+            alert('Vui lòng nhập tên tài khoản và mật khẩu để đăng nhập')
+        }else{
+            axios({
+                method:'post',
+                url:'http://47.254.253.64:5000/user/signin',
+                data:{
+                    username:username,
+                    password:password,
+                }
+            }).then(res=>{
+                setTimeout(()=>{
+                    const data = res.data
+                    if(data.message==='done'){
+                        sessionStorage.setItem('userdata',JSON.stringify(data.data))
+                        history.push('/dashboard')
+                    }else{
+                        alert('Sai tên đăng nhập hoặc mật khẩu')
+                    }
+                    setLoading(false)
+                },1000)
+            })
+            
+        }
     }
     return(
         <>
@@ -90,6 +121,7 @@ function Signin(props) {
                                                         margin:'7.5px 12px'
                                                     }} 
                                                     src={'./img/core-img/facebook-icon.png'} 
+                                                    alt="facebook"
                                                 />
                                                 Đăng Nhập Với Facebook
                                             </FacebookLoginBtn>
@@ -112,6 +144,7 @@ function Signin(props) {
                                                         margin:'7.5px 12px'
                                                     }} 
                                                     src={'./img/core-img/google-icon.png'} 
+                                                    alt="google"
                                                 />
                                                 Đăng Nhập Với Google
                                             </GoogleLoginBtn>
@@ -133,7 +166,8 @@ function Signin(props) {
                                         }}
                                     >
                                         <Row style={{marginBottom:'10px'}}>
-                                            <Input 
+                                            <Input
+                                                id={'username'}
                                                 style={{
                                                     height:'45px',
                                                     borderRadius:'10px'
@@ -144,6 +178,7 @@ function Signin(props) {
                                         </Row>
                                         <Row style={{margin:'10px 0px'}}>
                                             <Input.Password 
+                                                id={'password'}
                                                 style={{
                                                     height:'45px',
                                                     fontSize:'18px',
@@ -166,7 +201,9 @@ function Signin(props) {
                                         <Row style={{margin:'10px 0px'}}>
                                             <LoginBtn onClick={login}><b>Đăng Nhập</b></LoginBtn>
                                         </Row>
-                                        
+                                        <Row>
+                                            <BarLoader loading={loading} width={'100%'} />
+                                        </Row>
                                     </Col>
                                 </Row>
                                 <Row style={{height:'17%',padding:'0px 55px'}}>
