@@ -1,0 +1,46 @@
+
+.product-area{
+    
+    display: flex;
+    
+    justify-content: space-between;
+    margin-top: 10%;
+    margin: 12% 6%;
+    margin-bottom: 6%;
+} 
+
+
+
+.product-cell{
+    min-width: 24%;
+    max-width: 24%;
+    min-height: 250px;
+    max-height: 250px;
+    margin-bottom: 18px;
+    
+    border: 1px solid black;
+}
+
+.product-cell img{
+    height: 160px;
+    
+}
+.product-cell .display-content{
+    color: black;
+}
+
+
+.panigation{
+    /* border: 1px solid black; */
+    width: 100%;
+    display: flex;
+    position: fixed;
+    height: 50px;
+    background-color: white;
+    align-items: center;
+    z-index: 3;
+    bottom: 0px;
+    
+    justify-content: center;
+
+}

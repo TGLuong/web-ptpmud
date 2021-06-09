@@ -1,24 +1,16 @@
-import {Fragment, useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Menu } from 'antd'
-import { Route, Link, Switch} from 'react-router-dom'
-import Signin from './signinPopup/Signin'
-import Singup from './signupPopup/Singup'
-import Product from './Product'
-import HomeDisplay from './SubHome/HomeDisplay'
-import Header from './header/Header'
-import ProductRender from './SubHome/ProductRender'
+import { Route, Link, Switch } from 'react-router-dom'
 
-import logo from '../img/core-img/logo.png'
+import Signin from '../Signin/Signin'
+import Signup from '../Signup/Signup'
+import Product from '../Product/Product'
+import Header from '../../component/header/Header'
+import HomeDisplay from './HomeDisplay'
+import ProductRender from './ProductRender'
 
-
-
-
-
-
-
-
-function Home(){
+function Home(props){
     const [data,setData] = useState({
         camera_brands:[],
         laptop_brands:[],
@@ -44,6 +36,7 @@ function Home(){
             }
         }
     });
+
     const [laptopData,setLaptopData] = useState({
         data:[
             {
@@ -67,6 +60,7 @@ function Home(){
             },
         ]
     });
+
     const [cameraData,setCameraData] = useState({
         data:[
             {
@@ -107,7 +101,6 @@ function Home(){
         })
     },[]);
 
-    
     function load_page(page,pageSize){
         const res = axios.get('http://47.254.253.64:5000/home?page='+page)
         res.then((res)=>{
@@ -116,7 +109,6 @@ function Home(){
         })
     }
 
-    
     function renderMenu(data) {
         function item(element) {            
             if(element.is_laptop===true){
@@ -138,7 +130,6 @@ function Home(){
         );
     }
 
-
     function search() {
         const keyword = document.getElementById('search-input').value;
         const res = axios.get('http://47.254.253.64:5000/home?search='+keyword)
@@ -151,17 +142,20 @@ function Home(){
     function onSignInPopup() {
         document.getElementById('signin-popup').style.display="block"
     }
+
     function offSignInPopup() {
         document.getElementById('signin-popup').style.display="none"
     }
+
     function onSignUpPopup() {
         document.getElementById('signup-popup').style.display="block"
     }
+
     function offSignUpPopup() {
         document.getElementById('signup-popup').style.display="none"
     }
+
     function searchEnter(e) {
-        console.log(e.key)
         if(e.key==='Enter'){
             const keyword = document.getElementById('search-input').value;
             const res = axios.get('http://47.254.253.64:5000/home?search='+keyword)
@@ -173,20 +167,42 @@ function Home(){
     }
 
     return(
-        <Fragment>
+        <>
             <Signin offSignInPopup={offSignInPopup}/>
-            <Singup offSignUpPopup={offSignUpPopup}/>
-            <Header logo={logo} searchEnter={searchEnter} search={search} load_page={load_page} onSignInPopup={onSignInPopup} onSignUpPopup={onSignUpPopup} renderMenu={renderMenu} data={data} />
+            <Signup offSignUpPopup={offSignUpPopup}/>
+            <Header 
+                searchEnter={searchEnter} 
+                search={search} load_page={load_page} 
+                onSignInPopup={onSignInPopup} 
+                onSignUpPopup={onSignUpPopup} 
+                renderMenu={renderMenu} 
+                data={data}
+            />
             <Switch>
-                <Route path="/laptop"><ProductRender onSignInPopup={onSignInPopup} productData={laptopData}/></Route>
-                <Route path="/camera"><ProductRender onSignInPopup={onSignInPopup} productData={cameraData}/></Route>
-                <Route path="/product-detail"><Product onSignInPopup={onSignInPopup}/></Route>
+                <Route path="/laptop">
+                    <ProductRender 
+                        onSignInPopup={onSignInPopup} 
+                        productData={laptopData}
+                    />
+                </Route>
+                <Route path="/camera">
+                    <ProductRender 
+                        onSignInPopup={onSignInPopup} 
+                        productData={cameraData}
+                    />
+                </Route>
+                <Route path="/product-detail">
+                    <Product onSignInPopup={onSignInPopup}/>
+                </Route>
                 <Route path='/'>
-                    <HomeDisplay onSignInPopup={onSignInPopup} load_page={load_page}  products={data.products}/>
+                    <HomeDisplay 
+                        onSignInPopup={onSignInPopup} 
+                        load_page={load_page} 
+                        products={data.products}
+                    />
                 </Route>
             </Switch>
-
-        </Fragment>
+        </>
     );
 }
 export default Home

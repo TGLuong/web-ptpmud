@@ -1,9 +1,9 @@
 import React from 'react'
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
-import Home from './component/Home'
 import 'antd/dist/antd.css'
-import './App.css';
+import './Style/App.css'
 
+import Home from './Pages/Home/Home'
 
 function App() {
   return (

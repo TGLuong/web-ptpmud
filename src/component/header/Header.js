@@ -1,70 +1,11 @@
 import {Row, Col, Badge, Dropdown, Image} from 'antd'
 import {Link} from 'react-router-dom'
-import styled from 'styled-components'
+import '../../Style/Header.css'
+import { ToSigninBtn, ToSignupBtn , SearchButton , HomeButton } from '../../component/Button.js'
+import { SearchInput } from '../../component/Input.js'
 
 
-const Input = styled.input`
-    padding: 0px 20px;
-    width:80%;
-    background-color:#F9FAFF;
-    font-size:100%;
-    border:none;
-    height:25px;
-    border-radius:15px 0px 0px 15px;
-    &:focus{
-        outline:none;
-    }
-`;
-const SearchButton = styled.button`
-    background-color:#E74C3C;
-    border:none;
-    height:25px;
-    width:18%;
-    border-radius:0px 15px 15px 0px;
-    &:focus{
-        outline:none;
-    }
-    &:hover{
-        background-color:#F74C3C;
-    }
-`;
-const HomeButton = styled.button`
-    background-color:#34495E;
-    border:none;
-    &:focus{
-        outline:none;
-    }
-    &:hover{
-        text-decoration: underline;
-    }
-`;
-const LoginBtn = styled.button`
-    color:white;
-    cursor: pointer;
-    background-color: #34495E;
-    border:none;
-    &:focus{
-        outline:none;
-    }
-    &:hover{
-        text-decoration:underline;
-        color: yellow;
-    }
-`;
-const SignUpBtn = styled.button`
-    margin-left: 5px;
-    color:white;
-    cursor: pointer;
-    background-color: #34495E;
-    border:none;
-    &:focus{
-        outline:none;
-    }
-    &:hover{
-        text-decoration:underline;
-        color: yellow;
-    }
-`;
+
 
 function Header(props) {
     
@@ -75,41 +16,52 @@ function Header(props) {
                 <Col xs={24} sm={6}>
                     <div className="header-nav-content">
                         <img className="icon" src="./img/core-img/100-icon.png" alt="img"/>
-                            <Link to="/about-us">100% Chính Hãng</Link>
+                            <Link to="/">100% Chính Hãng</Link>
                     </div>
                 </Col>
                 <Col xs={24} sm={6}>
                     <div className="header-nav-content">
                         <img className="icon" src="./img/core-img/free-ship.png" alt="img"/>
-                        <Link to="/guide">Miễn phí vẫn chuyển</Link>
+                        <Link to="/">Miễn phí vẫn chuyển</Link>
                     </div>
                 </Col>
                 <Col xs={24} sm={6}>
                     <div className="header-nav-content">
                         <img className="icon" src="./img/core-img/repare-at-home.png" alt="img"/>
-                        <Link to="/policy">Bảo hành tận nhà</Link>
+                        <Link to="/">Bảo hành tận nhà</Link>
                     </div>
                 </Col>
                 <Col xs={24} sm={6}>
                     <div className="header-nav-content">
                         <img className="icon"  src="./img/core-img/sign-up-icon.png" alt="img"/>
-                        <SignUpBtn onClick={props.onSignUpPopup} > ĐĂNG KÝ</SignUpBtn> | <LoginBtn onClick={props.onSignInPopup} > ĐĂNG NHẬP</LoginBtn>
+                        <ToSignupBtn onClick={props.onSignUpPopup} > ĐĂNG KÝ</ToSignupBtn> | <ToSigninBtn onClick={props.onSignInPopup} > ĐĂNG NHẬP</ToSigninBtn>
                     </div>
                 </Col>
             </Row>
             <Row className="header" align="bottom">
                 <Col sm={3}>
                     <Row justify="start">
-                        <Image height={73} width={73} src={props.logo} />
+                        <Image height={73} width={73} src={'./img/core-img/logo.png'} />
                     </Row>
                 </Col>
                 <Col style={{height:'74px'}} sm={13}>
                     <Row style={{height:'100%'}} justify="start" align="middle">
-                        <Input onKeyPress={props.searchEnter} id="search-input" placeholder="Search Here"/>
+                        <SearchInput onKeyPress={props.searchEnter} id="search-input" placeholder="Search Here"/>
                         <SearchButton  onClick={props.search}>
-                            <Link to="/">
-                            <h3 style={{marginLeft:'4px',height:'100%',display:'flex',alignItems:'center',justifyContent:'center',color:'white',fontSize:'100%',fontWeight:'590'}}>Search</h3>
-                            </Link>
+                            <h3 
+                                style={{
+                                    marginLeft:'4px',
+                                    height:'100%',
+                                    display:'flex',
+                                    alignItems:'center',
+                                    justifyContent:'center',
+                                    color:'white',
+                                    fontSize:'100%',
+                                    fontWeight:'590'
+                                }}
+                            >
+                                Search
+                            </h3>
                         </SearchButton>
                     </Row>
                 </Col>
