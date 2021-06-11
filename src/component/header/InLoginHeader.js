@@ -1,5 +1,5 @@
 import {Row, Col, Badge, Dropdown, Image} from 'antd'
-import {Link} from 'react-router-dom'
+import {Link,useHistory} from 'react-router-dom'
 import '../../Style/Header.css'
 import { ToSigninBtn, ToSignupBtn , SearchButton , HomeButton, ProfileBtn } from '../../component/Button.js'
 import { SearchInput } from '../../component/Input.js'
@@ -8,7 +8,7 @@ import { SearchInput } from '../../component/Input.js'
 
 
 function InLoginHdaer(props) {
-    
+    const history = useHistory()
     const totalGood =()=>{
         let count = 0;
         props.userData.carts.forEach(element=>{
@@ -44,7 +44,7 @@ function InLoginHdaer(props) {
                 <Col xs={24} sm={6} >
                     <div className="header-nav-content">
                         <img style={{height:'18px'}} src="./img/core-img/profile-icon.png" alt="img"/>
-                        <span> </span>
+                        <span> | </span>
                         <ProfileBtn>{props.userData.username}</ProfileBtn>
                         <span> | </span>
                         <ProfileBtn>QUẢN LÝ</ProfileBtn>
@@ -114,11 +114,16 @@ function InLoginHdaer(props) {
             </Row>
             <Row className="nav-bar" justify="start" align="middle">
                 <Col className="item">
-                <Link to="/dashboard"  >
-                    <HomeButton  onClick={()=>{props.load_page(1,20)}}>
+                
+                    <HomeButton  
+                        onClick={()=>{
+                            history.push('/dashboard')
+                            props.load_page(1,20)
+                        }}
+                    >
                         HOME
                     </HomeButton> 
-                </Link>
+                
                 </Col>
                 <Col className="item">
                     <Dropdown overlay={props.renderMenu(props.data.laptop_brands)}>

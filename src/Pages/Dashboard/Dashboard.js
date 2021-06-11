@@ -7,7 +7,8 @@ import { Route, Link, Switch } from 'react-router-dom'
 
 import InLoginHeader from '../../component/header/InLoginHeader'
 import DashboardDisplay from './DashboardDisplay'
-import DashboardProduct from './DashboardProduct'
+import DashboardProductDisplay from './DashboardProductDisplay'
+import DashboardProduct from '../Product/DashboardProduct'
 function Dashboard(props){
     const [data,setData] = useState({
         camera_brands:[],
@@ -196,19 +197,19 @@ function Dashboard(props){
             />
             <Switch>
                 <Route path="/dashboard/laptop">
-                    <DashboardProduct 
+                    <DashboardProductDisplay 
                         productData={laptopData}
                     />
                 </Route>
                 <Route path="/dashboard/camera">
-                    <DashboardProduct 
+                    <DashboardProductDisplay 
                         
                         productData={cameraData}
                     />
                 </Route>
-                {/* <Route path="/dahsboard/product-detail">
-                    <Product onSignInPopup={onSignInPopup}/>
-                </Route> */}
+                <Route path="/dashboard/product-detail">
+                    <DashboardProduct/>
+                </Route>
                 <Route path='/dashboard'>
                     <DashboardDisplay 
                         load_page={load_page} 

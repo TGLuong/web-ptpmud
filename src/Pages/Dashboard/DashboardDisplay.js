@@ -27,7 +27,7 @@ function DashboardDisplay(props) {
                             >
                                 <Link 
                                     className="link" 
-                                    to={"/product-detail?id="+element.id}
+                                    to={"/dashboard/product-detail?id="+element.id}
                                 >
                                     <Row justify="center" style={{height:'65%',width:'100%'}}>
                                         <img src={element.images[0]} alt="product" />

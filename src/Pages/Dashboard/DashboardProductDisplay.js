@@ -8,7 +8,7 @@ import {SigninBtn} from '../../component/Button'
 
 
 
-function DashboardProduct(props) {
+function DashboardProductDisplay(props) {
     const search = useLocation().search;
     const brand = new URLSearchParams(search).get('brand');
 
@@ -48,7 +48,7 @@ function DashboardProduct(props) {
                                             key={index} 
                                             className="item"
                                         >
-                                            <Link to={'/product-detail?id='+element.id}>
+                                            <Link to={'/dashboard/product-detail?id='+element.id}>
                                                 <Row justify="center" style={{height:'65%'}}>
                                                     <img 
                                                         src={element.images[0]} 
@@ -122,4 +122,4 @@ function DashboardProduct(props) {
         </>
     );
 }
-export default DashboardProduct
+export default DashboardProductDisplay
