@@ -8,7 +8,18 @@ import { SearchInput } from '../../component/Input.js'
 
 
 function InLoginHdaer(props) {
-
+    
+    const totalGood =()=>{
+        let count = 0;
+        props.userData.carts.forEach(element=>{
+            count+=element.amount;
+        })
+        return count;
+    }
+    const totalFavorite=()=>{
+        return props.userData.favorites.length;
+    }
+    
     return(
         <div className="head">
             <Row className="header-nav" align="middle" justify="space-around">
@@ -30,13 +41,14 @@ function InLoginHdaer(props) {
                         <Link to="/">Bảo hành tận nhà</Link>
                     </div>
                 </Col>
-                <Col xs={24} sm={6}>
-                    <Row justify="center">
-                        <div className="header-nav-content">
-                            <img className="icon"  src="./img/core-img/profile-icon.png" alt="img"/>
-                            <ProfileBtn>{props.userData.username}</ProfileBtn>
-                        </div>
-                    </Row>
+                <Col xs={24} sm={6} >
+                    <div className="header-nav-content">
+                        <img style={{height:'18px'}} src="./img/core-img/profile-icon.png" alt="img"/>
+                        <span> </span>
+                        <ProfileBtn>{props.userData.username}</ProfileBtn>
+                        <span> | </span>
+                        <ProfileBtn>QUẢN LÝ</ProfileBtn>
+                    </div>
                 </Col>
             </Row>
             <Row className="header" align="bottom">
@@ -72,9 +84,9 @@ function InLoginHdaer(props) {
                         <Col xs={8}>
                             <Row justify="end">
                                 <Col >
-                                    <div onClick={props.onSignInPopup} style={{cursor:'pointer'}}>
+                                    <div style={{cursor:'pointer'}}>
                                         <Row justify="center">
-                                            <Badge showZero size="small" count={0}>
+                                            <Badge showZero size="small" count={totalGood()}>
                                                 <img className="shopping-card-icon" src="./img/core-img/shopping-cart.png" alt="img"/>
                                             </Badge>
                                         </Row>        
@@ -86,9 +98,9 @@ function InLoginHdaer(props) {
                         <Col style={{height:'100%'}} xs={8}>
                             <Row justify="end" align="bottom">
                                 <Col>
-                                    <div onClick={props.onSignInPopup} style={{cursor:'pointer'}}>
+                                    <div  style={{cursor:'pointer'}}>
                                         <Row justify="center">
-                                            <Badge showZero size="small" count={0}>
+                                            <Badge showZero size="small" count={totalFavorite()}>
                                                 <img className="heart-icon" src="./img/core-img/love.png" alt="img"/>
                                             </Badge>
                                         </Row>
@@ -100,29 +112,25 @@ function InLoginHdaer(props) {
                     </Row>
                 </Col>
             </Row>
-            {/* <Row className="nav-bar" justify="start" align="middle">
+            <Row className="nav-bar" justify="start" align="middle">
                 <Col className="item">
-                <Link to="/"  >
+                <Link to="/dashboard"  >
                     <HomeButton  onClick={()=>{props.load_page(1,20)}}>
                         HOME
-                    </HomeButton>
-                        
+                    </HomeButton> 
                 </Link>
-                
-                    
                 </Col>
                 <Col className="item">
                     <Dropdown overlay={props.renderMenu(props.data.laptop_brands)}>
-                        <Link to="/laptop">LAPTOP</Link>
-                        
+                        <Link to="/dashboard/laptop">LAPTOP</Link>
                     </Dropdown>
                 </Col>
                 <Col className="item"> 
                     <Dropdown overlay={props.renderMenu(props.data.camera_brands)}>
-                        <Link to="/camera">CAMERA</Link>
+                        <Link to="/dashboard/camera">CAMERA</Link>
                     </Dropdown>
                 </Col>
-            </Row> */}
+            </Row>
         </div>
     );
 }

@@ -6,8 +6,8 @@ import { Route, Link, Switch } from 'react-router-dom'
 
 
 import InLoginHeader from '../../component/header/InLoginHeader'
-
-
+import DashboardDisplay from './DashboardDisplay'
+import DashboardProduct from './DashboardProduct'
 function Dashboard(props){
     const [data,setData] = useState({
         camera_brands:[],
@@ -102,7 +102,7 @@ function Dashboard(props){
             }
         ],
         id: 0,
-        is_admin: true,
+        is_admin: false,
         username: ''
     })
     const history = useHistory()
@@ -112,7 +112,15 @@ function Dashboard(props){
         if(data===null){
             history.push('/')
         }else{
-            setUserData(data)
+            axios({
+                method:'post',
+                url:'http://47.254.253.64:5000/user/signin',
+                data:{
+                    ...data
+                }
+            }).then(res=>{
+                setUserData(res.data.data)
+            })
             const res = axios.get('http://47.254.253.64:5000/home?page='+1)
             res.then((res)=>{
                 setData(res.data.data)
@@ -139,9 +147,9 @@ function Dashboard(props){
     function renderMenu(data) {
         function item(element) {            
             if(element.is_laptop===true){
-                return(<Link to={"/laptop?brand="+element.id} >{element.brand}</Link>);
+                return(<Link to={"/dashboard/laptop?brand="+element.id} >{element.brand}</Link>);
             }else{
-                return(<Link to={"/camera?brand="+element.id} >{element.brand}</Link>);
+                return(<Link to={"/dashboard/camera?brand="+element.id} >{element.brand}</Link>);
             }
         }
         return(
@@ -187,7 +195,26 @@ function Dashboard(props){
                 userData={userData}
             />
             <Switch>
-                
+                <Route path="/dashboard/laptop">
+                    <DashboardProduct 
+                        productData={laptopData}
+                    />
+                </Route>
+                <Route path="/dashboard/camera">
+                    <DashboardProduct 
+                        
+                        productData={cameraData}
+                    />
+                </Route>
+                {/* <Route path="/dahsboard/product-detail">
+                    <Product onSignInPopup={onSignInPopup}/>
+                </Route> */}
+                <Route path='/dashboard'>
+                    <DashboardDisplay 
+                        load_page={load_page} 
+                        products={data.products}
+                    />
+                </Route> 
             </Switch>
         </>
     );

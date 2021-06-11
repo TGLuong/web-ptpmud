@@ -8,7 +8,7 @@ import {SigninBtn} from '../../component/Button'
 
 
 
-function ProductRender(props) {
+function DashboardProduct(props) {
     const search = useLocation().search;
     const brand = new URLSearchParams(search).get('brand');
 
@@ -116,7 +116,10 @@ function ProductRender(props) {
                     );
                 })}
             </div>
+            <div style={{height:'50px'}}>
+
+            </div>
         </>
     );
 }
-export default ProductRender
+export default DashboardProduct

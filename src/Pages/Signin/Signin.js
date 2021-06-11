@@ -35,7 +35,10 @@ function Signin(props) {
                 setTimeout(()=>{
                     const data = res.data
                     if(data.message==='done'){
-                        sessionStorage.setItem('userdata',JSON.stringify(data.data))
+                        sessionStorage.setItem('userdata',JSON.stringify({
+                            username:username,
+                            password:password
+                        }))
                         history.push('/dashboard')
                     }else{
                         alert('Sai tên đăng nhập hoặc mật khẩu')
