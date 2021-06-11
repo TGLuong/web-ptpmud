@@ -60,7 +60,7 @@ function InLoginHdaer(props) {
                             style={{height:'18px'}} 
                             src="./img/core-img/profile-icon.png" alt="img"
                         />
-                        <span> | </span>
+                        <span> </span>
                         <ProfileBtn>
                             {props.userData.username}
                         </ProfileBtn>
