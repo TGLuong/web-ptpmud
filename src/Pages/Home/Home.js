@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Menu } from 'antd'
-import { Route, Link, Switch } from 'react-router-dom'
+import { Route, Link, Switch, useHistory } from 'react-router-dom'
 
 import Signin from '../Signin/Signin'
 import Signup from '../Signup/Signup'
@@ -11,6 +11,7 @@ import HomeDisplay from './HomeDisplay'
 import ProductRender from './ProductRender'
 
 function Home(props){
+    const history = useHistory()
     const [data,setData] = useState({
         camera_brands:[],
         laptop_brands:[],
@@ -86,19 +87,23 @@ function Home(props){
     });
 
     useEffect(()=>{
-        const page = data.products.paging.current_page;
-        const res = axios.get('http://47.254.253.64:5000/home?page='+page)
-        res.then((res)=>{
-            setData(res.data.data)
-        });
-        const laptopres = axios.get('http://47.254.253.64:5000/product/laptop')
-        laptopres.then((res)=>{
-            setLaptopData(res.data)
-        })
-        const camerares = axios.get('http://47.254.253.64:5000/product/camera')
-        camerares.then((res)=>{
-            setCameraData(res.data)
-        })
+        if(sessionStorage.getItem('userdata')!==null){
+            history.push('/dashboard')
+        }else{
+            const page = data.products.paging.current_page;
+            const res = axios.get('http://47.254.253.64:5000/home?page='+page)
+            res.then((res)=>{
+                setData(res.data.data)
+            });
+            const laptopres = axios.get('http://47.254.253.64:5000/product/laptop')
+            laptopres.then((res)=>{
+                setLaptopData(res.data)
+            })
+            const camerares = axios.get('http://47.254.253.64:5000/product/camera')
+            camerares.then((res)=>{
+                setCameraData(res.data)
+            })
+        }
     },[]);
 
     function load_page(page,pageSize){

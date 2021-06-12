@@ -1,5 +1,6 @@
 import '../../Style/Signin_up.css'
 import {Row,Col, Input} from 'antd'
+import axios from 'axios'
 import {CloseCircleOutlined} from '@ant-design/icons'
 import { CloseBtn, FacebookLoginBtn, GoogleLoginBtn, LoginBtn } from '../../component/Button'
 import { Line } from '../../component/Line'
@@ -10,7 +11,39 @@ function Signup(props) {
         props.offSignUpPopup()
         props.onSignInPopup()
     }
-
+    const signup=()=>{
+        const username = document.getElementById('signup_username').value;
+        const password = document.getElementById('signup_password').value;
+        const val_password = document.getElementById('signup_val_password').value;
+        
+        if(username===''||password===''||val_password===''){
+            alert('Vui lòng nhập đầy đủ thông tin để đăng ký')
+        }else if(username.match(/[^a-z0-9]/)){
+            alert('tên người dùng không được có chữ hoa, ký tự đặc biệt và dấu')
+        }else if(!password.match(/[a-z]/)||!password.match(/[0-9]/)){
+            alert('mật khẩu phải có chữ và số')
+        }else if(password.localeCompare(val_password)!==0){
+            alert('Vui lòng nhập đúng mật khẩu xác thực')
+        }else{
+            axios({
+                method:'post',
+                url:'http://47.254.253.64:5000/user/signup',
+                data:{
+                    username:username,
+                    password:password
+                }
+            }).then(res=>{
+                alert('đăng ký thành công')
+                toSignin()
+            }).catch(err=>{
+                document.getElementById('sign_up_err').style.visibility="visible";
+                setTimeout(
+                    ()=>{document.getElementById('sign_up_err').style.visibility="hidden"}
+                    ,3000
+                )
+            })
+        }
+    }
 
     return(
         <>
@@ -22,7 +55,7 @@ function Signup(props) {
                             <Col className="slogan" xs={11}>
                                 <Row align="middle" style={{width:'100%',height:'100%'}}>
                                     <Col>
-                                        <h1>Chào Mừng Trở Lại Với Cửa Hàng Trực Tuyến</h1>
+                                        <h1>Chào Mừng Đến Với Cửa Hàng Trực Tuyến</h1>
                                         <Line/>
                                         <h2>Đăng nhập để mua sắm</h2>
                                     </Col>
@@ -91,9 +124,13 @@ function Signup(props) {
                                         </Row>
                                         <h1 
                                             style={{
-                                                textAlign:'center',
-                                                color: 'rgba(30,30,30,0.8)'
-                                            }}>
+                                                display:'flex',
+                                                justifyContent:'center',
+                                                alignItems:'center',
+                                                fontSize:'20px',
+                                                height:'45px',
+                                            }}
+                                        >
                                             <b>or</b>
                                         </h1>
                                     </Col>
@@ -102,6 +139,7 @@ function Signup(props) {
                                     <Col xs={24} style={{padding:'0px 55px'}}>
                                         <Row style={{marginBottom:'10px'}}>
                                             <Input 
+                                                id={'signup_username'}
                                                 style={{
                                                     height:'45px',
                                                     borderRadius:'10px'
@@ -112,6 +150,7 @@ function Signup(props) {
                                         </Row>
                                         <Row style={{margin:'10px 0px'}}>
                                             <Input.Password 
+                                                id={'signup_password'}
                                                 style={{
                                                     height:'45px',
                                                     fontSize:'18px',
@@ -123,6 +162,7 @@ function Signup(props) {
                                         </Row>
                                         <Row style={{margin:'10px 0px'}}>
                                             <Input.Password 
+                                                id={'signup_val_password'}
                                                 style={{
                                                     height:'45px',
                                                     fontSize:'18px',
@@ -133,11 +173,23 @@ function Signup(props) {
                                             </Input.Password>
                                         </Row>
                                         <Row style={{margin:'10px 0px'}}>
-                                            <LoginBtn>
+                                            <LoginBtn onClick={signup}>
                                                 <b>Đăng Ký</b>
                                             </LoginBtn>
                                         </Row>
-                                        
+                                        <Row>
+                                            <h1 
+                                                id="sign_up_err" 
+                                                style={{
+                                                    fontSize:'14px',
+                                                    color:'red',
+                                                    fontWeight:'600',
+                                                    visibility:'hidden'
+                                                }}
+                                            >
+                                                Tài khoản đã tồn tại
+                                            </h1>
+                                        </Row>
                                     </Col>
                                 </Row>
                                 <Row style={{height:'17%',padding:'0px 55px'}}>
@@ -150,7 +202,9 @@ function Signup(props) {
                                                 color:'#3B5998',
                                                 backgroundColor:'white',
                                                 border:'none',
-                                                outline:'none'
+                                                outline:'none',
+                                                margin:'0px 7px',
+                                                cursor:'pointer'
                                             }}
                                             >
                                             <b>Đăng Nhập</b>

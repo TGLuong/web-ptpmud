@@ -17,6 +17,11 @@ function Signin(props) {
         props.offSignInPopup()
         props.onSignUpPopup()
     }
+    const enterlogin=(event)=>{
+        if(event.key === 'Enter'){
+            login()
+        }
+    }
     const login=()=>{
         setLoading(true)
         const username = document.getElementById('username').value;
@@ -161,7 +166,11 @@ function Signin(props) {
                                         </Row>
                                         <h1 
                                             style={{
-                                                textAlign:'center',
+                                                display:'flex',
+                                                justifyContent:'center',
+                                                alignItems:'center',
+                                                fontSize:'20px',
+                                                height:'45px',
                                             }}
                                         >
                                             <b>or</b>
@@ -172,7 +181,6 @@ function Signin(props) {
                                     <Col xs={24} 
                                         style={{
                                             padding:'0px 55px',
-                                            
                                         }}
                                     >
                                         <Row style={{marginBottom:'10px'}}>
@@ -189,6 +197,7 @@ function Signin(props) {
                                         <Row style={{margin:'10px 0px'}}>
                                             <Input.Password 
                                                 id={'password'}
+                                                onKeyDown={enterlogin}
                                                 style={{
                                                     height:'45px',
                                                     fontSize:'18px',
@@ -215,7 +224,17 @@ function Signin(props) {
                                             <BarLoader loading={loading} width={'100%'} />
                                         </Row>
                                         <Row>
-                                            <h1 id="login_err" style={{fontSize:'16px',color:'red',fontWeight:'600',visibility:'hidden'}}>Sai tên đăng nhập hoặc mật khẩu</h1>
+                                            <h1 
+                                                id="login_err" 
+                                                style={{
+                                                    fontSize:'16px',
+                                                    color:'red',
+                                                    fontWeight:'600',
+                                                    visibility:'hidden'
+                                                }}
+                                            >
+                                                Sai tên đăng nhập hoặc mật khẩu
+                                            </h1>
                                         </Row>
                                     </Col>
                                 </Row>
@@ -229,7 +248,9 @@ function Signin(props) {
                                                 color:'#3B5998',
                                                 backgroundColor:'white',
                                                 border:'none',
-                                                outline:'none'
+                                                outline:'none',
+                                                margin:'0px 7px',
+                                                cursor:'pointer'
                                             }}
                                         >
                                             <b>Đăng Ký</b>

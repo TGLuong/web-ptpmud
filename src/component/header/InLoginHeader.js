@@ -1,11 +1,11 @@
-import {Row, Col, Badge, Dropdown, Image} from 'antd'
+import {Row, Col, Badge, Dropdown, Image, Menu} from 'antd'
 import {Link,useHistory} from 'react-router-dom'
 import '../../Style/Header.css'
 import { SearchButton , HomeButton, ProfileBtn } from '../../component/Button.js'
 import { SearchInput } from '../../component/Input.js'
 import { useEffect } from 'react'
 
-
+const {Item} = Menu;
 
 
 function InLoginHdaer(props) {
@@ -20,6 +20,20 @@ function InLoginHdaer(props) {
     const totalFavorite=()=>{
         return props.userData.favorites.length;
     }
+    const signOut=()=>{
+        sessionStorage.removeItem('userdata');
+        history.push('/')
+    }
+    const userOption = <Menu>
+        <Item key="profile">
+            Profile
+        </Item>
+        <Item 
+            key="signout"
+            onClick={signOut}>
+            Sign out
+        </Item>
+    </Menu>
     useEffect(()=>{
         if(props.userData.is_admin){
             document.getElementById('admin_section').style.visibility = 'visible'
@@ -27,6 +41,7 @@ function InLoginHdaer(props) {
             document.getElementById('admin_section').style.visibility = 'hidden'
         }
     })
+    
     return(
         <div className="head">
             <Row 
@@ -68,9 +83,11 @@ function InLoginHdaer(props) {
                             src="./img/core-img/profile-icon.png" alt="img"
                         />
                         <span style={{margin:'0px 2px'}}></span>
-                        <ProfileBtn>
-                            {props.userData.username}
-                        </ProfileBtn>
+                        <Dropdown overlay={userOption}>
+                            <ProfileBtn>
+                                {props.userData.username}
+                            </ProfileBtn>
+                        </Dropdown>
                         <div id="admin_section" style={{display:'flex'}}>
                             <span style={{margin:'0px 4px'}}>|</span>
                             <ProfileBtn className="admin_section">
