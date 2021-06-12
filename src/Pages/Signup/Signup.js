@@ -55,7 +55,7 @@ function Signup(props) {
                             <Col className="slogan" xs={11}>
                                 <Row align="middle" style={{width:'100%',height:'100%'}}>
                                     <Col>
-                                        <h1>Chào Mừng Đến Với Cửa Hàng Trực Tuyến</h1>
+                                        <h1>Chào Mừng Đến<br></br> Với Cửa Hàng<br></br> Trực Tuyến</h1>
                                         <Line/>
                                         <h2>Đăng nhập để mua sắm</h2>
                                     </Col>
@@ -95,7 +95,7 @@ function Signup(props) {
                                                     src={'./img/core-img/facebook-icon.png'} 
                                                     alt={'facebook'}
                                                 />
-                                                Đăng Nhập Với Facebook
+                                                Đăng Ký Với Facebook
                                             </FacebookLoginBtn>
                                         </Row>
                                         <Row 
@@ -119,7 +119,7 @@ function Signup(props) {
                                                     src={'./img/core-img/google-icon.png'} 
                                                     alt={'google'}
                                                 />
-                                                Đăng Nhập Với Google
+                                                Đăng Ký Với Google
                                                 </GoogleLoginBtn>
                                         </Row>
                                         <h1 
