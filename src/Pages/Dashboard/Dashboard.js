@@ -203,7 +203,6 @@ function Dashboard(props){
                 </Route>
                 <Route path="/dashboard/camera">
                     <DashboardProductDisplay 
-                        
                         productData={cameraData}
                     />
                 </Route>

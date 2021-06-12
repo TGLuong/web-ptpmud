@@ -3,6 +3,7 @@ import {Link,useHistory} from 'react-router-dom'
 import '../../Style/Header.css'
 import { SearchButton , HomeButton, ProfileBtn } from '../../component/Button.js'
 import { SearchInput } from '../../component/Input.js'
+import { useEffect } from 'react'
 
 
 
@@ -19,7 +20,13 @@ function InLoginHdaer(props) {
     const totalFavorite=()=>{
         return props.userData.favorites.length;
     }
-    
+    useEffect(()=>{
+        if(props.userData.is_admin){
+            document.getElementById('admin_section').style.visibility = 'visible'
+        }else{
+            document.getElementById('admin_section').style.visibility = 'hidden'
+        }
+    })
     return(
         <div className="head">
             <Row 
@@ -55,19 +62,21 @@ function InLoginHdaer(props) {
                     </div>
                 </Col>
                 <Col xs={24} sm={6} >
-                    <div className="header-nav-content">
+                    <div className="header-nav-content" style={{display:'flex'}}>
                         <img 
                             style={{height:'18px'}} 
                             src="./img/core-img/profile-icon.png" alt="img"
                         />
-                        <span> </span>
+                        <span style={{margin:'0px 2px'}}></span>
                         <ProfileBtn>
                             {props.userData.username}
                         </ProfileBtn>
-                        <span> | </span>
-                        <ProfileBtn>
-                            QUẢN LÝ
-                        </ProfileBtn>
+                        <div id="admin_section" style={{display:'flex'}}>
+                            <span style={{margin:'0px 4px'}}>|</span>
+                            <ProfileBtn className="admin_section">
+                                QUẢN LÝ
+                            </ProfileBtn>
+                        </div>
                     </div>
                 </Col>
             </Row>

@@ -34,16 +34,23 @@ function Signin(props) {
             }).then(res=>{
                 setTimeout(()=>{
                     const data = res.data
+                    console.log(data)
                     if(data.message==='done'){
                         sessionStorage.setItem('userdata',JSON.stringify({
                             username:username,
                             password:password
                         }))
                         history.push('/dashboard')
-                    }else{
-                        alert('Sai tên đăng nhập hoặc mật khẩu')
                     }
                     setLoading(false)
+                },1000)
+            }).catch(err=>{
+                setTimeout(()=>{
+                    document.getElementById('login_err').style.visibility="visible"
+                    setLoading(false)
+                    setTimeout(()=>{
+                        document.getElementById('login_err').style.visibility="hidden"
+                    },3000)
                 },1000)
             })
             
@@ -206,6 +213,9 @@ function Signin(props) {
                                         </Row>
                                         <Row>
                                             <BarLoader loading={loading} width={'100%'} />
+                                        </Row>
+                                        <Row>
+                                            <h1 id="login_err" style={{fontSize:'16px',color:'red',fontWeight:'600',visibility:'hidden'}}>Sai tên đăng nhập hoặc mật khẩu</h1>
                                         </Row>
                                     </Col>
                                 </Row>
