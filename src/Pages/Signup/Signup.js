@@ -57,7 +57,7 @@ function Signup(props) {
                                     <Col>
                                         <h1>Chào Mừng Đến<br></br> Với Cửa Hàng<br></br> Trực Tuyến</h1>
                                         <Line/>
-                                        <h2>Đăng nhập để mua sắm</h2>
+                                        <h2>Đăng ký để mua sắm</h2>
                                     </Col>
                                 </Row>
                             </Col>
