@@ -136,6 +136,7 @@ function Home(props){
     }
 
     function search() {
+        history.push('/')
         const keyword = document.getElementById('search-input').value;
         const res = axios.get('http://47.254.253.64:5000/home?search='+keyword)
         res.then((res)=>{
@@ -162,6 +163,7 @@ function Home(props){
 
     function searchEnter(e) {
         if(e.key==='Enter'){
+            history.push('/')
             const keyword = document.getElementById('search-input').value;
             const res = axios.get('http://47.254.253.64:5000/home?search='+keyword)
             res.then((res)=>{
