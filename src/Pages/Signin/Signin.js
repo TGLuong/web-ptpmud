@@ -1,7 +1,7 @@
 import '../../Style/Signin_up.css'
 import axios from 'axios'
 import {useState} from 'react'
-import {Link, useHistory} from 'react-router-dom'
+import {Link, useHistory, useLocation} from 'react-router-dom'
 import {BarLoader} from 'react-spinners'
 import {Row,Col, Input} from 'antd'
 import {CloseCircleOutlined} from '@ant-design/icons'
@@ -12,6 +12,7 @@ import { Line } from '../../component/Line'
 
 function Signin(props) {
     const history = useHistory()
+    const location = useLocation()
     const [loading,setLoading] = useState(false)
     const toSignup=()=>{
         props.offSignInPopup()
@@ -45,7 +46,7 @@ function Signin(props) {
                             username:username,
                             password:password
                         }))
-                        history.push('/dashboard')
+                        history.push('/dashboard'+location.pathname+location.search)
                     }
                     setLoading(false)
                 },1000)
