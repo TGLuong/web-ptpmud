@@ -31,9 +31,12 @@ function InLoginHdaer(props) {
         sessionStorage.removeItem('userdata');
         history.push('/')
     }
+    const toProfile=()=>{
+        history.push('/dashboard/profile')
+    }
     const userOption = <Menu>
-        <Item key="profile">
-            Profile
+        <Item key="profile" onClick={toProfile}>
+            Hồ Sơ Cá Nhân
         </Item>
         <Item 
             key="signout"
@@ -48,6 +51,7 @@ function InLoginHdaer(props) {
             document.getElementById('admin_section').style.visibility = 'hidden'
         }
     })
+    
     
     return(
         <div className="head">
@@ -91,7 +95,7 @@ function InLoginHdaer(props) {
                         />
                         <span style={{margin:'0px 2px'}}></span>
                         <Dropdown overlay={userOption}>
-                            <ProfileBtn>
+                            <ProfileBtn onClick={toProfile}>
                                 {props.userData.username}
                             </ProfileBtn>
                         </Dropdown>

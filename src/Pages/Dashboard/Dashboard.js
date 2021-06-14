@@ -9,6 +9,8 @@ import InLoginHeader from '../../component/header/InLoginHeader'
 import DashboardDisplay from './DashboardDisplay'
 import DashboardProductDisplay from './DashboardProductDisplay'
 import DashboardProduct from '../Product/DashboardProduct'
+import Profile from '../profile/Profile'
+
 function Dashboard(props){
     const [data,setData] = useState({
         camera_brands:[],
@@ -198,6 +200,9 @@ function Dashboard(props){
                 userData={userData}
             />
             <Switch>
+                <Route path="/dashboard/profile">
+                    <Profile/>
+                </Route>
                 <Route path="/dashboard/laptop">
                     <DashboardProductDisplay 
                         productData={laptopData}
