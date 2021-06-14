@@ -4,6 +4,13 @@ import '../../Style/Header.css'
 import { SearchButton , HomeButton, ProfileBtn } from '../../component/Button.js'
 import { SearchInput } from '../../component/Input.js'
 import { useEffect } from 'react'
+import chinhhangIcon from '../../img/core-img/100-icon.png'
+import freeship from '../../img/core-img/free-ship.png'
+import repareAthome from '../../img/core-img/repare-at-home.png'
+import profileIcon from '../../img/core-img/profile-icon.png'
+import logo from '../../img/core-img/logo.png'
+import shoppingCart from '../../img/core-img/shopping-cart.png'
+import love from '../../img/core-img/love.png'
 
 const {Item} = Menu;
 
@@ -53,7 +60,7 @@ function InLoginHdaer(props) {
                     <div className="header-nav-content">
                         <img 
                             className="icon" 
-                            src="./img/core-img/100-icon.png" alt="img"
+                            src={chinhhangIcon} alt="img"
                         />
                         <Link>100% Chính Hãng</Link>
                     </div>
@@ -62,7 +69,7 @@ function InLoginHdaer(props) {
                     <div className="header-nav-content">
                         <img 
                             className="icon" 
-                            src="./img/core-img/free-ship.png" alt="img"
+                            src={freeship} alt="img"
                         />
                         <Link>Miễn phí vẫn chuyển</Link>
                     </div>
@@ -71,7 +78,7 @@ function InLoginHdaer(props) {
                     <div className="header-nav-content">
                         <img 
                             className="icon" 
-                            src="./img/core-img/repare-at-home.png" alt="img"
+                            src={repareAthome} alt="img"
                         />
                         <Link>Bảo hành tận nhà</Link>
                     </div>
@@ -80,7 +87,7 @@ function InLoginHdaer(props) {
                     <div className="header-nav-content" style={{display:'flex'}}>
                         <img 
                             style={{height:'18px'}} 
-                            src="./img/core-img/profile-icon.png" alt="img"
+                            src={profileIcon} alt="img"
                         />
                         <span style={{margin:'0px 2px'}}></span>
                         <Dropdown overlay={userOption}>
@@ -106,7 +113,7 @@ function InLoginHdaer(props) {
                         <Image 
                             height={73} 
                             width={73} 
-                            src={'./img/core-img/logo.png'} 
+                            src={logo} 
                         />
                     </Row>
                 </Col>
@@ -157,7 +164,7 @@ function InLoginHdaer(props) {
                                             >
                                                 <img 
                                                     className="shopping-card-icon" 
-                                                    src="./img/core-img/shopping-cart.png" 
+                                                    src={shoppingCart}
                                                     alt="img"
                                                 />
                                             </Badge>
@@ -194,7 +201,7 @@ function InLoginHdaer(props) {
                                             >
                                                 <img 
                                                     className="heart-icon" 
-                                                    src="./img/core-img/love.png" 
+                                                    src={love}
                                                     alt="img"
                                                 />
                                             </Badge>
