@@ -17,16 +17,6 @@ const {Item} = Menu;
 
 function InLoginHdaer(props) {
     const history = useHistory()
-    const totalGood =()=>{
-        let count = 0;
-        props.userData.carts.forEach(element=>{
-            count+=element.amount;
-        })
-        return count;
-    }
-    const totalFavorite=()=>{
-        return props.userData.favorites.length;
-    }
     const signOut=()=>{
         sessionStorage.removeItem('userdata');
         history.push('/')
@@ -164,7 +154,7 @@ function InLoginHdaer(props) {
                                             <Badge 
                                                 showZero 
                                                 size="small" 
-                                                count={totalGood()}
+                                                count={props.totalCart}
                                             >
                                                 <img 
                                                     className="shopping-card-icon" 
@@ -201,7 +191,7 @@ function InLoginHdaer(props) {
                                             <Badge 
                                                 showZero 
                                                 size="small" 
-                                                count={totalFavorite()}
+                                                count={props.totalFavirite}
                                             >
                                                 <img 
                                                     className="heart-icon" 

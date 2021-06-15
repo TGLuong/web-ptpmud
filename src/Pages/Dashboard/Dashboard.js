@@ -85,25 +85,25 @@ function Dashboard(props){
             },
         ]
     });
+    const [userCart,setUserCart] = useState([
+        {
+            amount: 0,
+            id: 0,
+            product: '',
+            product_id: 0,
+            total_price: 0,
+            user_id: 0
+        },
+    ])
+    const [userFavorites,setUserFavorites] = useState([
+        {
+            id: 0,
+            product: '',
+            product_id: 0,
+            user_id: 0
+        }
+    ])
     const [userData,setUserData] = useState({
-        carts:[
-            {
-                amount: 0,
-                id: 0,
-                product: '',
-                product_id: 0,
-                total_price: 0,
-                user_id: 0
-            },
-        ],
-        favorites:[
-            {
-                id: 0,
-                product: '',
-                product_id: 0,
-                user_id: 0
-            }
-        ],
         id: 0,
         is_admin: false,
         username: ''
@@ -122,7 +122,14 @@ function Dashboard(props){
                     ...data
                 }
             }).then(res=>{
-                setUserData(res.data.data)
+                const data = res.data.data
+                setUserCart(data.carts)
+                setUserFavorites(data.favorites)
+                setUserData({
+                    is_admin:data.is_admin,
+                    id:data.id,
+                    username:data.username
+                })
             })
             const res = axios.get('http://47.254.253.64:5000/home?page='+1)
             res.then((res)=>{
@@ -139,10 +146,67 @@ function Dashboard(props){
         }
     },[]);
 
+    const isInCart=(id)=>{
+        let check = false
+        userCart.forEach(element=>{
+            if(element.product_id===id)
+            {
+                check=true;
+            }
+        })
+        if(check)return true
+        else return check
+    }
+
+    const addToCart=(element)=>{
+        if(!isInCart(element.id)){
+            axios({
+                method:'POST',
+                url:'http://47.254.253.64:5000/user/cart/'+userData.id+'/'+element.id,
+                data:{
+                    amount:0
+                }
+            }).then(res=>{
+                setUserCart(res.data.carts)
+            })
+        }else{
+            alert('Sản phẩm đã có trong giỏ hàng, vào trong giỏ hàng để tùy chỉnh số lượng')
+        }
+    }
+
+    const isInFavorites=(id)=>{
+        let check = false
+        userFavorites.forEach(element=>{
+            if(element.product_id===id)
+            {
+                check=true;
+            }
+        })
+        if(check)return true
+        else return check
+    }
+
+    const addToFavorites=(element)=>{
+        console.log(element)
+        console.log(userFavorites)
+        if(!isInFavorites(element.id)){
+            axios({
+                method:'POST',
+                url:'http://47.254.253.64:5000/user/favorite/'+userData.id+'/'+element.id
+            }).then(res=>{
+                setUserFavorites(res.data)
+                alert('Đã thêm vào mục yêu thích')
+            })
+        }else{
+            alert('Đã thêm vào mục yêu thích')
+        }
+    }
+
+
+    
     function load_page(page,pageSize){
         const res = axios.get('http://47.254.253.64:5000/home?page='+page)
         res.then((res)=>{
-            console.log(res.data)
             setData(res.data.data)
         })
     }
@@ -173,7 +237,6 @@ function Dashboard(props){
         const keyword = document.getElementById('search-input').value;
         const res = axios.get('http://47.254.253.64:5000/home?search='+keyword)
         res.then((res)=>{
-            console.log(res.data)
             setData(res.data.data)
         })
     }
@@ -184,7 +247,6 @@ function Dashboard(props){
             const keyword = document.getElementById('search-input').value;
             const res = axios.get('http://47.254.253.64:5000/home?search='+keyword)
             res.then((res)=>{
-                console.log(res.data)
                 setData(res.data.data)
             })
         }
@@ -198,6 +260,8 @@ function Dashboard(props){
                 renderMenu={renderMenu} 
                 data={data}
                 userData={userData}
+                totalCart={userCart.length}
+                totalFavirite={userFavorites.length}
             />
             <Switch>
                 <Route path="/dashboard/profile">
@@ -206,11 +270,13 @@ function Dashboard(props){
                 <Route path="/dashboard/laptop">
                     <DashboardProductDisplay 
                         productData={laptopData}
+                        userID={userData.id}
                     />
                 </Route>
                 <Route path="/dashboard/camera">
                     <DashboardProductDisplay 
                         productData={cameraData}
+                        userID={userData.id}
                     />
                 </Route>
                 <Route path="/dashboard/product-detail">
@@ -220,6 +286,9 @@ function Dashboard(props){
                     <DashboardDisplay 
                         load_page={load_page} 
                         products={data.products}
+                        userID={userData.id}
+                        addToCart={addToCart}
+                        addToFavorites={addToFavorites}
                     />
                 </Route> 
             </Switch>

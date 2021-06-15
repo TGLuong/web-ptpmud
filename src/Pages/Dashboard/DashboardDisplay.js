@@ -2,7 +2,9 @@ import {Row, Col, Pagination } from 'antd'
 import {Link} from 'react-router-dom'
 import '../../Style/HomeDisplay.css'
 import {SigninBtn} from '../../component/Button'
-
+import axios from 'axios'
+import shoppingCart from '../../img/core-img/shopping-cart.png'
+import love from '../../img/core-img/love.png'
 
 
 
@@ -11,7 +13,6 @@ import {SigninBtn} from '../../component/Button'
 
 
 function DashboardDisplay(props) {
-
     function convertLongString(string){
         if(string.length>58) return(string.slice(0,58)+'...');
         else return(string);
@@ -60,17 +61,17 @@ function DashboardDisplay(props) {
                                     </Col>
                                     <Col  xs={8}>
                                         <Row justify="space-between" align="middle">
-                                            <SigninBtn onClick={props.onSignInPopup}>
+                                            <SigninBtn onClick={()=>{props.addToCart(element)}}>
                                                 <img 
                                                     style={{width:'37px',height:'37px'}} 
-                                                    src='./img/core-img/shopping-cart.png' 
+                                                    src={shoppingCart} 
                                                     alt="cart"
                                                 />
                                             </SigninBtn>
-                                            <SigninBtn onClick={props.onSignInPopup}>
+                                            <SigninBtn onClick={()=>{props.addToFavorites(element)}}>
                                                 <img 
                                                     style={{width:'37px',height:'37px'}} 
-                                                    src='./img/core-img/love.png' 
+                                                    src={love}
                                                     alt="love" 
                                                 />
                                             </SigninBtn>
