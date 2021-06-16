@@ -1,8 +1,7 @@
 import {Row, Col, Pagination } from 'antd'
 import {Link} from 'react-router-dom'
 import '../../Style/HomeDisplay.css'
-import {SigninBtn} from '../../component/Button'
-import axios from 'axios'
+import {DashBoardAddToCartButton} from '../../component/Button'
 import shoppingCart from '../../img/core-img/shopping-cart.png'
 import love from '../../img/core-img/love.png'
 
@@ -61,20 +60,22 @@ function DashboardDisplay(props) {
                                     </Col>
                                     <Col  xs={8}>
                                         <Row justify="space-between" align="middle">
-                                            <SigninBtn onClick={()=>{props.addToCart(element)}}>
+                                            <DashBoardAddToCartButton 
+                                                onClick={()=>{props.addToCart(element)}}
+                                            >
                                                 <img 
                                                     style={{width:'37px',height:'37px'}} 
                                                     src={shoppingCart} 
                                                     alt="cart"
                                                 />
-                                            </SigninBtn>
-                                            <SigninBtn onClick={()=>{props.addToFavorites(element)}}>
+                                            </DashBoardAddToCartButton>
+                                            <DashBoardAddToCartButton onClick={()=>{props.addToFavorites(element)}}>
                                                 <img 
                                                     style={{width:'37px',height:'37px'}} 
                                                     src={love}
                                                     alt="love" 
                                                 />
-                                            </SigninBtn>
+                                            </DashBoardAddToCartButton>
                                         </Row>
                                     </Col>
                                 </Row>

@@ -11,12 +11,14 @@ import profileIcon from '../../img/core-img/profile-icon.png'
 import logo from '../../img/core-img/logo.png'
 import shoppingCart from '../../img/core-img/shopping-cart.png'
 import love from '../../img/core-img/love.png'
+import styled from 'styled-components'
 
 const {Item} = Menu;
 
 
 function InLoginHdaer(props) {
     const history = useHistory()
+
     const signOut=()=>{
         sessionStorage.removeItem('userdata');
         history.push('/')
@@ -149,7 +151,25 @@ function InLoginHdaer(props) {
                         <Col xs={8}>
                             <Row justify="end">
                                 <Col >
-                                    <div style={{cursor:'pointer'}}>
+                                    <button 
+                                        style={{
+                                            cursor:'pointer',
+                                            backgroundColor:'#2C3E50',
+                                            border:'none',
+                                            outline:'none',
+                                        }}
+                                        onClick={()=>{
+                                            let visble = document.getElementById('cart-popup').style.visibility
+                                            console.log(visble)
+                                            if(visble==='visible'){
+                                                document.getElementById('cart-popup').style.visibility="hidden"
+                                                console.log(document.getElementById('cart-popup').style.visibility)
+                                            }else{
+                                                console.log(document.getElementById('cart-popup').style.visibility)
+                                                document.getElementById('cart-popup').style.visibility="visible"
+                                            }
+                                        }}
+                                    >
                                         <Row justify="center">
                                             <Badge 
                                                 showZero 
@@ -173,6 +193,27 @@ function InLoginHdaer(props) {
                                         >
                                             Giỏ hàng
                                         </h4>
+                                    </button>
+                                    <div id="cart-popup" className="header-popup">
+                                        <div className="header-popup-content">
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                        </div>
+                                        <div className="footer-section-header-popup">
+                                            <button>
+                                                Thanh Toán Hóa Đơn
+                                            </button>
+                                        </div>
                                     </div>
                                 </Col>
                             </Row>
@@ -186,7 +227,25 @@ function InLoginHdaer(props) {
                                 align="bottom"
                             >
                                 <Col>
-                                    <div style={{cursor:'pointer'}}>
+                                    <button 
+                                        style={{
+                                            cursor:'pointer',
+                                            backgroundColor:'#2C3E50',
+                                            border:'none',
+                                            outline:'none',
+                                        }}
+                                        onClick={()=>{
+                                            let visble = document.getElementById('favorite-popup').style.visibility
+                                            console.log(visble)
+                                            if(visble==='visible'){
+                                                document.getElementById('favorite-popup').style.visibility="hidden"
+                                                console.log(document.getElementById('cart-popup').style.visibility)
+                                            }else{
+                                                console.log(document.getElementById('cart-popup').style.visibility)
+                                                document.getElementById('favorite-popup').style.visibility="visible"
+                                            }
+                                        }}
+                                    >
                                         <Row justify="center">
                                             <Badge 
                                                 showZero 
@@ -210,6 +269,22 @@ function InLoginHdaer(props) {
                                         >
                                             Yêu Thích
                                         </h4>
+                                    </button>
+                                    <div id="favorite-popup" className="header-popup">
+                                        <div className="header-popup-content">
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                            <h1>dasdsda</h1>
+                                        </div>
                                     </div>
                                 </Col>
                             </Row>

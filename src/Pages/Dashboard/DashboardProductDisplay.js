@@ -2,7 +2,8 @@ import {Row, Col} from 'antd'
 import {Link,useLocation} from 'react-router-dom'
 import '../../Style/ProductDisplay.css'
 import {SigninBtn} from '../../component/Button'
-
+import shoppingCart from '../../img/core-img/shopping-cart.png'
+import love from '../../img/core-img/love.png'
 
 
 
@@ -89,7 +90,7 @@ function DashboardProductDisplay(props) {
                                                                     width:'37px',
                                                                     height:'37px'
                                                                 }} 
-                                                                src='./img/core-img/shopping-cart.png' 
+                                                                src={shoppingCart}
                                                                 alt="cart" 
                                                             />
                                                         </SigninBtn>
@@ -101,7 +102,7 @@ function DashboardProductDisplay(props) {
                                                                     width:'37px',
                                                                     height:'37px'
                                                                 }} 
-                                                                src='./img/core-img/love.png' 
+                                                                src={love}
                                                                 alt="love" 
                                                             />
                                                         </SigninBtn>

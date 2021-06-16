@@ -164,10 +164,11 @@ function Dashboard(props){
                 method:'POST',
                 url:'http://47.254.253.64:5000/user/cart/'+userData.id+'/'+element.id,
                 data:{
-                    amount:0
+                    amount:1
                 }
             }).then(res=>{
                 setUserCart(res.data.carts)
+                alert('Đã thêm vào giỏ hàng')
             })
         }else{
             alert('Sản phẩm đã có trong giỏ hàng, vào trong giỏ hàng để tùy chỉnh số lượng')
@@ -195,10 +196,10 @@ function Dashboard(props){
                 url:'http://47.254.253.64:5000/user/favorite/'+userData.id+'/'+element.id
             }).then(res=>{
                 setUserFavorites(res.data)
-                alert('Đã thêm vào mục yêu thích')
+                alert('Đã thêm sản phẩm vào mục yêu thích')
             })
         }else{
-            alert('Đã thêm vào mục yêu thích')
+            alert('Sản phẩm đã có trong mục yêu thích')
         }
     }
 
