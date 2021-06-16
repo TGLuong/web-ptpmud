@@ -96,6 +96,7 @@
     box-shadow: -5px 5px 30px;
     width: 500px;
     overflow: auto;
+    visibility: hidden;
     overflow-x: hidden;
     max-height: 500px;
     z-index: 17;
