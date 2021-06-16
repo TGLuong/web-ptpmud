@@ -159,13 +159,14 @@ function InLoginHdaer(props) {
                                             outline:'none',
                                         }}
                                         onClick={()=>{
+                                            if(document.getElementById('favorite-popup').style.visibility==="visible")
+                                                document.getElementById('favorite-popup').style.visibility="hidden"
                                             let visble = document.getElementById('cart-popup').style.visibility
                                             console.log(visble)
                                             if(visble==='visible'){
                                                 document.getElementById('cart-popup').style.visibility="hidden"
-                                                console.log(document.getElementById('cart-popup').style.visibility)
+                                                
                                             }else{
-                                                console.log(document.getElementById('cart-popup').style.visibility)
                                                 document.getElementById('cart-popup').style.visibility="visible"
                                             }
                                         }}
@@ -235,6 +236,8 @@ function InLoginHdaer(props) {
                                             outline:'none',
                                         }}
                                         onClick={()=>{
+                                            if(document.getElementById('cart-popup').style.visibility==="visible")
+                                                document.getElementById('cart-popup').style.visibility="hidden"
                                             let visble = document.getElementById('favorite-popup').style.visibility
                                             console.log(visble)
                                             if(visble==='visible'){
