@@ -96,6 +96,7 @@
     box-shadow: -5px 5px 30px;
     width: 500px;
     height: 500px;
+    visibility: hidden;
     z-index: 17;
     background-color: white;
     border: 1px solid #606060;
