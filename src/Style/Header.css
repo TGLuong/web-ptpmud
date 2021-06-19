@@ -91,14 +91,11 @@
 
 .header-popup{
     transition:0.05s;
-    position: absolute;                     
+    position: absolute;         
     border-radius: 7px;
     box-shadow: -5px 5px 30px;
     width: 500px;
-    overflow: auto;
-    visibility: hidden;
-    overflow-x: hidden;
-    max-height: 500px;
+    height: 500px;
     z-index: 17;
     background-color: white;
     border: 1px solid #606060;
@@ -110,7 +107,7 @@
 .footer-section-header-popup{
     padding: 0px 20px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 70px;
@@ -134,4 +131,12 @@
 }
 .header-popup-content{
     padding: 5px 15px 5px 15px;
+    height: 430px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.popup-content-row{
+    margin:10px 0px;
+    width: 100%;
+    height: 70px;
 }

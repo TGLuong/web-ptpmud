@@ -89,7 +89,11 @@ function Dashboard(props){
         {
             amount: 0,
             id: 0,
-            product: '',
+            product: {
+                image:'',
+                name:'',
+                price:0.0,
+            },
             product_id: 0,
             total_price: 0,
             user_id: 0
@@ -147,15 +151,15 @@ function Dashboard(props){
     },[]);
 
     const isInCart=(id)=>{
-        let check = false
+        let check = false;
         userCart.forEach(element=>{
             if(element.product_id===id)
             {
                 check=true;
             }
         })
-        if(check)return true
-        else return check
+        if(check)return true;
+        else return check;
     }
 
     const addToCart=(element)=>{
@@ -257,10 +261,13 @@ function Dashboard(props){
         <>
             <InLoginHeader 
                 searchEnter={searchEnter} 
-                search={search} load_page={load_page} 
+                search={search} 
+                load_page={load_page} 
                 renderMenu={renderMenu} 
                 data={data}
                 userData={userData}
+                cart={userCart}
+                favorites={userFavorites}
                 totalCart={userCart.length}
                 totalFavirite={userFavorites.length}
             />

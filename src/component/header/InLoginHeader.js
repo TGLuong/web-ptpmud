@@ -1,9 +1,9 @@
-import {Row, Col, Badge, Dropdown, Image, Menu} from 'antd'
+import {Row, Col, Badge, Dropdown, Image, Menu, InputNumber} from 'antd'
 import {Link,useHistory} from 'react-router-dom'
 import '../../Style/Header.css'
 import { SearchButton , HomeButton, ProfileBtn } from '../../component/Button.js'
 import { SearchInput } from '../../component/Input.js'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import chinhhangIcon from '../../img/core-img/100-icon.png'
 import freeship from '../../img/core-img/free-ship.png'
 import repareAthome from '../../img/core-img/repare-at-home.png'
@@ -11,21 +11,48 @@ import profileIcon from '../../img/core-img/profile-icon.png'
 import logo from '../../img/core-img/logo.png'
 import shoppingCart from '../../img/core-img/shopping-cart.png'
 import love from '../../img/core-img/love.png'
-import styled from 'styled-components'
 
 const {Item} = Menu;
 
 
 function InLoginHdaer(props) {
     const history = useHistory()
+    const [cart,setCart]=useState([
+        {
+            amount: 0,
+            id: 0,
+            product:{
+                image: '',
+                name: '',
+                price: 0,
+            },
+            product_id: 0,
+            total_price: 0.0,
+        },
+    ])
+
+    function convertLongString(string){
+        if(string.length>33) return(string.slice(0,33)+'...');
+        else return(string);
+    }
+
+    const cartTotal = () =>{
+        let sum=0;
+        cart.forEach(element=>{
+            sum+=element.total_price
+        })
+        return sum
+    }
 
     const signOut=()=>{
         sessionStorage.removeItem('userdata');
         history.push('/')
     }
+
     const toProfile=()=>{
         history.push('/dashboard/profile')
     }
+    
     const userOption = <Menu>
         <Item key="profile" onClick={toProfile}>
             Hồ Sơ Cá Nhân
@@ -36,12 +63,14 @@ function InLoginHdaer(props) {
             Sign out
         </Item>
     </Menu>
+    
     useEffect(()=>{
         if(props.userData.is_admin){
             document.getElementById('admin_section').style.visibility = 'visible'
         }else{
             document.getElementById('admin_section').style.visibility = 'hidden'
         }
+        setCart(props.cart)
     })
     
     
@@ -160,14 +189,13 @@ function InLoginHdaer(props) {
                                         }}
                                         onClick={()=>{
                                             if(document.getElementById('favorite-popup').style.visibility==="visible")
-                                                document.getElementById('favorite-popup').style.visibility="hidden"
-                                            let visble = document.getElementById('cart-popup').style.visibility
-                                            console.log(visble)
+                                                document.getElementById('favorite-popup').style.visibility="hidden";
+                                            let visble = document.getElementById('cart-popup').style.visibility;
                                             if(visble==='visible'){
-                                                document.getElementById('cart-popup').style.visibility="hidden"
+                                                document.getElementById('cart-popup').style.visibility="hidden";
                                                 
                                             }else{
-                                                document.getElementById('cart-popup').style.visibility="visible"
+                                                document.getElementById('cart-popup').style.visibility="visible";
                                             }
                                         }}
                                     >
@@ -195,25 +223,101 @@ function InLoginHdaer(props) {
                                             Giỏ hàng
                                         </h4>
                                     </button>
+                                    {console.log(cart)}
                                     <div id="cart-popup" className="header-popup">
-                                        <div className="header-popup-content">
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                        </div>
-                                        <div className="footer-section-header-popup">
-                                            <button>
-                                                Thanh Toán Hóa Đơn
-                                            </button>
+                                        <div style={{position:'relative'}}>
+                                            <div className="header-popup-content">
+                                                {cart.map(element=>{
+                                                    return(
+                                                        <div className="popup-content-row">
+                                                            <Row>
+                                                                <Col 
+                                                                    md={4}
+                                                                    style={{
+                                                                        height:'70px',
+                                                                    }}
+                                                                >
+                                                                    <Image
+                                                                        style={{
+                                                                            height:'70px',
+                                                                        }}
+                                                                        src={element.product.image}
+                                                                        alt="product-img"
+                                                                    />
+                                                                </Col>
+                                                                <Col 
+                                                                    md={14}
+                                                                    style={{
+                                                                        
+                                                                        height:'70px'
+                                                                    }}
+                                                                >
+                                                                    <Row
+                                                                        style={{
+                                                                            width:'100%',
+                                                                            height:'35px',
+                                                                        }}
+                                                                    >
+                                                                        <p >
+                                                                            {convertLongString(element.product.name)}
+                                                                        </p>
+                                                                    </Row>
+                                                                    <Row
+                                                                        style={{
+                                                                            width:'100%',
+                                                                            height:'35px',
+                                                                        }}
+                                                                        align="middle"
+                                                                    >
+                                                                        <span style={{margin:'0px 5px'}}>Số Lượng:</span>
+                                                                        <InputNumber
+                                                                            value={element.amount}
+                                                                            min={1}
+                                                                        />
+                                                                    </Row>
+                                                                </Col>
+                                                                <Col
+                                                                    md={6}
+                                                                    style={{
+                                                                        width:'100%',
+                                                                        height:'70px',
+                                                                        display:'flex',
+                                                                        color:'red'
+                                                                    }}
+                                                                >
+                                                                <span 
+                                                                    style={{
+                                                                        textDecoration:'underline',
+                                                                        margin:'0px 4px'
+                                                                    }}
+                                                                >
+                                                                    đ
+                                                                </span>
+                                                                {element.total_price}
+                                                                </Col>
+                                                            </Row>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                            <div className="footer-section-header-popup">
+                                                <div style={{display:'flex',flexDirection:'row'}}>
+                                                    <h3>Thành tiền:</h3>
+                                                    <h3 
+                                                        style={{
+                                                            color:'red',
+                                                            padding:'0px 4px',
+                                                            textDecoration:'underline'
+                                                        }}
+                                                    >
+                                                        đ
+                                                    </h3>
+                                                    <h3 style={{color:'red'}}>{cartTotal()}</h3>
+                                                </div>
+                                                <button>
+                                                    Thanh Toán Hóa Đơn
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </Col>
@@ -237,15 +341,12 @@ function InLoginHdaer(props) {
                                         }}
                                         onClick={()=>{
                                             if(document.getElementById('cart-popup').style.visibility==="visible")
-                                                document.getElementById('cart-popup').style.visibility="hidden"
-                                            let visble = document.getElementById('favorite-popup').style.visibility
-                                            console.log(visble)
+                                                document.getElementById('cart-popup').style.visibility="hidden";
+                                            let visble = document.getElementById('favorite-popup').style.visibility;
                                             if(visble==='visible'){
-                                                document.getElementById('favorite-popup').style.visibility="hidden"
-                                                console.log(document.getElementById('cart-popup').style.visibility)
+                                                document.getElementById('favorite-popup').style.visibility="hidden";
                                             }else{
-                                                console.log(document.getElementById('cart-popup').style.visibility)
-                                                document.getElementById('favorite-popup').style.visibility="visible"
+                                                document.getElementById('favorite-popup').style.visibility="visible";
                                             }
                                         }}
                                     >
