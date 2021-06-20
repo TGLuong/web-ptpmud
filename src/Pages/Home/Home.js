@@ -92,18 +92,26 @@ function Home(props){
         if(sessionStorage.getItem('userdata')!==null){
             history.push('/dashboard')
         }else{
-            const page = data.products.paging.current_page;
-            const res = axios.get(baseUrl+'/home?page='+page)
-            res.then((res)=>{
+            axios({
+                method:'GET',
+                url:baseUrl+'/home?page='+1
+            }).then(res=>{
                 setData(res.data.data)
-            });
-            const laptopres = axios.get(baseUrl+'/product/laptop')
-            laptopres.then((res)=>{
-                setLaptopData(res.data)
+                sessionStorage.setItem('homeData',JSON.stringify(res.data.data))
             })
-            const camerares = axios.get(baseUrl+'/product/camera')
-            camerares.then((res)=>{
+            axios({
+                method:'GET',
+                url:baseUrl+'/product/laptop',
+            }).then(res=>{
+                setLaptopData(res.data)
+                sessionStorage.setItem('laptopData',JSON.stringify(res.data))
+            })
+            axios({
+                method:'GET',
+                url:baseUrl+'/product/camera'
+            }).then(res=>{
                 setCameraData(res.data)
+                sessionStorage.setItem('cameraData',JSON.stringify(res.data))
             })
         }
     },[]);

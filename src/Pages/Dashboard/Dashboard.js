@@ -150,24 +150,9 @@ function Dashboard(props){
                 phone:data.phone,
                 username:data.username
             })
-            axios({
-                method:'GET',
-                url:baseUrl+'/home?page='+1,
-            }).then(res=>{
-                setHomeData(res.data.data)
-            })
-            axios({
-                method:'GET',
-                url:baseUrl+'/product/laptop'
-            }).then(res=>{
-                setLaptopData(res.data.data)
-            })
-            axios({
-                method:'GET',
-                url:baseUrl+'/product/camera'
-            }).then(res=>{
-                setCameraData(res.data.data)
-            })
+            setHomeData(JSON.parse(sessionStorage.getItem('homeData')))
+            setLaptopData(JSON.parse(sessionStorage.getItem('laptopData')))
+            setCameraData(JSON.parse(sessionStorage.getItem('cameraData')))
         }
     },[]);
 
@@ -286,7 +271,7 @@ function Dashboard(props){
 
     return(
         <>
-            {console.log(cartData)}
+            {console.log(cameraData)}
             <InLoginHeader 
                 searchEnter={searchEnter} 
                 search={search} 
