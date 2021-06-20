@@ -10,6 +10,8 @@ import Header from '../../component/header/Header'
 import HomeDisplay from './HomeDisplay'
 import ProductRender from './ProductRender'
 
+import {baseUrl} from '../../config'
+
 function Home(props){
     const history = useHistory()
     const [data,setData] = useState({
@@ -91,28 +93,22 @@ function Home(props){
             history.push('/dashboard')
         }else{
             const page = data.products.paging.current_page;
-            const res = axios.get('http://47.254.253.64:5000/home?page='+page)
+            const res = axios.get(baseUrl+'/home?page='+page)
             res.then((res)=>{
                 setData(res.data.data)
             });
-            const laptopres = axios.get('http://47.254.253.64:5000/product/laptop')
+            const laptopres = axios.get(baseUrl+'/product/laptop')
             laptopres.then((res)=>{
                 setLaptopData(res.data)
             })
-            const camerares = axios.get('http://47.254.253.64:5000/product/camera')
+            const camerares = axios.get(baseUrl+'/product/camera')
             camerares.then((res)=>{
                 setCameraData(res.data)
             })
         }
     },[]);
 
-    function load_page(page,pageSize){
-        const res = axios.get('http://47.254.253.64:5000/home?page='+page)
-        res.then((res)=>{
-            console.log(res.data)
-            setData(res.data.data)
-        })
-    }
+    
 
     function renderMenu(data) {
         function item(element) {            
@@ -134,17 +130,37 @@ function Home(props){
             </Menu>
         );
     }
-
-    function search() {
-        history.push('/')
-        const keyword = document.getElementById('search-input').value;
-        const res = axios.get('http://47.254.253.64:5000/home?search='+keyword)
+    // search section
+    function load_page(page,pageSize){
+        const res = axios.get(baseUrl+'/home?page='+page)
         res.then((res)=>{
             console.log(res.data)
             setData(res.data.data)
         })
     }
 
+    function search() {
+        history.push('/')
+        const keyword = document.getElementById('search-input').value;
+        const res = axios.get(baseUrl+'/home?search='+keyword)
+        res.then((res)=>{
+            console.log(res.data)
+            setData(res.data.data)
+        })
+    }
+
+    function searchEnter(e) {
+        if(e.key==='Enter'){
+            history.push('/')
+            const keyword = document.getElementById('search-input').value;
+            const res = axios.get('http://47.254.253.64:5000/home?search='+keyword)
+            res.then((res)=>{
+                console.log(res.data)
+                setData(res.data.data)
+            })
+        }
+    }
+    // on,off popup section
     function onSignInPopup() {
         document.getElementById('signin-popup').style.display="block"
     }
@@ -161,17 +177,6 @@ function Home(props){
         document.getElementById('signup-popup').style.display="none"
     }
 
-    function searchEnter(e) {
-        if(e.key==='Enter'){
-            history.push('/')
-            const keyword = document.getElementById('search-input').value;
-            const res = axios.get('http://47.254.253.64:5000/home?search='+keyword)
-            res.then((res)=>{
-                console.log(res.data)
-                setData(res.data.data)
-            })
-        }
-    }
 
     return(
         <>

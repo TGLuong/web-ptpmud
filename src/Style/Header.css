@@ -90,7 +90,7 @@
 /* ---------------------------------------------------- */
 
 .header-popup{
-    transition:0.05s;
+    padding-bottom: 10px;
     position: absolute;         
     border-radius: 7px;
     box-shadow: -5px 5px 30px;
@@ -108,6 +108,8 @@
 .footer-section-header-popup{
     padding: 0px 20px;
     display: flex;
+    position: absolute;
+    bottom: 0px;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -132,7 +134,7 @@
 }
 .header-popup-content{
     padding: 5px 15px 5px 15px;
-    height: 430px;
+    height: 500px;
     overflow: auto;
     overflow-x: hidden;
 }
@@ -140,4 +142,10 @@
     margin:10px 0px;
     width: 100%;
     height: 70px;
+}
+.deleteTransition{
+    transition: 0s;
+}
+.deleteTransition *{
+    transition: 0s;
 }

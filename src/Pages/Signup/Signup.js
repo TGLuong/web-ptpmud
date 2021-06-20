@@ -5,6 +5,8 @@ import {CloseCircleOutlined} from '@ant-design/icons'
 import { CloseBtn, FacebookLoginBtn, GoogleLoginBtn, LoginBtn } from '../../component/Button'
 import { Line } from '../../component/Line'
 
+import {baseUrl} from '../../config'
+
 function Signup(props) {
 
     const toSignin = ()=>{
@@ -27,7 +29,7 @@ function Signup(props) {
         }else{
             axios({
                 method:'post',
-                url:'http://47.254.253.64:5000/user/signup',
+                url:baseUrl+'/user/signup',
                 data:{
                     username:username,
                     password:password

@@ -7,7 +7,7 @@ import {Row,Col, Input} from 'antd'
 import {CloseCircleOutlined} from '@ant-design/icons'
 import { CloseBtn, FacebookLoginBtn, GoogleLoginBtn, LoginBtn } from '../../component/Button'
 import { Line } from '../../component/Line'
-
+import {baseUrl} from '../../config'
 
 
 function Signin(props) {
@@ -32,24 +32,19 @@ function Signin(props) {
         }else{
             axios({
                 method:'post',
-                url:'http://47.254.253.64:5000/user/signin',
+                url:baseUrl+'/user/signin',
                 data:{
                     username:username,
                     password:password,
                 }
             }).then(res=>{
-                setTimeout(()=>{
-                    const data = res.data
-                    console.log(data)
-                    if(data.message==='done'){
-                        sessionStorage.setItem('userdata',JSON.stringify({
-                            username:username,
-                            password:password
-                        }))
-                        history.push('/dashboard'+location.pathname+location.search)
-                    }
-                    setLoading(false)
-                },1000)
+                const data = res.data
+                console.log(data.data)
+
+                if(data.message==='done'){
+                    sessionStorage.setItem('userdata',JSON.stringify(data.data))
+                    history.push('/dashboard'+location.pathname+location.search)
+                }
             }).catch(err=>{
                 setTimeout(()=>{
                     document.getElementById('login_err').style.visibility="visible"
@@ -209,7 +204,7 @@ function Signin(props) {
                                             </Input.Password>
                                         </Row>
                                         <Row style={{margin:'10px 0px'}}>
-                                            <Link 
+                                            <Link to={'/'}
                                                 style={{
                                                     fontSize:'16px', 
                                                     color:'#3B5998'

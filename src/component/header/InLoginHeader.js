@@ -1,7 +1,8 @@
-import {Row, Col, Badge, Dropdown, Image, Menu, InputNumber} from 'antd'
+import {Row, Col, Badge, Dropdown, Image, Menu} from 'antd'
 import {Link,useHistory} from 'react-router-dom'
 import '../../Style/Header.css'
 import { SearchButton , HomeButton, ProfileBtn } from '../../component/Button.js'
+import PopupRow from './PopupRow'
 import { SearchInput } from '../../component/Input.js'
 import { useEffect, useState } from 'react'
 import chinhhangIcon from '../../img/core-img/100-icon.png'
@@ -11,48 +12,64 @@ import profileIcon from '../../img/core-img/profile-icon.png'
 import logo from '../../img/core-img/logo.png'
 import shoppingCart from '../../img/core-img/shopping-cart.png'
 import love from '../../img/core-img/love.png'
+import axios from 'axios'
 
 const {Item} = Menu;
 
 
 function InLoginHdaer(props) {
     const history = useHistory()
-    const [cart,setCart]=useState([
-        {
-            amount: 0,
-            id: 0,
-            product:{
-                image: '',
-                name: '',
-                price: 0,
+    const [cartTotal,setCartTotal] = useState(0)
+    const [favoriteTotal,setFavoriteTotal] = useState(0)
+    const [cartData,setCartData]=useState({
+        carts:[
+            {
+                amount: 0,
+                id: 0,
+                product:{
+                    image: '',
+                    name: '',
+                    price: 0,
+                },
+                product_id: 0,
+                total_price: 0.0,
             },
+        ],
+        total:0
+    })
+    const [favoriteData,setFavoriteData] = useState([
+        {
+            id: 0,
+            product: '',
             product_id: 0,
-            total_price: 0.0,
-        },
+            user_id: 0
+        }
     ])
 
-    function convertLongString(string){
-        if(string.length>33) return(string.slice(0,33)+'...');
-        else return(string);
-    }
-
-    const cartTotal = () =>{
-        let sum=0;
-        cart.forEach(element=>{
-            sum+=element.total_price
+    useEffect(()=>{
+        setCartData({
+            carts:props.cartData,
+            total:props.cartData.reduce((total,element)=>{
+                return total+element.total_price
+            },0)
         })
-        return sum
-    }
+        setFavoriteData(props.favoriteData)
+        setCartTotal(props.cartData.length)
+        setFavoriteTotal(props.favoriteData.length)
+    },[])
 
+
+    
     const signOut=()=>{
         sessionStorage.removeItem('userdata');
         history.push('/')
     }
-
     const toProfile=()=>{
         history.push('/dashboard/profile')
     }
-    
+    const toProduct=(id)=>{
+        history.push('/dashboard/product-detail?id='+id)
+    }
     const userOption = <Menu>
         <Item key="profile" onClick={toProfile}>
             Hồ Sơ Cá Nhân
@@ -63,20 +80,10 @@ function InLoginHdaer(props) {
             Sign out
         </Item>
     </Menu>
-    
-    useEffect(()=>{
-        if(props.userData.is_admin){
-            document.getElementById('admin_section').style.visibility = 'visible'
-        }else{
-            document.getElementById('admin_section').style.visibility = 'hidden'
-        }
-        setCart(props.cart)
-    })
-    
-    
     return(
         <div className="head">
-            <Row 
+            {console.log(cartData)}
+            <Row
                 className="header-nav" 
                 align="middle" 
                 justify="space-around"
@@ -120,15 +127,18 @@ function InLoginHdaer(props) {
                                 {props.userData.username}
                             </ProfileBtn>
                         </Dropdown>
-                        <div id="admin_section" style={{display:'flex'}}>
-                            <span style={{margin:'0px 4px'}}>|</span>
-                            <ProfileBtn className="admin_section">
-                                QUẢN LÝ
-                            </ProfileBtn>
-                        </div>
+                        {props.userData.is_admin?(
+                            <div>
+                                <span style={{margin:'0px 4px'}}>|</span>
+                                <ProfileBtn className="admin_section">
+                                    QUẢN LÝ
+                                </ProfileBtn>
+                            </div>
+                        ):null}
                     </div>
                 </Col>
             </Row>
+
             <Row 
                 className="header" 
                 align="bottom"
@@ -199,11 +209,12 @@ function InLoginHdaer(props) {
                                             }
                                         }}
                                     >
+                                        {console.log(cartTotal)}
                                         <Row justify="center">
                                             <Badge 
                                                 showZero 
                                                 size="small" 
-                                                count={props.totalCart}
+                                                count={cartTotal}
                                             >
                                                 <img 
                                                     className="shopping-card-icon" 
@@ -223,82 +234,15 @@ function InLoginHdaer(props) {
                                             Giỏ hàng
                                         </h4>
                                     </button>
-                                    {console.log(cart)}
                                     <div id="cart-popup" className="header-popup">
                                         <div style={{position:'relative'}}>
                                             <div className="header-popup-content">
-                                                {cart.map(element=>{
+                                                {cartData.carts.map(element=>{
                                                     return(
-                                                        <div className="popup-content-row">
-                                                            <Row>
-                                                                <Col 
-                                                                    md={4}
-                                                                    style={{
-                                                                        height:'70px',
-                                                                    }}
-                                                                >
-                                                                    <Image
-                                                                        style={{
-                                                                            height:'70px',
-                                                                        }}
-                                                                        src={element.product.image}
-                                                                        alt="product-img"
-                                                                    />
-                                                                </Col>
-                                                                <Col 
-                                                                    md={14}
-                                                                    style={{
-                                                                        
-                                                                        height:'70px'
-                                                                    }}
-                                                                >
-                                                                    <Row
-                                                                        style={{
-                                                                            width:'100%',
-                                                                            height:'35px',
-                                                                        }}
-                                                                    >
-                                                                        <p >
-                                                                            {convertLongString(element.product.name)}
-                                                                        </p>
-                                                                    </Row>
-                                                                    <Row
-                                                                        style={{
-                                                                            width:'100%',
-                                                                            height:'35px',
-                                                                        }}
-                                                                        align="middle"
-                                                                    >
-                                                                        <span style={{margin:'0px 5px'}}>Số Lượng:</span>
-                                                                        <InputNumber
-                                                                            value={element.amount}
-                                                                            min={1}
-                                                                        />
-                                                                    </Row>
-                                                                </Col>
-                                                                <Col
-                                                                    md={6}
-                                                                    style={{
-                                                                        width:'100%',
-                                                                        height:'70px',
-                                                                        display:'flex',
-                                                                        color:'red'
-                                                                    }}
-                                                                >
-                                                                <span 
-                                                                    style={{
-                                                                        textDecoration:'underline',
-                                                                        margin:'0px 4px'
-                                                                    }}
-                                                                >
-                                                                    đ
-                                                                </span>
-                                                                {element.total_price}
-                                                                </Col>
-                                                            </Row>
-                                                        </div>
+                                                        <PopupRow element={element}/>
                                                     );
                                                 })}
+                                                <div className="popup-content-row"></div>
                                             </div>
                                             <div className="footer-section-header-popup">
                                                 <div style={{display:'flex',flexDirection:'row'}}>
@@ -312,7 +256,7 @@ function InLoginHdaer(props) {
                                                     >
                                                         đ
                                                     </h3>
-                                                    <h3 style={{color:'red'}}>{cartTotal()}</h3>
+                                                    <h3 style={{color:'red'}}>{cartData.total}</h3>
                                                 </div>
                                                 <button>
                                                     Thanh Toán Hóa Đơn
@@ -376,18 +320,27 @@ function InLoginHdaer(props) {
                                     </button>
                                     <div id="favorite-popup" className="header-popup">
                                         <div className="header-popup-content">
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
-                                            <h1>dasdsda</h1>
+                                            {favoriteData.map(element=>{
+                                                return(
+                                                    <div 
+                                                        className="popup-content-row"
+                                                        style={{
+                                                            borderBottom:'1px solid #B0BEC5'
+                                                        }}
+                                                    >
+                                                        <button
+                                                            style={{
+                                                                border:'none',
+                                                                outline:'none',
+                                                                backgroundColor:'white',
+                                                            }}
+                                                            onClick={()=>{toProduct(element.product_id)}}
+                                                        >
+                                                            <p>{element.product}</p>
+                                                        </button>
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
                                     </div>
                                 </Col>
@@ -396,7 +349,8 @@ function InLoginHdaer(props) {
                     </Row>
                 </Col>
             </Row>
-            <Row 
+            
+            {/* <Row 
                 className="nav-bar" 
                 justify="start" 
                 align="middle"
@@ -422,7 +376,7 @@ function InLoginHdaer(props) {
                         <Link to="/dashboard/camera">CAMERA</Link>
                     </Dropdown>
                 </Col>
-            </Row>
+            </Row> */}
         </div>
     );
 }
