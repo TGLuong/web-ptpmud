@@ -160,3 +160,18 @@ export const DashBoardAddToCartButton = styled.button`
         background-color: #454546;
     }
 `;
+export const DeleteButton = styled.button`
+    height: 32px;
+    width: 70px;
+    outline: none;
+    border: none;
+    background-color:#ef5350;
+    color:white;
+    border-radius: 5px;
+    &:hover{
+        background-color:red;
+    }
+    &:active{
+        background-color:#ef5350;
+    }
+`;

@@ -2,6 +2,7 @@ import {useState,useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 import {Row, Col, Image, InputNumber} from 'antd'
+import {DeleteButton} from '../../component/Button'
 import '../../Style/Header.css'
 import { baseUrl } from '../../config'
 
@@ -22,22 +23,26 @@ const PopupRow=props=>{
         else return(string);
     }
     const updateValue=(value)=>{
-        if(value!==null){
+        if(value!==null&&value>=1){
             setChangeAmount(value)
         }
     }
     const summitValue=(e)=>{
-        setDisplayAmount(changeAmount)
-        axios({
-            method:'PUT',
-            url:baseUrl+'/user/cart/'+props.userID+'/'+props.element.product_id,
-            data:{
-                amount:changeAmount
-            }
-        }).then(res=>{
-            
-            props.setCartData(res.data)
-        })
+        if(changeAmount!==displayAmount){
+            setDisplayAmount(changeAmount)
+            axios({
+                method:'PUT',
+                url:baseUrl+'/user/cart/'+props.userID+'/'+props.element.product_id,
+                data:{
+                    amount:changeAmount
+                }
+            }).then(res=>{
+                props.setCartData(res.data)
+            })
+        }
+    }
+    const removeProduct=()=>{
+
     }
     return(
         <div className="popup-content-row">
@@ -106,25 +111,34 @@ const PopupRow=props=>{
                         <Col md={6} style={{color:'red'}}>
                             <span>Giá: {props.element.product.price}</span>
                         </Col>
-                        <span style={{margin:'0px 5px'}}>Số Lượng:</span>
-                        <div 
-                            style={{
-                                width:'70px',
-                                overflow:'hidden',
-                                border:'1px solid #B0BEC5',
-                                borderRadius:'3px'
-                            }}
-                        >
-                            <InputNumber
-                                className="deleteTransition"
-                                style={{width:'100px'}}
-                                bordered={false}
-                                value={displayAmount}
-                                onChange={updateValue}
-                                onPressEnter={summitValue}
-                                min={1}
-                            />
-                        </div>
+                        <Col md={11}>
+                            <Row align="middle">
+                                <span style={{margin:'0px 5px'}}>Số Lượng:</span>
+                                <div 
+                                    style={{
+                                        width:'70px',
+                                        overflow:'hidden',
+                                        border:'1px solid #B0BEC5',
+                                        borderRadius:'3px'
+                                    }}
+                                >
+                                    <InputNumber
+                                        className="deleteTransition"
+                                        style={{width:'100px'}}
+                                        bordered={false}
+                                        value={displayAmount}
+                                        onChange={updateValue}
+                                        onPressEnter={summitValue}
+                                        min={1}
+                                    />
+                                </div>
+                            </Row>
+                        </Col>
+                        <Col md={7}>
+                            <DeleteButton
+                                onClick={removeProduct}
+                            >Xóa</DeleteButton>
+                        </Col>
                     </Row>
                 </Col>
             </Row>
