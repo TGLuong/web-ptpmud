@@ -12,7 +12,6 @@ import profileIcon from '../../img/core-img/profile-icon.png'
 import logo from '../../img/core-img/logo.png'
 import shoppingCart from '../../img/core-img/shopping-cart.png'
 import love from '../../img/core-img/love.png'
-import axios from 'axios'
 
 const {Item} = Menu;
 
@@ -53,10 +52,16 @@ function InLoginHdaer(props) {
                 return total+element.total_price
             },0)
         })
+    },[props.cartData])
+    useEffect(()=>{
         setFavoriteData(props.favoriteData)
+    },[props.favoriteData])
+    useEffect(()=>{
         setCartTotal(props.cartData.length)
+    },[props.cartData])
+    useEffect(()=>{
         setFavoriteTotal(props.favoriteData.length)
-    },[])
+    },[props.favoriteData])
 
 
     
@@ -82,7 +87,6 @@ function InLoginHdaer(props) {
     </Menu>
     return(
         <div className="head">
-            {console.log(cartData)}
             <Row
                 className="header-nav" 
                 align="middle" 
@@ -94,7 +98,7 @@ function InLoginHdaer(props) {
                             className="icon" 
                             src={chinhhangIcon} alt="img"
                         />
-                        <Link>100% Chính Hãng</Link>
+                        <Link to={'/dashboard'}>100% Chính Hãng</Link>
                     </div>
                 </Col>
                 <Col xs={24} sm={6}>
@@ -103,7 +107,7 @@ function InLoginHdaer(props) {
                             className="icon" 
                             src={freeship} alt="img"
                         />
-                        <Link>Miễn phí vẫn chuyển</Link>
+                        <Link to={'/dashboard'}>Miễn phí vẫn chuyển</Link>
                     </div>
                 </Col>
                 <Col xs={24} sm={6}>
@@ -112,7 +116,7 @@ function InLoginHdaer(props) {
                             className="icon" 
                             src={repareAthome} alt="img"
                         />
-                        <Link>Bảo hành tận nhà</Link>
+                        <Link to={'/dashboard'}>Bảo hành tận nhà</Link>
                     </div>
                 </Col>
                 <Col xs={24} sm={6} >
@@ -209,7 +213,6 @@ function InLoginHdaer(props) {
                                             }
                                         }}
                                     >
-                                        {console.log(cartTotal)}
                                         <Row justify="center">
                                             <Badge 
                                                 showZero 
@@ -237,9 +240,9 @@ function InLoginHdaer(props) {
                                     <div id="cart-popup" className="header-popup">
                                         <div style={{position:'relative'}}>
                                             <div className="header-popup-content">
-                                                {cartData.carts.map(element=>{
+                                                {cartData.carts.map((element,index)=>{
                                                     return(
-                                                        <PopupRow element={element}/>
+                                                        <PopupRow key={index} setCartData={setCartData} userID={props.userData.id} element={element}/>
                                                     );
                                                 })}
                                                 <div className="popup-content-row"></div>
@@ -298,7 +301,7 @@ function InLoginHdaer(props) {
                                             <Badge 
                                                 showZero 
                                                 size="small" 
-                                                count={props.totalFavirite}
+                                                count={favoriteTotal}
                                             >
                                                 <img 
                                                     className="heart-icon" 
@@ -320,25 +323,35 @@ function InLoginHdaer(props) {
                                     </button>
                                     <div id="favorite-popup" className="header-popup">
                                         <div className="header-popup-content">
-                                            {favoriteData.map(element=>{
+                                            {favoriteData.map((element,index)=>{
                                                 return(
-                                                    <div 
+                                                    <Row key={index}
                                                         className="popup-content-row"
                                                         style={{
                                                             borderBottom:'1px solid #B0BEC5'
                                                         }}
                                                     >
-                                                        <button
-                                                            style={{
-                                                                border:'none',
-                                                                outline:'none',
-                                                                backgroundColor:'white',
-                                                            }}
-                                                            onClick={()=>{toProduct(element.product_id)}}
-                                                        >
-                                                            <p>{element.product}</p>
-                                                        </button>
-                                                    </div>
+                                                        <Col md={4} style={{height:'70px'}}>
+                                                            <Image 
+                                                                style={{height:'70px'}}
+                                                                alt="img"
+                                                                src={element.product.image}
+                                                            />
+                                                        </Col>
+
+                                                        <Col md={20}>
+                                                            <button
+                                                                style={{
+                                                                    border:'none',
+                                                                    outline:'none',
+                                                                    backgroundColor:'white',
+                                                                }}
+                                                                onClick={()=>{toProduct(element.product_id)}}
+                                                            >
+                                                                <p>{element.product.name}</p>
+                                                            </button>
+                                                        </Col>
+                                                    </Row>
                                                 );
                                             })}
                                         </div>
@@ -350,7 +363,7 @@ function InLoginHdaer(props) {
                 </Col>
             </Row>
             
-            {/* <Row 
+            <Row 
                 className="nav-bar" 
                 justify="start" 
                 align="middle"
@@ -367,16 +380,16 @@ function InLoginHdaer(props) {
                 
                 </Col>
                 <Col className="item">
-                    <Dropdown overlay={props.renderMenu(props.data.laptop_brands)}>
+                    <Dropdown overlay={props.renderMenu(props.homeData.laptop_brands)}>
                         <Link to="/dashboard/laptop">LAPTOP</Link>
                     </Dropdown>
                 </Col>
                 <Col className="item"> 
-                    <Dropdown overlay={props.renderMenu(props.data.camera_brands)}>
+                    <Dropdown overlay={props.renderMenu(props.homeData.camera_brands)}>
                         <Link to="/dashboard/camera">CAMERA</Link>
                     </Dropdown>
                 </Col>
-            </Row> */}
+            </Row>
         </div>
     );
 }

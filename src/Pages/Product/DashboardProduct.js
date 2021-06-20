@@ -6,7 +6,7 @@ import '../../Style/Product.css'
 
 import {AddTocartButton} from '../../component/Button'
 
-
+import {baseUrl} from '../../config'
 
 
 function DashboardProduct(props) {
@@ -32,7 +32,7 @@ function DashboardProduct(props) {
     const product_id = new URLSearchParams(search).get('id');
 
     useEffect(()=>{
-        const detail_res = axios.get('http://47.254.253.64:5000/product/'+product_id);
+        const detail_res = axios.get(baseUrl+'/product/'+product_id);
         detail_res.then((res)=>{
             setDetail(res.data);
             set_main_img(res.data.data.images[0])

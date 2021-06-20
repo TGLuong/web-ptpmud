@@ -1,8 +1,8 @@
 import '../../Style/Profile.css'
-import {Row, Col, Tabs} from 'antd'
+import {Row, Col} from 'antd'
 import profileIcon from '../../img/core-img/profile-white-background.png'
 
-const {TabPane} = Tabs;
+
 
 const Profile = (props)=>{
     return(

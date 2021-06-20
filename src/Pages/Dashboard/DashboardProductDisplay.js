@@ -1,5 +1,4 @@
 import {Row, Col} from 'antd'
-import {useEffect} from 'react'
 import {Link,useLocation} from 'react-router-dom'
 import '../../Style/ProductDisplay.css'
 import {SigninBtn} from '../../component/Button'

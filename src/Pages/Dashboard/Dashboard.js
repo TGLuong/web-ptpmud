@@ -101,7 +101,11 @@ function Dashboard(props){
     const [favoriteData,setFavoriteData] = useState([
         {
             id: 0,
-            product: '',
+            product: {
+                image:'',
+                name:'',
+                price:0.0,
+            },
             product_id: 0,
             user_id: 0
         }
@@ -156,62 +160,60 @@ function Dashboard(props){
         }
     },[]);
 
-    // const isInCart=(id)=>{
-    //     let check = false;
-    //     userCart.forEach(element=>{
-    //         if(element.product_id===id)
-    //         {
-    //             check=true;
-    //         }
-    //     })
-    //     if(check)return true;
-    //     else return check;
-    // }
+    const isInCart=(id)=>{
+        let check = false;
+        cartData.forEach(element=>{
+            if(element.product_id===id)
+            {
+                check=true;
+            }
+        })
+        if(check)return true;
+        else return check;
+    }
 
-    // const addToCart=(element)=>{
-    //     if(!isInCart(element.id)){
-    //         axios({
-    //             method:'POST',
-    //             url:'http://47.254.253.64:5000/user/cart/'+userData.id+'/'+element.id,
-    //             data:{
-    //                 amount:1
-    //             }
-    //         }).then(res=>{
-    //             setUserCart(res.data.carts)
-    //             alert('Đã thêm vào giỏ hàng')
-    //         })
-    //     }else{
-    //         alert('Sản phẩm đã có trong giỏ hàng, vào trong giỏ hàng để tùy chỉnh số lượng')
-    //     }
-    // }
+    const addToCart=(element)=>{
+        if(!isInCart(element.id)){
+            axios({
+                method:'POST',
+                url:baseUrl+'/user/cart/'+userData.id+'/'+element.id,
+                data:{
+                    amount:1
+                }
+            }).then(res=>{
+                setCartData(res.data.carts)
+                alert('Đã thêm vào giỏ hàng')
+            })
+        }else{
+            alert('Sản phẩm đã có trong giỏ hàng, vào trong giỏ hàng để tùy chỉnh số lượng')
+        }
+    }
 
-    // const isInFavorites=(id)=>{
-    //     let check = false
-    //     userFavorites.forEach(element=>{
-    //         if(element.product_id===id)
-    //         {
-    //             check=true;
-    //         }
-    //     })
-    //     if(check)return true
-    //     else return check
-    // }
+    const isInFavorites=(id)=>{
+        let check = false
+        favoriteData.forEach(element=>{
+            if(element.product_id===id)
+            {
+                check=true;
+            }
+        })
+        if(check)return true
+        else return check
+    }
 
-    // const addToFavorites=(element)=>{
-    //     console.log(element)
-    //     console.log(userFavorites)
-    //     if(!isInFavorites(element.id)){
-    //         axios({
-    //             method:'POST',
-    //             url:'http://47.254.253.64:5000/user/favorite/'+userData.id+'/'+element.id
-    //         }).then(res=>{
-    //             setUserFavorites(res.data)
-    //             alert('Đã thêm sản phẩm vào mục yêu thích')
-    //         })
-    //     }else{
-    //         alert('Sản phẩm đã có trong mục yêu thích')
-    //     }
-    // }
+    const addToFavorites=(element)=>{
+        if(!isInFavorites(element.id)){
+            axios({
+                method:'POST',
+                url:baseUrl+'/user/favorite/'+userData.id+'/'+element.id
+            }).then(res=>{
+                setFavoriteData(res.data)
+                alert('Đã thêm sản phẩm vào mục yêu thích')
+            })
+        }else{
+            alert('Sản phẩm đã có trong mục yêu thích')
+        }
+    }
 
 
     
@@ -271,7 +273,6 @@ function Dashboard(props){
 
     return(
         <>
-            {console.log(cameraData)}
             <InLoginHeader 
                 searchEnter={searchEnter} 
                 search={search} 
@@ -282,7 +283,7 @@ function Dashboard(props){
                 cartData={cartData}
                 favoriteData={favoriteData}
             />
-            {/* <Switch>
+            <Switch>
                 <Route path="/dashboard/profile">
                     <Profile/>
                 </Route>
@@ -304,13 +305,13 @@ function Dashboard(props){
                 <Route path='/dashboard'>
                     <DashboardDisplay 
                         load_page={load_page} 
-                        products={data.products}
+                        products={homeData.products}
                         userID={userData.id}
                         addToCart={addToCart}
                         addToFavorites={addToFavorites}
                     />
                 </Route> 
-            </Switch> */}
+            </Switch>
         </>
     );
 }

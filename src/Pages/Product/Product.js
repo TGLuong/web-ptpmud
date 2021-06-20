@@ -38,7 +38,7 @@ function Product(props) {
             setDetail(res.data);
             set_main_img(res.data.data.images[0])
         });
-    },[])
+    },[product_id])
 
     return(
         <>
