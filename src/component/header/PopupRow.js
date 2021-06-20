@@ -1,8 +1,7 @@
 import {useState,useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
-import {Row, Col, Image, InputNumber} from 'antd'
-import {DeleteButton} from '../../component/Button'
+import {Row, Col, Image, InputNumber,Button} from 'antd'
 import '../../Style/Header.css'
 import { baseUrl } from '../../config'
 
@@ -10,6 +9,7 @@ const PopupRow=props=>{
     const history = useHistory()
     const [changeAmount,setChangeAmount] = useState(1)
     const [displayAmount,setDisplayAmount] = useState(1)
+    const [removeDisable,setRemoveDisable] = useState(false)
     useEffect(()=>{
         setDisplayAmount(props.element.amount)
         setChangeAmount(props.element.amount)
@@ -37,12 +37,19 @@ const PopupRow=props=>{
                     amount:changeAmount
                 }
             }).then(res=>{
-                props.setCartData(res.data)
+                props.setCartData(res.data.carts)
             })
         }
     }
     const removeProduct=()=>{
-
+        setRemoveDisable(true)
+        axios({
+            method:'DELETE',
+            url:baseUrl+'/user/cart/'+props.userID+'/'+props.element.product_id
+        }).then(res=>{
+            props.setCartData(res.data.carts)
+            setRemoveDisable(false)
+        })
     }
     return(
         <div className="popup-content-row">
@@ -135,9 +142,14 @@ const PopupRow=props=>{
                             </Row>
                         </Col>
                         <Col md={7}>
-                            <DeleteButton
+                            <Button
+                                className="deleteTransition"
+                                disabled={removeDisable}
                                 onClick={removeProduct}
-                            >Xóa</DeleteButton>
+                                danger
+                            >
+                                Xóa
+                            </Button>
                         </Col>
                     </Row>
                 </Col>

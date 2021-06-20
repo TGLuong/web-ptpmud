@@ -278,6 +278,7 @@ function Dashboard(props){
                 search={search} 
                 load_page={load_page} 
                 renderMenu={renderMenu} 
+                setCartData={setCartData}
                 homeData={homeData}
                 userData={userData}
                 cartData={cartData}

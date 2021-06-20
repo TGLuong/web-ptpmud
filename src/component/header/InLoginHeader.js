@@ -1,4 +1,4 @@
-import {Row, Col, Badge, Dropdown, Image, Menu} from 'antd'
+import {Row, Col, Badge, Dropdown, Image, Menu,Button} from 'antd'
 import {Link,useHistory} from 'react-router-dom'
 import '../../Style/Header.css'
 import { SearchButton , HomeButton, ProfileBtn } from '../../component/Button.js'
@@ -242,7 +242,7 @@ function InLoginHdaer(props) {
                                             <div className="header-popup-content">
                                                 {cartData.carts.map((element,index)=>{
                                                     return(
-                                                        <PopupRow key={index} setCartData={setCartData} userID={props.userData.id} element={element}/>
+                                                        <PopupRow key={index} setCartData={props.setCartData} userID={props.userData.id} element={element}/>
                                                     );
                                                 })}
                                                 <div className="popup-content-row"></div>
@@ -339,17 +339,28 @@ function InLoginHdaer(props) {
                                                             />
                                                         </Col>
 
-                                                        <Col md={20}>
-                                                            <button
-                                                                style={{
-                                                                    border:'none',
-                                                                    outline:'none',
-                                                                    backgroundColor:'white',
-                                                                }}
-                                                                onClick={()=>{toProduct(element.product_id)}}
-                                                            >
-                                                                <p>{element.product.name}</p>
-                                                            </button>
+                                                        <Col md={20} style={{paddingLeft:'10px'}}>
+                                                            <Row>
+                                                                <button
+                                                                    style={{
+                                                                        border:'none',
+                                                                        outline:'none',
+                                                                        backgroundColor:'white',
+                                                                    }}
+                                                                    onClick={()=>{toProduct(element.product_id)}}
+                                                                >
+                                                                    <p>{element.product.name}</p>
+                                                                </button>
+                                                            </Row>
+                                                            <Row>
+                                                                <Button
+                                                                    className="deleteTransition"
+                                                                    
+                                                                    danger
+                                                                >
+                                                                    Xóa
+                                                                </Button>
+                                                            </Row>
                                                         </Col>
                                                     </Row>
                                                 );
