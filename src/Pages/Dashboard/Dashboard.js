@@ -248,24 +248,24 @@ function Dashboard(props){
     }
 
     const search = () => {
-        history.push('/dashboard')
         const keyword = document.getElementById('search-input').value;
         axios({
             method:'GET',
-            url:baseUrl+'home?search='+keyword
+            url:baseUrl+'/home?search='+keyword
         }).then(res=>{
+            history.push('/dashboard')
             setHomeData(res.data.data)
         })
     }
 
     const searchEnter = (e) => {
         if(e.key==='Enter'){
-            history.push('/dashboard')
             const keyword = document.getElementById('search-input').value;
             axios({
                 method:'GET',
-                url:baseUrl+'home?search='+keyword
+                url:baseUrl+'/home?search='+keyword
             }).then(res=>{
+                history.push('/dashboard')
                 setHomeData(res.data.data)
             })
         }

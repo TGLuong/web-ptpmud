@@ -37,7 +37,7 @@ function DashboardProduct(props) {
             setDetail(res.data);
             set_main_img(res.data.data.images[0])
         });
-    },[product_id])
+    },[])
 
     return(
         <>
@@ -74,7 +74,7 @@ function DashboardProduct(props) {
                         <Col md={14} className="detail-section">
                             <Row>
                                 <AddTocartButton
-                                    onClick={()=>{props.addToCart(detail)}}
+                                    onClick={()=>{props.addToCart(detail.data)}}
                                 >
                                     <h2 
                                         style={{
