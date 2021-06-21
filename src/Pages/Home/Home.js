@@ -114,7 +114,7 @@ function Home(props){
                 sessionStorage.setItem('cameraData',JSON.stringify(res.data))
             })
         }
-    });
+    },[]);
 
     
 
