@@ -293,16 +293,23 @@ function Dashboard(props){
                     <DashboardProductDisplay 
                         productData={laptopData}
                         userID={userData.id}
+                        addToCart={addToCart}
+                        addToFavorites={addToFavorites}
                     />
                 </Route>
                 <Route path="/dashboard/camera">
                     <DashboardProductDisplay 
                         productData={cameraData}
                         userID={userData.id}
+                        addToCart={addToCart}
+                        addToFavorites={addToFavorites}
                     />
                 </Route>
                 <Route path="/dashboard/product-detail">
-                    <DashboardProduct/>
+                    <DashboardProduct
+                        addToCart={addToCart}
+                        addToFavorites={addToFavorites}
+                    />
                 </Route>
                 <Route path='/dashboard'>
                     <DashboardDisplay 

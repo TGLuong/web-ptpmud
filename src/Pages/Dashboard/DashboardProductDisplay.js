@@ -1,7 +1,7 @@
 import {Row, Col} from 'antd'
 import {Link,useLocation} from 'react-router-dom'
 import '../../Style/ProductDisplay.css'
-import {SigninBtn} from '../../component/Button'
+import {DashboardCellButton} from '../../component/Button'
 import shoppingCart from '../../img/core-img/shopping-cart.png'
 import love from '../../img/core-img/love.png'
 
@@ -83,8 +83,8 @@ function DashboardProductDisplay(props) {
                                                 </Col>
                                                 <Col xs={8}>
                                                     <Row justify="space-between" align="middle">
-                                                        <SigninBtn 
-                                                            onClick={props.onSignInPopup} 
+                                                        <DashboardCellButton 
+                                                            onClick={()=>{props.addToCart(element)}}
                                                         >
                                                             <img 
                                                                 style={{
@@ -94,9 +94,9 @@ function DashboardProductDisplay(props) {
                                                                 src={shoppingCart}
                                                                 alt="cart" 
                                                             />
-                                                        </SigninBtn>
-                                                        <SigninBtn 
-                                                            onClick={props.onSignInPopup} 
+                                                        </DashboardCellButton>
+                                                        <DashboardCellButton 
+                                                            onClick={()=>{props.addToFavorites(element)}}
                                                         >
                                                             <img 
                                                                 style={{
@@ -106,7 +106,7 @@ function DashboardProductDisplay(props) {
                                                                 src={love}
                                                                 alt="love" 
                                                             />
-                                                        </SigninBtn>
+                                                        </DashboardCellButton>
                                                     </Row>
                                                 </Col>
                                             </Row>

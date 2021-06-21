@@ -1,7 +1,7 @@
 import {Row, Col, Pagination } from 'antd'
 import {Link} from 'react-router-dom'
 import '../../Style/HomeDisplay.css'
-import {DashBoardAddToCartButton} from '../../component/Button'
+import {DashboardCellButton} from '../../component/Button'
 import shoppingCart from '../../img/core-img/shopping-cart.png'
 import love from '../../img/core-img/love.png'
 
@@ -60,7 +60,7 @@ function DashboardDisplay(props) {
                                     </Col>
                                     <Col  xs={8}>
                                         <Row justify="space-between" align="middle">
-                                            <DashBoardAddToCartButton 
+                                            <DashboardCellButton
                                                 onClick={()=>{props.addToCart(element)}}
                                             >
                                                 <img 
@@ -68,14 +68,14 @@ function DashboardDisplay(props) {
                                                     src={shoppingCart} 
                                                     alt="cart"
                                                 />
-                                            </DashBoardAddToCartButton>
-                                            <DashBoardAddToCartButton onClick={()=>{props.addToFavorites(element)}}>
+                                            </DashboardCellButton>
+                                            <DashboardCellButton onClick={()=>{props.addToFavorites(element)}}>
                                                 <img 
                                                     style={{width:'37px',height:'37px'}} 
                                                     src={love}
                                                     alt="love" 
                                                 />
-                                            </DashBoardAddToCartButton>
+                                            </DashboardCellButton>
                                         </Row>
                                     </Col>
                                 </Row>

@@ -152,7 +152,7 @@ export const ProfileBtn = styled.button`
         text-decoration:underline;
     }
 `;
-export const DashBoardAddToCartButton = styled.button`
+export const DashboardCellButton = styled.button`
     border: none;
     outline: none;
     background-color: #95A5A6;

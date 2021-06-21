@@ -73,7 +73,9 @@ function DashboardProduct(props) {
                         </Col>
                         <Col md={14} className="detail-section">
                             <Row>
-                                <AddTocartButton>
+                                <AddTocartButton
+                                    onClick={()=>{props.addToCart(detail)}}
+                                >
                                     <h2 
                                         style={{
                                             color:'white',
