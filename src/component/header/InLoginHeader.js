@@ -85,6 +85,10 @@ function InLoginHdaer(props) {
             Sign out
         </Item>
     </Menu>
+    const convertLongString=(string)=>{
+        if(string.length>33) return(string.slice(0,33)+'...');
+        else return(string);
+    }
     return(
         <div className="head">
             <Row
@@ -349,7 +353,7 @@ function InLoginHdaer(props) {
                                                                     }}
                                                                     onClick={()=>{toProduct(element.product_id)}}
                                                                 >
-                                                                    <p>{element.product.name}</p>
+                                                                    <p>{convertLongString(element.product.name)}</p>
                                                                 </button>
                                                             </Row>
                                                             <Row>

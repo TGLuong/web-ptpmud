@@ -85,11 +85,7 @@ const PopupRow=props=>{
                     >
                         <Col md={16}>
                             <button
-                                style={{
-                                    border:'none',
-                                    outline:'none',
-                                    backgroundColor:'white',
-                                }}
+                                className="name-button"
                                 onClick={()=>{toProduct(props.element.product_id)}}
                             >
                                 {convertLongString(props.element.product.name)}

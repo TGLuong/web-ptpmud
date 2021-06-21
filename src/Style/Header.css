@@ -149,3 +149,17 @@
 .deleteTransition *{
     transition: 0s;
 }
+.name-button{
+    background-color: white;
+    border: none;
+    outline: none;
+    padding: 0px 5px;
+    border-radius: 10px;
+}
+.name-button:hover{
+    background-color: #B0BEC5;
+    color: yellow;
+}
+.name-button:active{
+    color: red;
+}
