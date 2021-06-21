@@ -5,7 +5,7 @@ import {Row, Col, Image, InputNumber,Button} from 'antd'
 import '../../Style/Header.css'
 import { baseUrl } from '../../config'
 
-const PopupRow=props=>{
+const CartRow=props=>{
     const history = useHistory()
     const [changeAmount,setChangeAmount] = useState(1)
     const [displayAmount,setDisplayAmount] = useState(1)
@@ -153,4 +153,4 @@ const PopupRow=props=>{
         </div>
     )
 }
-export default PopupRow
+export default CartRow

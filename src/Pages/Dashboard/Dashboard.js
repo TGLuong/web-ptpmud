@@ -279,6 +279,7 @@ function Dashboard(props){
                 load_page={load_page} 
                 renderMenu={renderMenu} 
                 setCartData={setCartData}
+                setFavoriteData={setFavoriteData}
                 homeData={homeData}
                 userData={userData}
                 cartData={cartData}

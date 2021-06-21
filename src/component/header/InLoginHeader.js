@@ -2,7 +2,8 @@ import {Row, Col, Badge, Dropdown, Image, Menu,Button} from 'antd'
 import {Link,useHistory} from 'react-router-dom'
 import '../../Style/Header.css'
 import { SearchButton , HomeButton, ProfileBtn } from '../../component/Button.js'
-import PopupRow from './PopupRow'
+import CartRow from './CartRow'
+import FavoriteRow from './FavoriteRow'
 import { SearchInput } from '../../component/Input.js'
 import { useEffect, useState } from 'react'
 import chinhhangIcon from '../../img/core-img/100-icon.png'
@@ -39,10 +40,14 @@ function InLoginHdaer(props) {
     const [favoriteData,setFavoriteData] = useState([
         {
             id: 0,
-            product: '',
+            product: {
+                name:'',
+                image:'',
+                price:0
+            },
             product_id: 0,
             user_id: 0
-        }
+        },
     ])
 
     useEffect(()=>{
@@ -72,9 +77,7 @@ function InLoginHdaer(props) {
     const toProfile=()=>{
         history.push('/dashboard/profile')
     }
-    const toProduct=(id)=>{
-        history.push('/dashboard/product-detail?id='+id)
-    }
+    
     const userOption = <Menu>
         <Item key="profile" onClick={toProfile}>
             Hồ Sơ Cá Nhân
@@ -85,10 +88,7 @@ function InLoginHdaer(props) {
             Sign out
         </Item>
     </Menu>
-    const convertLongString=(string)=>{
-        if(string.length>33) return(string.slice(0,33)+'...');
-        else return(string);
-    }
+    
     return(
         <div className="head">
             <Row
@@ -246,7 +246,12 @@ function InLoginHdaer(props) {
                                             <div className="header-popup-content">
                                                 {cartData.carts.map((element,index)=>{
                                                     return(
-                                                        <PopupRow key={index} setCartData={props.setCartData} userID={props.userData.id} element={element}/>
+                                                        <CartRow 
+                                                            key={index} 
+                                                            setCartData={props.setCartData} 
+                                                            userID={props.userData.id} 
+                                                            element={element}
+                                                        />
                                                     );
                                                 })}
                                                 <div className="popup-content-row"></div>
@@ -329,44 +334,12 @@ function InLoginHdaer(props) {
                                         <div className="header-popup-content">
                                             {favoriteData.map((element,index)=>{
                                                 return(
-                                                    <Row key={index}
-                                                        className="popup-content-row"
-                                                        style={{
-                                                            borderBottom:'1px solid #B0BEC5'
-                                                        }}
-                                                    >
-                                                        <Col md={4} style={{height:'70px'}}>
-                                                            <Image 
-                                                                style={{height:'70px'}}
-                                                                alt="img"
-                                                                src={element.product.image}
-                                                            />
-                                                        </Col>
-
-                                                        <Col md={20} style={{paddingLeft:'10px'}}>
-                                                            <Row>
-                                                                <button
-                                                                    style={{
-                                                                        border:'none',
-                                                                        outline:'none',
-                                                                        backgroundColor:'white',
-                                                                    }}
-                                                                    onClick={()=>{toProduct(element.product_id)}}
-                                                                >
-                                                                    <p>{convertLongString(element.product.name)}</p>
-                                                                </button>
-                                                            </Row>
-                                                            <Row>
-                                                                <Button
-                                                                    className="deleteTransition"
-                                                                    
-                                                                    danger
-                                                                >
-                                                                    Xóa
-                                                                </Button>
-                                                            </Row>
-                                                        </Col>
-                                                    </Row>
+                                                    <FavoriteRow
+                                                        key={index}
+                                                        element={element}
+                                                        userID={props.userData.id} 
+                                                        setFavoriteData={props.setFavoriteData}
+                                                    />
                                                 );
                                             })}
                                         </div>

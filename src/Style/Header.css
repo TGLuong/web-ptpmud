@@ -153,6 +153,7 @@
     background-color: white;
     border: none;
     outline: none;
+    height: 35px;
     padding: 0px 5px;
     border-radius: 10px;
 }
