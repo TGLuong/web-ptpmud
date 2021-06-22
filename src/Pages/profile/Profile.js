@@ -1,13 +1,20 @@
 import '../../Style/Profile.css'
-import {Row, Col, Card , Input} from 'antd'
+import {useState} from 'react'
+import {Row, Col, Card , Input, Radio, Dropdown} from 'antd'
 import profileIcon from '../../img/core-img/profile-white-background.png'
 import ColorCart from '../../img/core-img/color-cart.png'
 
+import PickDate from './components/PickDate/PickDate'
 
 const Profile = (props)=>{
+    const [gender,setGender] = useState(1)
+    const changeGender = event => {
+        setGender(event.target.value)
+    }
     return(
         <div className="profile-root">
             <Row>
+                
                 <Col md={6} className="profile-tabs-section">
                     <div>
                         <h2>
@@ -66,12 +73,23 @@ const Profile = (props)=>{
                                 <td><Input/></td>
                             </tr>
                             <tr>
+                                <td className="label">Giới Tính</td>
+                                <td>
+                                    <Radio.Group value={gender} onChange={changeGender}>
+                                        <Radio value={1}>Nam</Radio>
+                                        <Radio value={2}>Nữ</Radio>
+                                        <Radio value={3}>Khác</Radio>
+                                    </Radio.Group>
+                                </td>
+                            </tr>
+                            <tr>
                                 <td className="label">Ngày Sinh</td>
-                                <dt></dt>
+                                <dt><PickDate/></dt>
                             </tr>
                         </table>
                     </Card>
                 </Col>
+                
             </Row>
         </div>
     )
