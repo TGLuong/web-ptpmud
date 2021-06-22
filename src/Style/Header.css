@@ -142,7 +142,7 @@
     padding:15px 0px;
     width: 100%;
     min-height: 70px;
-    border-bottom: 1px solid #B0BEC5;
+    border-top: 1px solid #B0BEC5;
 }
 .deleteTransition{
     transition: 0s;
