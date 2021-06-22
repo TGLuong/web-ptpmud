@@ -1,7 +1,7 @@
 import '../../Style/Signin_up.css'
-import {Row,Col, Input} from 'antd'
+import {Row,Col, Input, notification} from 'antd'
 import axios from 'axios'
-import {CloseCircleOutlined} from '@ant-design/icons'
+import {CloseCircleOutlined, CheckOutlined} from '@ant-design/icons'
 import { CloseBtn, FacebookLoginBtn, GoogleLoginBtn, LoginBtn } from '../../component/Button'
 import { Line } from '../../component/Line'
 
@@ -13,19 +13,43 @@ function Signup(props) {
         props.offSignUpPopup()
         props.onSignInPopup()
     }
+    const openErr = (message,description) => {
+        notification.open({
+            message:message,
+            description:description,
+            style:{
+                backgroundColor:'#fff2f0',
+                border:'1px solid #ffccc7'
+            },
+            icon:<CloseCircleOutlined style={{color:'red'}} />
+            
+        })
+    }
+    const openSucc = (message,description) => {
+        notification.open({
+            message:message,
+            description:description,
+            style:{
+                backgroundColor:'#f6ffed',
+                border:'1px solid #b7eb8f'
+            },
+            icon:<CheckOutlined  style={{color:'#52c41a'}} />
+            
+        })
+    }
     const signup=()=>{
         const username = document.getElementById('signup_username').value;
         const password = document.getElementById('signup_password').value;
         const val_password = document.getElementById('signup_val_password').value;
         
         if(username===''||password===''||val_password===''){
-            alert('Vui lòng nhập đầy đủ thông tin để đăng ký')
+            openErr('Thiếu thông tin','Vui lòng nhập đầy đủ thông tin để đăng ký')
         }else if(username.match(/[^a-z0-9]/)){
-            alert('tên người dùng không được có chữ hoa, ký tự đặc biệt và dấu')
+            openErr('Sai quy chuẩn','tên người dùng không được có chữ hoa, ký tự đặc biệt và dấu')
         }else if(!password.match(/[a-z]/)||!password.match(/[0-9]/)){
-            alert('mật khẩu phải có chữ và số')
+            openErr('Sai quy chuẩn','mật khẩu phải có chữ và số')
         }else if(password.localeCompare(val_password)!==0){
-            alert('Vui lòng nhập đúng mật khẩu xác thực')
+            openErr('Mật khẩu xác thực sai','Vui lòng nhập đúng mật khẩu xác thực')
         }else{
             axios({
                 method:'post',
@@ -35,7 +59,7 @@ function Signup(props) {
                     password:password
                 }
             }).then(res=>{
-                alert('đăng ký thành công')
+                openSucc('đăng ký thành công','')
                 toSignin()
             }).catch(err=>{
                 document.getElementById('sign_up_err').style.visibility="visible";

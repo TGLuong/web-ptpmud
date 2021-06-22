@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Menu } from 'antd'
+import { Menu , notification} from 'antd'
+import {CheckOutlined, InfoOutlined} from '@ant-design/icons'
 import {useHistory} from 'react-router-dom'
 import { Route, Link, Switch } from 'react-router-dom'
 
@@ -143,22 +144,58 @@ function Dashboard(props){
         if(data===null){
             history.push('/')
         }else{
-            setAddressData(data.address)
-            setBankData(data.bankData)
-            setCartData(data.carts)
-            setFavoriteData(data.favorites)
-            setUserData({
-                email:data.email,
-                id:data.id,
-                is_admin:data.is_admin,
-                phone:data.phone,
-                username:data.username
-            })
+            setUserData(data)
+            setAddressData(JSON.parse(sessionStorage.getItem('addresses')))
+            setBankData(JSON.parse(sessionStorage.getItem('banks')))
+            setCartData(JSON.parse(sessionStorage.getItem('carts')))
+            setFavoriteData(JSON.parse(sessionStorage.getItem('favorites')))
             setHomeData(JSON.parse(sessionStorage.getItem('homeData')))
             setLaptopData(JSON.parse(sessionStorage.getItem('laptopData')))
             setCameraData(JSON.parse(sessionStorage.getItem('cameraData')))
         }
     },[]);
+
+    const openSucc = (message,description) => {
+        notification.open({
+            message:message,
+            description:description,
+            style:{
+                backgroundColor:'#f6ffed',
+                border:'1px solid #b7eb8f'
+            },
+            icon:<CheckOutlined
+                    style={{
+                        backgroundColor:'#52c41a',
+                        color:'white',
+                        borderRadius:'50%',
+                        padding:'5px',
+                        fontSize:'12px' 
+                    }} 
+                />
+            
+        })
+    }
+
+    const openInfo = (message,description) => {
+        notification.open({
+            message:message,
+            description:description,
+            style:{
+                backgroundColor:'#e6f7ff',
+                border:'1px solid #91d5ff'
+            },
+            icon:<InfoOutlined  
+                    style={{
+                        backgroundColor:'#1890ff',
+                        color:'white',
+                        borderRadius:'50%',
+                        padding:'5px',
+                        fontSize:'12px' 
+                    }}
+                />
+            
+        })
+    }
 
     const isInCart=(id)=>{
         let check = false;
@@ -182,10 +219,11 @@ function Dashboard(props){
                 }
             }).then(res=>{
                 setCartData(res.data.carts)
-                alert('Đã thêm vào giỏ hàng')
+                sessionStorage.setItem('carts',JSON.stringify(res.data.carts))
+                openSucc('Đã thêm vào giỏ hàng','')
             })
         }else{
-            alert('Sản phẩm đã có trong giỏ hàng, vào trong giỏ hàng để tùy chỉnh số lượng')
+            openInfo('Sản phẩm đã có trong giỏ hàng','vào trong giỏ hàng để tùy chỉnh số lượng')
         }
     }
 
@@ -207,11 +245,12 @@ function Dashboard(props){
                 method:'POST',
                 url:baseUrl+'/user/favorite/'+userData.id+'/'+element.id
             }).then(res=>{
+                sessionStorage.setItem('favorites',JSON.stringify(res.data))
                 setFavoriteData(res.data)
-                alert('Đã thêm sản phẩm vào mục yêu thích')
+                openSucc('Đã thêm sản phẩm vào mục yêu thích','')
             })
         }else{
-            alert('Sản phẩm đã có trong mục yêu thích')
+            openInfo('Sản phẩm đã có trong mục yêu thích','')
         }
     }
 

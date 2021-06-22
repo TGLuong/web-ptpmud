@@ -1,5 +1,5 @@
 import '../../Style/Profile.css'
-import {Row, Col} from 'antd'
+import {Row, Col, Card , Input} from 'antd'
 import profileIcon from '../../img/core-img/profile-white-background.png'
 import ColorCart from '../../img/core-img/color-cart.png'
 
@@ -9,7 +9,6 @@ const Profile = (props)=>{
         <div className="profile-root">
             <Row>
                 <Col md={6} className="profile-tabs-section">
-                    <div style={{height:'50px'}}></div>
                     <div>
                         <h2>
                             <img
@@ -29,6 +28,7 @@ const Profile = (props)=>{
                             className="base-hover"
                             style={{
                                 backgroundColor:'white',
+                                transition:'100ms',
                                 border:'none',
                                 outline:'none',
                                 fontSize:'24px'
@@ -45,9 +45,32 @@ const Profile = (props)=>{
                 </Col>
                 <Col md={18} className="profile-detail-section">
                     <h1>Hồ Sơ Của Tôi</h1>
-                    <Row>
-                        
-                    </Row>
+                    <Card
+                        hoverable
+                    >
+                        <table>
+                            <tr>
+                                <td className="label">Tên Đăng Nhập</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td className="label">Họ Tên</td>
+                                <td><Input/></td>
+                            </tr>
+                            <tr>
+                                <td className="label">Email</td>
+                                <td><Input/></td>
+                            </tr>
+                            <tr>
+                                <td className="label">Số Điện Thoại</td>
+                                <td><Input/></td>
+                            </tr>
+                            <tr>
+                                <td className="label">Ngày Sinh</td>
+                                <dt></dt>
+                            </tr>
+                        </table>
+                    </Card>
                 </Col>
             </Row>
         </div>

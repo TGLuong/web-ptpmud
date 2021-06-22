@@ -4,6 +4,7 @@ import '../../Style/ProductDisplay.css'
 import {DashboardCellButton} from '../../component/Button'
 import shoppingCart from '../../img/core-img/shopping-cart.png'
 import love from '../../img/core-img/love.png'
+import { useEffect } from 'react'
 
 
 
@@ -27,11 +28,12 @@ function DashboardProductDisplay(props) {
             });
         }
     }
-    
+    useEffect(()=>{
+        toBrand()
+    },[])
 
     return(
         <>
-            {toBrand()}
             <div className="product-display" onLoad={toBrand}>
                 {props.productData.data.map((element,index)=>{
                     return(

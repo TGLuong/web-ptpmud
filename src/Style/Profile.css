@@ -3,15 +3,26 @@
 }
 .base-hover:hover{
     text-decoration: underline;
+    color: #29B6F6;
 }
 .profile-tabs-section{
-    height: 400px;
     border-right: 1px solid #CFD8DC;
 }
 .profile-detail-section{
-    height: 400px;
-    border: 1px solid black;
     padding: 0px 30px;
+}
+.profile-detail-section table{
+    border:1px solid black;
+    width: 100%;
+}
+.profile-detail-section table tr{
+    height: 70px;
+}
+.profile-detail-section table .label{
+    width: 20%;
+    text-align: end;
+    padding: 0px 20px;
+    color: rgba(85,85,85,.8);
 }
 .profile-icon{
     height: 30px;
@@ -25,6 +36,7 @@
     transition: 100ms;
     display: block;
     text-align: start;
+    border-radius: 5px;
     width: 100%;
     padding: 0px 60px;
     background-color: white;

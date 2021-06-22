@@ -3,7 +3,7 @@ import axios from 'axios'
 import {useState} from 'react'
 import {Link, useHistory, useLocation} from 'react-router-dom'
 import {BarLoader} from 'react-spinners'
-import {Row,Col, Input} from 'antd'
+import {Row,Col, Input, notification, Descriptions} from 'antd'
 import {CloseCircleOutlined} from '@ant-design/icons'
 import { CloseBtn, FacebookLoginBtn, GoogleLoginBtn, LoginBtn } from '../../component/Button'
 import { Line } from '../../component/Line'
@@ -23,13 +23,26 @@ function Signin(props) {
             login()
         }
     }
+    const openErr = (message,description) => {
+        notification.open({
+            message:message,
+            description:description,
+            style:{
+                backgroundColor:'#fff2f0',
+                border:'1px solid #ffccc7'
+            },
+            icon:<CloseCircleOutlined style={{color:'red'}} />
+            
+        })
+    }
     const login=()=>{
-        setLoading(true)
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
+        
         if(username.length===0||password.length===0){
-            alert('Vui lòng nhập tên tài khoản và mật khẩu để đăng nhập')
+            openErr('Đăng nhập thất bại','Vui lòng nhập tên tài khoản và mật khẩu để đăng nhập')
         }else{
+            setLoading(true)
             axios({
                 method:'post',
                 url:baseUrl+'/user/signin',
@@ -42,7 +55,17 @@ function Signin(props) {
                 console.log(data.data)
 
                 if(data.message==='done'){
-                    sessionStorage.setItem('userdata',JSON.stringify(data.data))
+                    sessionStorage.setItem('userdata',JSON.stringify({
+                        email:res.data.data.email,
+                        id:res.data.data.id,
+                        is_admin:res.data.data.is_admin,
+                        phone:res.data.data.phone,
+                        username:res.data.data.username,
+                    }))
+                    sessionStorage.setItem('carts',JSON.stringify(res.data.data.carts))
+                    sessionStorage.setItem('favorites',JSON.stringify(res.data.data.favorites))
+                    sessionStorage.setItem('addresses',JSON.stringify(res.data.data.addresses))
+                    sessionStorage.setItem('banks',JSON.stringify(res.data.data.banks))
                     history.push('/dashboard'+location.pathname+location.search)
                 }
             }).catch(err=>{

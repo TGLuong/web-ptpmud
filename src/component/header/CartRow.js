@@ -47,6 +47,7 @@ const CartRow=props=>{
             method:'DELETE',
             url:baseUrl+'/user/cart/'+props.userID+'/'+props.element.product_id
         }).then(res=>{
+            sessionStorage.setItem('carts',JSON.stringify(res.data.carts))
             props.setCartData(res.data.carts)
             setRemoveDisable(false)
         })

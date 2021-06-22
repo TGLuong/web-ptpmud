@@ -23,6 +23,7 @@ const FavoriteRow = props =>{
             method:'DELETE',
             url:baseUrl+'/user/favorite/'+props.userID+'/'+props.element.product_id
         }).then(res=>{
+            sessionStorage.setItem('favorites',JSON.stringify(res.data))
             props.setFavoriteData(res.data)
             setRemoveDisable(false)
         })
@@ -31,9 +32,6 @@ const FavoriteRow = props =>{
         <>
         <Row
             className="popup-content-row"
-            style={{
-                borderBottom:'1px solid #B0BEC5'
-            }}
         >
             <Col md={4} style={{height:'70px'}}>
                 <Image 
