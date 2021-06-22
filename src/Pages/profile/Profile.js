@@ -21,7 +21,7 @@ const Profile = (props)=>{
                         <ul className="profile-tabs">
                             <li><button>Hồ Sơ</button></li>
                             <li><button>Ngân Hàng</button></li>
-                            <li><button>Dịa Chỉ</button></li>
+                            <li><button>Địa Chỉ</button></li>
                             <li><button>Đổi Mật Khẩu</button></li>
                         </ul>
                         <button
