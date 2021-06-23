@@ -68,7 +68,24 @@ function InLoginHdaer(props) {
         setFavoriteTotal(props.favoriteData.length)
     },[props.favoriteData])
 
+    useEffect(()=>{
+        if(cartTotal===0){
+            document.getElementById('thanh-toan').style.cursor='not-allowed';
+            document.getElementById('thanh-toan').disabled=true;
+        }
+    })
 
+    const onOffFavorite = () => {
+        if(document.getElementById('cart-popup').style.visibility==="visible"){
+            document.getElementById('cart-popup').style.visibility="hidden";
+        }
+        let visble = document.getElementById('favorite-popup').style.visibility;
+        if(visble==='visible'){
+            document.getElementById('favorite-popup').style.visibility="hidden";
+        }else{
+            document.getElementById('favorite-popup').style.visibility="visible";
+        }
+    }
     
     const signOut=()=>{
         sessionStorage.removeItem('userdata');
@@ -85,7 +102,7 @@ function InLoginHdaer(props) {
         <Item 
             key="signout"
             onClick={signOut}>
-            Sign out
+            Đăng Xuất
         </Item>
     </Menu>
     
@@ -270,7 +287,7 @@ function InLoginHdaer(props) {
                                                     </h3>
                                                     <h3 style={{color:'red'}}>{cartData.total}</h3>
                                                 </div>
-                                                <button>
+                                                <button id="thanh-toan">
                                                     Thanh Toán Hóa Đơn
                                                 </button>
                                             </div>
@@ -296,15 +313,9 @@ function InLoginHdaer(props) {
                                             outline:'none',
                                         }}
                                         onClick={()=>{
-                                            if(document.getElementById('cart-popup').style.visibility==="visible")
-                                                document.getElementById('cart-popup').style.visibility="hidden";
-                                            let visble = document.getElementById('favorite-popup').style.visibility;
-                                            if(visble==='visible'){
-                                                document.getElementById('favorite-popup').style.visibility="hidden";
-                                            }else{
-                                                document.getElementById('favorite-popup').style.visibility="visible";
-                                            }
+                                            onOffFavorite()
                                         }}
+                                        
                                     >
                                         <Row justify="center">
                                             <Badge 

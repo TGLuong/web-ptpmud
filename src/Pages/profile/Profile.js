@@ -1,20 +1,24 @@
 import '../../Style/Profile.css'
-import {useState} from 'react'
-import {Row, Col, Card , Input, Radio, Dropdown} from 'antd'
+import {useEffect, useState} from 'react'
+import {Row, Col, Card , Input, Radio, Button, InputNumber} from 'antd'
 import profileIcon from '../../img/core-img/profile-white-background.png'
 import ColorCart from '../../img/core-img/color-cart.png'
 
 import PickDate from './components/PickDate/PickDate'
 
 const Profile = (props)=>{
-    const [gender,setGender] = useState(1)
+    const [gender,setGender] = useState(null)
     const changeGender = event => {
         setGender(event.target.value)
     }
+    const [dateofbrith,setDateofbirth] = useState([1,1,2000])
+    useEffect(()=>{
+        setGender(props.userData.gender)
+    },[props.userData])
     return(
         <div className="profile-root">
             <Row>
-                
+                {console.log(dateofbrith)}
                 <Col md={6} className="profile-tabs-section">
                     <div>
                         <h2>
@@ -56,36 +60,42 @@ const Profile = (props)=>{
                         hoverable
                     >
                         <table>
-                            <tr>
-                                <td className="label">Tên Đăng Nhập</td>
-                                <td>gialuong</td>
-                            </tr>
-                            <tr>
-                                <td className="label">Họ Tên</td>
-                                <td><Input/></td>
-                            </tr>
-                            <tr>
-                                <td className="label">Email</td>
-                                <td><Input/></td>
-                            </tr>
-                            <tr>
-                                <td className="label">Số Điện Thoại</td>
-                                <td><Input/></td>
-                            </tr>
-                            <tr>
-                                <td className="label">Giới Tính</td>
-                                <td>
-                                    <Radio.Group value={gender} onChange={changeGender}>
-                                        <Radio value={1}>Nam</Radio>
-                                        <Radio value={2}>Nữ</Radio>
-                                        <Radio value={3}>Khác</Radio>
-                                    </Radio.Group>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="label">Ngày Sinh</td>
-                                <td><PickDate/></td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td className="label">Tên Đăng Nhập</td>
+                                    <td>{props.userData.username}</td>
+                                </tr>
+                                <tr>
+                                    <td className="label">Họ Tên</td>
+                                    <td><Input id="ho-ten" defaultValue={props.userData.full_name}/></td>
+                                </tr>
+                                <tr>
+                                    <td className="label">Email</td>
+                                    <td><Input id="email" defaultValue={props.userData.email} /></td>
+                                </tr>
+                                <tr>
+                                    <td className="label">Số Điện Thoại</td>
+                                    <td><Input id="std" defaultValue={props.userData.phone}/></td>
+                                </tr>
+                                <tr>
+                                    <td className="label">Giới Tính</td>
+                                    <td>
+                                        <Radio.Group value={gender} onChange={changeGender}>
+                                            <Radio value={1}>Nam</Radio>
+                                            <Radio value={2}>Nữ</Radio>
+                                            <Radio value={3}>Khác</Radio>
+                                        </Radio.Group>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="label">Ngày Sinh</td>
+                                    <td><PickDate onChange={(day,month,year)=>{setDateofbirth([day,month,year])}} /></td>
+                                </tr>
+                                <tr>
+                                    <td className="label"></td>
+                                    <td><Button type="primary" style={{width:'100px'}}>Lưu</Button></td>
+                                </tr>
+                            </tbody>
                         </table>
                     </Card>
                 </Col>

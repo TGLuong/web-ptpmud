@@ -133,9 +133,11 @@ function Dashboard(props){
     const [userData,setUserData] = useState({
         email:'',
         id: 0,
+        full_name:'',
         is_admin: false,
         phone:'',
-        username: ''
+        username: '',
+        gender:null,
     })
     const history = useHistory()
 
@@ -326,7 +328,7 @@ function Dashboard(props){
             />
             <Switch>
                 <Route path="/dashboard/profile">
-                    <Profile/>
+                    <Profile userData={userData}/>
                 </Route>
                 <Route path="/dashboard/laptop">
                     <DashboardProductDisplay 

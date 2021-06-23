@@ -60,7 +60,9 @@ function Signin(props) {
                         id:res.data.data.id,
                         is_admin:res.data.data.is_admin,
                         phone:res.data.data.phone,
+                        full_name:res.data.data.full_name,
                         username:res.data.data.username,
+                        gender:res.data.data.gender
                     }))
                     sessionStorage.setItem('carts',JSON.stringify(res.data.data.carts))
                     sessionStorage.setItem('favorites',JSON.stringify(res.data.data.favorites))

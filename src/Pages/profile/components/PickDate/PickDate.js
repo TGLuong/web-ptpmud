@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {Dropdown,Menu,Button,Row,Col} from 'antd'
 import {DownOutlined} from '@ant-design/icons'
 const {Item} = Menu;
@@ -7,6 +7,9 @@ const PickDate = props => {
     const [day,setDay] = useState(1)
     const [month,setMonth] = useState(1)
     const [year,setYear] = useState(new Date().getFullYear())
+
+    const onChange = props.onChange || function(){}
+
     const dayOverLay = () => {
         const renderItem = () =>{
             let day = [];
@@ -31,7 +34,9 @@ const PickDate = props => {
             return day
         }
         return(
-            <Menu onClick={({item,key,keyPath,domEven})=>{setDay(key)}}>
+            <Menu 
+                onClick={({item,key,keyPath,domEven})=>{setDay(key)}}
+            >
                 {renderItem()}
             </Menu>
         );
@@ -45,7 +50,7 @@ const PickDate = props => {
             return(month)
         }
         return(
-            <Menu 
+            <Menu
                 onClick={({item,key,keyPath,domEven})=>{
                     if(key===2&&day>29){
                         setMonth(key);
@@ -56,7 +61,7 @@ const PickDate = props => {
                     }else{
                         setMonth(key)
                     }
-                    
+                    // onChange(day,month,year)
                 }}
             >
                 {monthRender()}
@@ -72,11 +77,14 @@ const PickDate = props => {
             return year
         }
         return(
-            <Menu onClick={({item,key,keyPath,domEven})=>{setYear(key)}}>
+            <Menu onChange={props.onChange(day,month,year)} onClick={({item,key,keyPath,domEven})=>{setYear(key)}}>
                 {yearRender()}
             </Menu>
         )
     }
+    useEffect(()=>{
+        onChange(day,month,year)
+    },[year,month,day])
     return(
         <>
             <Row>
