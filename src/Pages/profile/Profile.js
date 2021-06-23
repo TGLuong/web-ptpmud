@@ -58,7 +58,7 @@ const Profile = (props)=>{
                         <table>
                             <tr>
                                 <td className="label">Tên Đăng Nhập</td>
-                                <td></td>
+                                <td>gialuong</td>
                             </tr>
                             <tr>
                                 <td className="label">Họ Tên</td>
@@ -84,13 +84,14 @@ const Profile = (props)=>{
                             </tr>
                             <tr>
                                 <td className="label">Ngày Sinh</td>
-                                <dt><PickDate/></dt>
+                                <td><PickDate/></td>
                             </tr>
                         </table>
                     </Card>
                 </Col>
                 
             </Row>
+            <div style={{height:'200px'}}></div>
         </div>
     )
 }
