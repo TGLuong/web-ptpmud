@@ -11,7 +11,7 @@ function App() {
   const history = useHistory()
   window.addEventListener('click', function(e){
     const cartBtn = document.getElementById('cart-btn')
-    if(!cartBtn.contains(e.target)){  
+    if(cartBtn&&!cartBtn.contains(e.target)){  
       const cartPopup = document.getElementById('cart-popup')
       if(cartPopup){
         if(!cartPopup.contains(e.target)){
@@ -20,7 +20,7 @@ function App() {
       }
     }
     const favoriteBtn = document.getElementById('favorite-btn')
-    if(!favoriteBtn.contains(e.target)){
+    if(favoriteBtn&&!favoriteBtn.contains(e.target)){
       const favoritePopup = document.getElementById('favorite-popup')
       if(favoritePopup){
         if(!favoritePopup.contains(e.target)){
