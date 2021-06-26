@@ -44,7 +44,7 @@ function HomeDisplay(props) {
                                         </p>
                                     </Row>
                                 </Link>
-                                <Row style={{height:'16%',backgroundColor:'#95A5A6'}}>
+                                <Row style={{height:'16%',borderRadius:'0px 0px 10px 10px',backgroundColor:'#95A5A6'}}>
                                     <Col xs={16}>
                                         <h3 
                                             style={{

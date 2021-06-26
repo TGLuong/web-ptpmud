@@ -52,6 +52,20 @@ const CartRow=props=>{
             setRemoveDisable(false)
         })
     }
+    const numberFormat = (num) => {
+        let stringfmt = num.toString();
+        let mod3 = 0;
+        let result=''
+        for(let i = stringfmt.length-1;i>=0;i--){
+            if(mod3===3){
+                result+='.'
+                mod3=0
+            }
+            mod3+=1;
+            result+=stringfmt[i];
+        }
+        return result.split('').reverse().join('');
+    }
     return(
         <div className="popup-content-row">
             <Row>
@@ -100,7 +114,7 @@ const CartRow=props=>{
                             >
                                 Tổng:
                             </span>
-                            {props.element.total_price}
+                            {numberFormat(props.element.total_price)}
                             đ
                         </Col>
                         
@@ -113,7 +127,7 @@ const CartRow=props=>{
                         align="middle"
                     >
                         <Col md={6} style={{color:'red'}}>
-                            <span>Giá: {props.element.product.price}</span>
+                            <span>Giá: {numberFormat(props.element.product.price)}</span>
                         </Col>
                         <Col md={11}>
                             <Row align="middle">

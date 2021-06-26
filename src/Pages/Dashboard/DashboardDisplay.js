@@ -16,6 +16,20 @@ function DashboardDisplay(props) {
         if(string.length>58) return(string.slice(0,58)+'...');
         else return(string);
     }
+    const numberFormat = (num) => {
+        let stringfmt = num.toString();
+        let mod3 = 0;
+        let result=''
+        for(let i = stringfmt.length-1;i>=0;i--){
+            if(mod3===3){
+                result+='.'
+                mod3=0
+            }
+            mod3+=1;
+            result+=stringfmt[i];
+        }
+        return result.split('').reverse().join('');
+    }
     return(
         <>
             <Row className="product-area">
@@ -64,7 +78,7 @@ function DashboardDisplay(props) {
                                                 alignItems:'center'
                                             }}
                                         >
-                                                {element.price}
+                                                {numberFormat(element.price)}
                                         </h3>
                                     </Col>
                                     <Col  xs={8}>

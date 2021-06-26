@@ -95,6 +95,20 @@ function InLoginHdaer(props) {
     const toProfile=()=>{
         history.push('/dashboard/profile/userinfo')
     }
+    const numberFormat = (num) => {
+        let stringfmt = num.toString();
+        let mod3 = 0;
+        let result=''
+        for(let i = stringfmt.length-1;i>=0;i--){
+            if(mod3===3){
+                result+='.'
+                mod3=0
+            }
+            mod3+=1;
+            result+=stringfmt[i];
+        }
+        return result.split('').reverse().join('');
+    }
     
     const userOption = <Menu>
         <Item key="profile" onClick={toProfile}>
@@ -304,7 +318,7 @@ function InLoginHdaer(props) {
                                                             >
                                                                 đ
                                                             </h3>
-                                                            <h3 style={{color:'red'}}>{cartData.total}</h3>
+                                                            <h3 style={{color:'red'}}>{numberFormat(cartData.total)}</h3>
                                                         </div>
                                                         <button id="thanh-toan">
                                                             Thanh Toán Hóa Đơn
