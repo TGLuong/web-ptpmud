@@ -52,8 +52,6 @@ function Signin(props) {
                 }
             }).then(res=>{
                 const data = res.data
-                console.log(data.data)
-
                 if(data.message==='done'){
                     sessionStorage.setItem('userdata',JSON.stringify({
                         email:res.data.data.email,

@@ -207,3 +207,54 @@ export const AddProductBtn = styled.button`
         background-color:#2C3E50;
     }
 `;
+export const AddBankCartBtn = styled.button`
+    background-color:#ee4d2d;
+    outline:none;
+    border:none;
+    border-radius:2px;
+    color:white;
+    padding: 0px 20px;
+    font-size:14px;
+    font-weight:400;
+    cursor:pointer;
+    &:hover{
+        background-color:#E57373;
+    }
+    &:active{
+        background-color:#ee4d2d;
+    }
+`;
+export const DeleteBankAccBtn = styled.button`
+    border:none;
+    outline:none;
+    background-color:#F44336;
+    padding:5px 20px;
+    font-size:14px;
+    font-weight:500;
+    margin:0px 10px;
+    color:white;
+    border-radius:5px;
+    &:hover{
+        background-color:#E57373;
+    }
+    &:active{
+        background-color:#F44336;
+    }
+`;
+export const EditBankAcc = styled.button`
+    border:none;
+    outline:none;
+    background-color:#29B6F6;
+    padding:5px 20px;
+    font-size:14px;
+    font-weight:500;
+    margin-right:10px;
+    color:white;
+    border-radius:5px;
+    &:hover{
+        background-color:#81D4FA;
+    }
+    &:active{
+        background-color:#29B6F6;
+    }
+`;

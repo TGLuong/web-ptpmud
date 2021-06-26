@@ -10,6 +10,7 @@ import UserInfo from './components/UserInfo/UserInfo'
 import Bank from './components/Bank/Bank'
 import Address from './components/Address/Address'
 import Password from './components/Password/Password'
+import Account from './components/Account/Account'
 
 
 const Profile = (props)=>{
@@ -64,6 +65,15 @@ const Profile = (props)=>{
                                     Đổi Mật Khẩu
                                 </button>
                             </li>
+                            <li>
+                                <button
+                                    onClick={()=>{
+                                        history.push('/dashboard/profile/account')
+                                    }}
+                                >
+                                    Xóa Tài Khoản
+                                </button>
+                            </li>
                         </ul>
                         <button
                             className="base-hover"
@@ -87,16 +97,25 @@ const Profile = (props)=>{
                 <Col md={18} className="profile-detail-section">
                     <Switch>
                         <Route path="/dashboard/profile/userinfo">
-                            <UserInfo userData={props.userData}></UserInfo>
+                            <UserInfo 
+                                userData={props.userData} 
+                                setUserData={props.setUserData}
+                            />
                         </Route>
                         <Route path="/dashboard/profile/bank">
-                            <Bank/>
+                            <Bank
+                                bankData={props.bankData}
+                                setBankData={props.setBankData}
+                            />
                         </Route>
                         <Route path="/dashboard/profile/address">
                             <Address/>
                         </Route>
                         <Route path="/dashboard/profile/password">
                             <Password/>
+                        </Route>
+                        <Route path="/dashboard/profile/account">
+                            <Account/>
                         </Route>
                     </Switch>
                 </Col>

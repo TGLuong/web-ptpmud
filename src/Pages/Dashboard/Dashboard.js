@@ -328,7 +328,12 @@ function Dashboard(props){
             />
             <Switch>
                 <Route path="/dashboard/profile">
-                    <Profile userData={userData}/>
+                    <Profile 
+                        userData={userData} 
+                        setUserData={setUserData}
+                        bankData={bankData}
+                        setBankData={setBankData}
+                    />
                 </Route>
                 <Route path="/dashboard/laptop">
                     <DashboardProductDisplay 
