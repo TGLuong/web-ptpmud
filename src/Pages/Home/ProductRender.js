@@ -26,6 +26,20 @@ function ProductRender(props) {
             });
         }
     }
+    const numberFormat = (num) => {
+        let stringfmt = num.toString();
+        let mod3 = 0;
+        let result=''
+        for(let i = stringfmt.length-1;i>=0;i--){
+            if(mod3===3){
+                result+='.'
+                mod3=0
+            }
+            mod3+=1;
+            result+=stringfmt[i];
+        }
+        return result.split('').reverse().join('');
+    }
 
     return(
         <>
@@ -77,7 +91,7 @@ function ProductRender(props) {
                                                             alignItems:'center'
                                                         }}
                                                     >
-                                                        {element.price}
+                                                        {numberFormat(element.price)}
                                                     </h3>
                                                 </Col>
                                                 <Col xs={8}>
