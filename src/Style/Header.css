@@ -165,3 +165,9 @@
 .name-button:active{
     color: red;
 }
+.cart-bnt{
+    cursor: pointer;
+    background-color:#2C3E50;
+    border:none;
+    outline:none;
+}

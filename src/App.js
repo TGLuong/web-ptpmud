@@ -9,6 +9,26 @@ import AdminDashboard from './Pages/Admin/AdminDashboard'
 
 function App() {
   const history = useHistory()
+  window.addEventListener('click', function(e){
+    const cartBtn = document.getElementById('cart-btn')
+    if(!cartBtn.contains(e.target)){  
+      const cartPopup = document.getElementById('cart-popup')
+      if(cartPopup){
+        if(!cartPopup.contains(e.target)){
+          if(cartPopup.style.visibility=="visible") cartPopup.style.visibility="hidden"
+        }
+      }
+    }
+    const favoriteBtn = document.getElementById('favorite-btn')
+    if(!favoriteBtn.contains(e.target)){
+      const favoritePopup = document.getElementById('favorite-popup')
+      if(favoritePopup){
+        if(!favoritePopup.contains(e.target)){
+          if(favoritePopup.style.visibility=="visible") favoritePopup.style.visibility="hidden"
+        }
+      }
+    }
+  })
   return (
     <Router history={history}>
       <Switch>

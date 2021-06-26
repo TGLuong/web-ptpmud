@@ -71,20 +71,40 @@ function InLoginHdaer(props) {
 
     useEffect(()=>{
         if(cartTotal===0){
-            document.getElementById('thanh-toan').style.cursor='not-allowed';
-            document.getElementById('thanh-toan').disabled=true;
+            const thanhtoan = document.getElementById('thanh-toan')
+            if(thanhtoan!==null){
+                thanhtoan.style.cursor='not-allowed';
+                thanhtoan.disabled=true;
+            }
         }
     })
-
-    const onOffFavorite = () => {
-        if(document.getElementById('cart-popup').style.visibility==="visible"){
-            document.getElementById('cart-popup').style.visibility="hidden";
+    const onOffCart = () => {
+        const favoritePopup = document.getElementById('favorite-popup')
+        const cartPopup = document.getElementById('cart-popup')
+        if(favoritePopup!==null && cartPopup!==null){
+            if(favoritePopup.style.visibility==="visible")
+                favoritePopup.style.visibility="hidden";
+            let visble = cartPopup.style.visibility;
+            if(visble==='visible'){
+                cartPopup.style.visibility="hidden";
+            }else{
+                cartPopup.style.visibility="visible";
+            }
         }
-        let visble = document.getElementById('favorite-popup').style.visibility;
-        if(visble==='visible'){
-            document.getElementById('favorite-popup').style.visibility="hidden";
-        }else{
-            document.getElementById('favorite-popup').style.visibility="visible";
+    }
+    const onOffFavorite = () => {
+        const cartPopup = document.getElementById('cart-popup')
+        const favoritePopup = document.getElementById('favorite-popup')
+        if(cartPopup!==null&&favoritePopup!==null){
+            if(cartPopup.style.visibility==="visible"){
+                cartPopup.style.visibility="hidden";
+            }
+            let visble = favoritePopup.style.visibility;
+            if(visble==='visible'){
+                favoritePopup.style.visibility="hidden";
+            }else{
+                favoritePopup.style.visibility="visible";
+            }
         }
     }
     
@@ -95,6 +115,7 @@ function InLoginHdaer(props) {
     const toProfile=()=>{
         history.push('/dashboard/profile/userinfo')
     }
+    
     const numberFormat = (num) => {
         let stringfmt = num.toString();
         let mod3 = 0;
@@ -248,23 +269,12 @@ function InLoginHdaer(props) {
                                 <Col xs={8}>
                                     <Row justify="end">
                                         <Col >
-                                            <button 
-                                                style={{
-                                                    cursor:'pointer',
-                                                    backgroundColor:'#2C3E50',
-                                                    border:'none',
-                                                    outline:'none',
-                                                }}
-                                                onClick={()=>{
-                                                    if(document.getElementById('favorite-popup').style.visibility==="visible")
-                                                        document.getElementById('favorite-popup').style.visibility="hidden";
-                                                    let visble = document.getElementById('cart-popup').style.visibility;
-                                                    if(visble==='visible'){
-                                                        document.getElementById('cart-popup').style.visibility="hidden";
-                                                        
-                                                    }else{
-                                                        document.getElementById('cart-popup').style.visibility="visible";
-                                                    }
+                                            <button
+                                                id="cart-btn"
+                                                className="cart-bnt"
+                                                
+                                                onClick={(e)=>{
+                                                    onOffCart()
                                                 }}
                                             >
                                                 <Row justify="center">
@@ -338,7 +348,8 @@ function InLoginHdaer(props) {
                                         align="bottom"
                                     >
                                         <Col>
-                                            <button 
+                                            <button
+                                                id="favorite-btn"
                                                 style={{
                                                     cursor:'pointer',
                                                     backgroundColor:'#2C3E50',
