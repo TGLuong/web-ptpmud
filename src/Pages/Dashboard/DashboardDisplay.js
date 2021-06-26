@@ -86,7 +86,6 @@ function DashboardDisplay(props) {
                                             justify="space-between" 
                                             style={{
                                                 height:'100%',
-
                                             }} 
                                             align="middle"
                                         >
@@ -94,22 +93,22 @@ function DashboardDisplay(props) {
                                                 <AlterButton>Sửa</AlterButton>
                                             ):
                                                 <>
-                                                <DashboardCellButton
-                                                    onClick={()=>{props.addToCart(element)}}
-                                                >
-                                                    <img 
-                                                        style={{width:'37px',height:'37px'}} 
-                                                        src={shoppingCart} 
-                                                        alt="cart"
-                                                    />
-                                                </DashboardCellButton>
-                                                <DashboardCellButton onClick={()=>{props.addToFavorites(element)}}>
-                                                    <img 
-                                                        style={{width:'37px',height:'37px'}} 
-                                                        src={love}
-                                                        alt="love" 
-                                                    />
-                                                </DashboardCellButton>
+                                                    <DashboardCellButton
+                                                        onClick={()=>{props.addToCart(element)}}
+                                                    >
+                                                        <img 
+                                                            style={{width:'37px',height:'37px'}} 
+                                                            src={shoppingCart} 
+                                                            alt="cart"
+                                                        />
+                                                    </DashboardCellButton>
+                                                    <DashboardCellButton onClick={()=>{props.addToFavorites(element)}}>
+                                                        <img 
+                                                            style={{width:'37px',borderRadius:'0px 10px 10px 0px',height:'37px'}} 
+                                                            src={love}
+                                                            alt="love" 
+                                                        />
+                                                    </DashboardCellButton>
                                                 </>
                                             }
                                         </Row>

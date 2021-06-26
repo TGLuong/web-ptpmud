@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const SigninBtn = styled.button`
     background-color:#95A5A6;
     border:none;
+    border-radius:10px;
     &:focus{
         outline:none;
     }
@@ -155,6 +156,7 @@ export const ProfileBtn = styled.button`
 export const DashboardCellButton = styled.button`
     border: none;
     outline: none;
+    border-radius:10px;
     background-color: #95A5A6;
     &:active{
         background-color: #454546;
