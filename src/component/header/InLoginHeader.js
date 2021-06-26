@@ -76,6 +76,12 @@ function InLoginHdaer(props) {
                 thanhtoan.style.cursor='not-allowed';
                 thanhtoan.disabled=true;
             }
+        }else{
+            const thanhtoan = document.getElementById('thanh-toan')
+            if(thanhtoan!==null){
+                thanhtoan.style.cursor='pointer';
+                thanhtoan.disabled=false;
+            }
         }
     })
     const onOffCart = () => {
