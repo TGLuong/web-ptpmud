@@ -7,14 +7,11 @@ import { Route, Link, Switch } from 'react-router-dom'
 
 
 import InLoginHeader from '../../component/header/InLoginHeader'
-import DashboardDisplay from './DashboardDisplay'
-import DashboardProductDisplay from './DashboardProductDisplay'
-import DashboardProduct from '../Product/DashboardProduct'
-import Profile from '../profile/Profile'
+import AdminDashboardDisplay from './AdminDashboardDisplay'
 
 import {baseUrl} from '../../config'
 
-function Dashboard(props){
+function AdminDashboard(props){
     const [homeData,setHomeData] = useState({
         camera_brands:[],
         laptop_brands:[],
@@ -145,6 +142,8 @@ function Dashboard(props){
         const data = JSON.parse(sessionStorage.getItem('userdata'))
         if(data===null){
             history.push('/')
+        }else if(data.is_admin===false){
+            history.push('/dashboard')
         }else{
             setUserData(data)
             setAddressData(JSON.parse(sessionStorage.getItem('addresses')))
@@ -327,37 +326,36 @@ function Dashboard(props){
                 favoriteData={favoriteData}
             />
             <Switch>
-                <Route path="/dashboard/profile">
+                {/* <Route path="/dashboard/profile">
                     <Profile userData={userData}/>
-                </Route>
-                <Route path="/dashboard/laptop">
+                </Route> */}
+                {/* <Route path="/dashboard/laptop">
                     <DashboardProductDisplay 
                         productData={laptopData}
                         userID={userData.id}
                         addToCart={addToCart}
                         addToFavorites={addToFavorites}
                     />
-                </Route>
-                <Route path="/dashboard/camera">
+                </Route> */}
+                {/* <Route path="/dashboard/camera">
                     <DashboardProductDisplay 
                         productData={cameraData}
                         userID={userData.id}
                         addToCart={addToCart}
                         addToFavorites={addToFavorites}
                     />
-                </Route>
-                <Route path="/dashboard/product-detail">
+                </Route> */}
+                {/* <Route path="/dashboard/product-detail">
                     <DashboardProduct
                         addToCart={addToCart}
                         addToFavorites={addToFavorites}
                     />
-                </Route>
-                <Route path='/dashboard'>
-                    <DashboardDisplay 
+                </Route> */}
+                <Route path='/admin'>
+                    <AdminDashboardDisplay 
                         load_page={load_page} 
                         products={homeData.products}
                         userID={userData.id}
-                        isAdmin={userData.is_admin}
                         addToCart={addToCart}
                         addToFavorites={addToFavorites}
                     />
@@ -366,4 +364,4 @@ function Dashboard(props){
         </>
     );
 }
-export default Dashboard
+export default AdminDashboard

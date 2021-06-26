@@ -1,7 +1,7 @@
 import {Row, Col, Pagination } from 'antd'
 import {Link} from 'react-router-dom'
 import '../../Style/HomeDisplay.css'
-import {DashboardCellButton,AlterButton} from '../../component/Button'
+import {DashboardCellButton} from '../../component/Button'
 import shoppingCart from '../../img/core-img/shopping-cart.png'
 import love from '../../img/core-img/love.png'
 
@@ -11,7 +11,7 @@ import love from '../../img/core-img/love.png'
 
 
 
-function DashboardDisplay(props) {
+function AdminDashboardDisplay(props) {
     function convertLongString(string){
         if(string.length>58) return(string.slice(0,58)+'...');
         else return(string);
@@ -29,17 +29,8 @@ function DashboardDisplay(props) {
                                     className="link" 
                                     to={"/dashboard/product-detail?id="+element.id}
                                 >
-                                    <Row 
-                                        justify="center" 
-                                        style={{
-                                            height:'65%',
-                                            width:'100%'
-                                        }}
-                                    >
-                                        <img 
-                                            src={element.images[0]} 
-                                            alt="product" 
-                                        />
+                                    <Row justify="center" style={{height:'65%',width:'100%'}}>
+                                        <img src={element.images[0]} alt="product" />
                                     </Row>
                                     <Row style={{height:'19%'}}>
                                         <p 
@@ -53,7 +44,7 @@ function DashboardDisplay(props) {
                                         </p>
                                     </Row>
                                 </Link>
-                                <Row style={{height:'16%',backgroundColor:'#95A5A6',borderRadius:'0px 0px 10px 10px'}}>
+                                <Row style={{height:'16%',backgroundColor:'#95A5A6'}}>
                                     <Col xs={16}>
                                         <h3 
                                             style={{
@@ -68,36 +59,23 @@ function DashboardDisplay(props) {
                                         </h3>
                                     </Col>
                                     <Col  xs={8}>
-                                        <Row 
-                                            justify="space-between" 
-                                            style={{
-                                                height:'100%',
-
-                                            }} 
-                                            align="middle"
-                                        >
-                                            {props.isAdmin?(
-                                                <AlterButton>Sửa</AlterButton>
-                                            ):
-                                                <>
-                                                <DashboardCellButton
-                                                    onClick={()=>{props.addToCart(element)}}
-                                                >
-                                                    <img 
-                                                        style={{width:'37px',height:'37px'}} 
-                                                        src={shoppingCart} 
-                                                        alt="cart"
-                                                    />
-                                                </DashboardCellButton>
-                                                <DashboardCellButton onClick={()=>{props.addToFavorites(element)}}>
-                                                    <img 
-                                                        style={{width:'37px',height:'37px'}} 
-                                                        src={love}
-                                                        alt="love" 
-                                                    />
-                                                </DashboardCellButton>
-                                                </>
-                                            }
+                                        <Row justify="space-between" align="middle">
+                                            <DashboardCellButton
+                                                onClick={()=>{props.addToCart(element)}}
+                                            >
+                                                <img 
+                                                    style={{width:'37px',height:'37px'}} 
+                                                    src={shoppingCart} 
+                                                    alt="cart"
+                                                />
+                                            </DashboardCellButton>
+                                            <DashboardCellButton onClick={()=>{props.addToFavorites(element)}}>
+                                                <img 
+                                                    style={{width:'37px',height:'37px'}} 
+                                                    src={love}
+                                                    alt="love" 
+                                                />
+                                            </DashboardCellButton>
                                         </Row>
                                     </Col>
                                 </Row>
@@ -119,4 +97,4 @@ function DashboardDisplay(props) {
         </>
     );
 }
-export default DashboardDisplay;
+export default AdminDashboardDisplay;

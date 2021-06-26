@@ -34,9 +34,15 @@
 .wrapper .item{
     min-width: 24%;
     max-width: 24%;
+    transition: 80ms;
     height: 250px;
+    border-radius:0px 0px 10px 10px;
     margin-right: 1.33%;
     border: 1px solid black;
+}
+.wrapper .item:hover{
+    border: 3px solid #EF5350;
+    border-radius: 13px;
 }
 .wrapper .item .name{
     text-align: center;

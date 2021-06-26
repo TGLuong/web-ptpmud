@@ -68,7 +68,8 @@ function DashboardProductDisplay(props) {
                                             <Row 
                                                 style={{
                                                     height:'16%',
-                                                    backgroundColor:'#95A5A6'
+                                                    backgroundColor:'#95A5A6',
+                                                    borderRadius:'0px 0px 10px 10px'
                                                 }}>
                                                 <Col xs={16}>
                                                     <h3 

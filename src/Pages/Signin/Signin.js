@@ -71,13 +71,8 @@ function Signin(props) {
                     history.push('/dashboard'+location.pathname+location.search)
                 }
             }).catch(err=>{
-                setTimeout(()=>{
                     document.getElementById('login_err').style.visibility="visible"
                     setLoading(false)
-                    setTimeout(()=>{
-                        document.getElementById('login_err').style.visibility="hidden"
-                    },3000)
-                },1000)
             })
             
         }

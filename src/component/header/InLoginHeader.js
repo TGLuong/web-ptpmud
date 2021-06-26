@@ -1,7 +1,8 @@
-import {Row, Col, Badge, Dropdown, Image, Menu,Button} from 'antd'
+import {Row, Col, Badge, Dropdown, Image, Menu} from 'antd'
+import {PlusCircleOutlined} from '@ant-design/icons'
 import {Link,useHistory} from 'react-router-dom'
 import '../../Style/Header.css'
-import { SearchButton , HomeButton, ProfileBtn } from '../../component/Button.js'
+import { SearchButton , HomeButton, ProfileBtn , AddProductBtn} from '../../component/Button.js'
 import CartRow from './CartRow'
 import FavoriteRow from './FavoriteRow'
 import { SearchInput } from '../../component/Input.js'
@@ -92,7 +93,7 @@ function InLoginHdaer(props) {
         history.push('/')
     }
     const toProfile=()=>{
-        history.push('/dashboard/profile')
+        history.push('/dashboard/profile/userinfo')
     }
     
     const userOption = <Menu>
@@ -210,154 +211,174 @@ function InLoginHdaer(props) {
                     </Row>
                 </Col>
                 <Col sm={8}>
-                    <Row>
-                        <Col xs={8}></Col>
-                        <Col xs={8}>
-                            <Row justify="end">
-                                <Col >
-                                    <button 
-                                        style={{
-                                            cursor:'pointer',
-                                            backgroundColor:'#2C3E50',
-                                            border:'none',
-                                            outline:'none',
-                                        }}
-                                        onClick={()=>{
-                                            if(document.getElementById('favorite-popup').style.visibility==="visible")
-                                                document.getElementById('favorite-popup').style.visibility="hidden";
-                                            let visble = document.getElementById('cart-popup').style.visibility;
-                                            if(visble==='visible'){
-                                                document.getElementById('cart-popup').style.visibility="hidden";
-                                                
-                                            }else{
-                                                document.getElementById('cart-popup').style.visibility="visible";
-                                            }
-                                        }}
-                                    >
-                                        <Row justify="center">
-                                            <Badge 
-                                                showZero 
-                                                size="small" 
-                                                count={cartTotal}
-                                            >
-                                                <img 
-                                                    className="shopping-card-icon" 
-                                                    src={shoppingCart}
-                                                    alt="img"
-                                                />
-                                            </Badge>
-                                        </Row>        
-                                        <h4 
-                                            style={{
-                                                marginBottom:'0px',
-                                                color:'white',
-                                                textAlign:'center',
-                                                margin:''
-                                            }}
-                                        >
-                                            Giỏ hàng
-                                        </h4>
-                                    </button>
-                                    <div id="cart-popup" className="header-popup">
-                                        <div style={{position:'relative'}}>
-                                            <div className="header-popup-content">
-                                                {cartData.carts.map((element,index)=>{
-                                                    return(
-                                                        <CartRow 
-                                                            key={index} 
-                                                            setCartData={props.setCartData} 
-                                                            userID={props.userData.id} 
-                                                            element={element}
-                                                        />
-                                                    );
-                                                })}
-                                                <div className="popup-content-row"></div>
-                                            </div>
-                                            <div className="footer-section-header-popup">
-                                                <div style={{display:'flex',flexDirection:'row'}}>
-                                                    <h3>Thành tiền:</h3>
-                                                    <h3 
-                                                        style={{
-                                                            color:'red',
-                                                            padding:'0px 4px',
-                                                            textDecoration:'underline'
-                                                        }}
-                                                    >
-                                                        đ
-                                                    </h3>
-                                                    <h3 style={{color:'red'}}>{cartData.total}</h3>
-                                                </div>
-                                                <button id="thanh-toan">
-                                                    Thanh Toán Hóa Đơn
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </Col>
-                        <Col 
-                            style={{height:'100%'}} 
-                            xs={8}
-                        >
-                            <Row 
-                                justify="end" 
-                                align="bottom"
+                    <Row justify="center" align="middle">
+                        {props.userData.is_admin?(
+                            <Col 
+                                sm={12}
+                                style={{
+                                    display:'flex',
+                                    flexDirection:'column',
+                                    alignItems:'center',
+                                }}
                             >
-                                <Col>
-                                    <button 
-                                        style={{
-                                            cursor:'pointer',
-                                            backgroundColor:'#2C3E50',
-                                            border:'none',
-                                            outline:'none',
-                                        }}
-                                        onClick={()=>{
-                                            onOffFavorite()
-                                        }}
-                                        
-                                    >
-                                        <Row justify="center">
-                                            <Badge 
-                                                showZero 
-                                                size="small" 
-                                                count={favoriteTotal}
+                                <AddProductBtn>
+                                    <PlusCircleOutlined style={{color:'white',fontSize:'32px'}} />
+                                    <p style={{color:'white',margin:'0px'}}>
+                                        Thêm
+                                    </p>
+                                </AddProductBtn>
+                            </Col>
+                        ):(
+                            <>
+                                <Col xs={8}></Col>
+                                <Col xs={8}>
+                                    <Row justify="end">
+                                        <Col >
+                                            <button 
+                                                style={{
+                                                    cursor:'pointer',
+                                                    backgroundColor:'#2C3E50',
+                                                    border:'none',
+                                                    outline:'none',
+                                                }}
+                                                onClick={()=>{
+                                                    if(document.getElementById('favorite-popup').style.visibility==="visible")
+                                                        document.getElementById('favorite-popup').style.visibility="hidden";
+                                                    let visble = document.getElementById('cart-popup').style.visibility;
+                                                    if(visble==='visible'){
+                                                        document.getElementById('cart-popup').style.visibility="hidden";
+                                                        
+                                                    }else{
+                                                        document.getElementById('cart-popup').style.visibility="visible";
+                                                    }
+                                                }}
                                             >
-                                                <img 
-                                                    className="heart-icon" 
-                                                    src={love}
-                                                    alt="img"
-                                                />
-                                            </Badge>
-                                        </Row>
-                                        <h4 
-                                            style={{
-                                                marginBottom:'0px',
-                                                paddingBottom:'0px',
-                                                color:'white',
-                                                textAlign:'center'
-                                            }}
-                                        >
-                                            Yêu Thích
-                                        </h4>
-                                    </button>
-                                    <div id="favorite-popup" className="header-popup">
-                                        <div className="header-popup-content">
-                                            {favoriteData.map((element,index)=>{
-                                                return(
-                                                    <FavoriteRow
-                                                        key={index}
-                                                        element={element}
-                                                        userID={props.userData.id} 
-                                                        setFavoriteData={props.setFavoriteData}
-                                                    />
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
+                                                <Row justify="center">
+                                                    <Badge 
+                                                        showZero 
+                                                        size="small" 
+                                                        count={cartTotal}
+                                                    >
+                                                        <img 
+                                                            className="shopping-card-icon" 
+                                                            src={shoppingCart}
+                                                            alt="img"
+                                                        />
+                                                    </Badge>
+                                                </Row>        
+                                                <h4 
+                                                    style={{
+                                                        marginBottom:'0px',
+                                                        color:'white',
+                                                        textAlign:'center',
+                                                        margin:''
+                                                    }}
+                                                >
+                                                    Giỏ hàng
+                                                </h4>
+                                            </button>
+                                            <div id="cart-popup" className="header-popup">
+                                                <div style={{position:'relative'}}>
+                                                    <div className="header-popup-content">
+                                                        {cartData.carts.map((element,index)=>{
+                                                            return(
+                                                                <CartRow 
+                                                                    key={index} 
+                                                                    setCartData={props.setCartData} 
+                                                                    userID={props.userData.id} 
+                                                                    element={element}
+                                                                />
+                                                            );
+                                                        })}
+                                                        <div className="popup-content-row"></div>
+                                                    </div>
+                                                    <div className="footer-section-header-popup">
+                                                        <div style={{display:'flex',flexDirection:'row'}}>
+                                                            <h3>Thành tiền:</h3>
+                                                            <h3 
+                                                                style={{
+                                                                    color:'red',
+                                                                    padding:'0px 4px',
+                                                                    textDecoration:'underline'
+                                                                }}
+                                                            >
+                                                                đ
+                                                            </h3>
+                                                            <h3 style={{color:'red'}}>{cartData.total}</h3>
+                                                        </div>
+                                                        <button id="thanh-toan">
+                                                            Thanh Toán Hóa Đơn
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Col>
+                                    </Row>
                                 </Col>
-                            </Row>
-                        </Col>
+                                <Col 
+                                    style={{height:'100%'}} 
+                                    xs={8}
+                                >
+                                    <Row 
+                                        justify="end" 
+                                        align="bottom"
+                                    >
+                                        <Col>
+                                            <button 
+                                                style={{
+                                                    cursor:'pointer',
+                                                    backgroundColor:'#2C3E50',
+                                                    border:'none',
+                                                    outline:'none',
+                                                }}
+                                                onClick={()=>{
+                                                    onOffFavorite()
+                                                }}
+                                                
+                                            >
+                                                <Row justify="center">
+                                                    <Badge 
+                                                        showZero 
+                                                        size="small" 
+                                                        count={favoriteTotal}
+                                                    >
+                                                        <img 
+                                                            className="heart-icon" 
+                                                            src={love}
+                                                            alt="img"
+                                                        />
+                                                    </Badge>
+                                                </Row>
+                                                <h4 
+                                                    style={{
+                                                        marginBottom:'0px',
+                                                        paddingBottom:'0px',
+                                                        color:'white',
+                                                        textAlign:'center'
+                                                    }}
+                                                >
+                                                    Yêu Thích
+                                                </h4>
+                                            </button>
+                                            <div id="favorite-popup" className="header-popup">
+                                                <div className="header-popup-content">
+                                                    {favoriteData.map((element,index)=>{
+                                                        return(
+                                                            <FavoriteRow
+                                                                key={index}
+                                                                element={element}
+                                                                userID={props.userData.id} 
+                                                                setFavoriteData={props.setFavoriteData}
+                                                            />
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            </>
+                        )}
                     </Row>
                 </Col>
             </Row>

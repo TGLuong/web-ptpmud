@@ -175,3 +175,33 @@ export const DeleteButton = styled.button`
         background-color:#ef5350;
     }
 `;
+
+export const AlterButton = styled.button`
+    border:none;
+    outline:none;
+    background-color:#CFD8DC;
+    width:100px; 
+    height:30px;
+    margin:0px 5px;
+    border-radius:5px;
+    &:hover{
+        background-color:#ECEFF1;
+    }
+    &:active{
+        background-color:#CFD8DC;
+    }
+`;
+export const AddProductBtn = styled.button`
+    background-color:#2C3E50;
+    border:none;
+    padding:7px 5px;
+    outline:none;
+    trasition:150ms;
+    border-radius:5px;
+    &:hover{
+        background-color:#607D8B;
+    }
+    &:active{
+        background-color:#2C3E50;
+    }
+`;
