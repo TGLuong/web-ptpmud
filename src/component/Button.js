@@ -258,3 +258,18 @@ export const EditBankAcc = styled.button`
         background-color:#29B6F6;
     }
 `;
+export const GoBackBtn = styled.button`
+    transition:150ms;
+    border-radius:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:30px;
+    height:30px;
+    outline:none;
+    border:none;
+    background-color:inherit;
+    &:active{
+        background-color:#ECEFF1;
+    }
+`;

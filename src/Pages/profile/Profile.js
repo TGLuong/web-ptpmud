@@ -104,6 +104,7 @@ const Profile = (props)=>{
                         </Route>
                         <Route path="/dashboard/profile/bank">
                             <Bank
+                                userID={props.userData.id}
                                 bankData={props.bankData}
                                 setBankData={props.setBankData}
                             />
