@@ -2,11 +2,27 @@ import {useHistory} from 'react-router-dom'
 import { Row, Col} from 'antd'
 import {AddBankCartBtn, DeleteBankAccBtn, EditBankAcc} from '../../../../component/Button'
 import {PlusOutlined, DeleteOutlined, EditOutlined} from '@ant-design/icons'
-
+import axios from 'axios'
+import {baseUrl} from '../../../../config'
 
 
 const BankInfo = props => {
     const history = useHistory()
+
+    const deleteBank = id => {
+        axios({
+            method:'DELETE',
+            url:baseUrl+'/user/bank/'+props.userID,
+            data:{
+                bank_id:id
+            }
+        }).then(res=>{
+            props.setBankData(res.data.data)
+        })
+        
+    }
+
+
     return(
         <>
             <div
@@ -31,11 +47,11 @@ const BankInfo = props => {
                 </AddBankCartBtn>
             </div>
             <div
-                style={{
-                    maxHeight:'400px',
-                    overflowX:'hidden',
-                    overflowY:'auto'
-                }}
+                // style={{
+                //     maxHeight:'400px',
+                //     overflowX:'hidden',
+                //     overflowY:'auto'
+                // }}
             >
                 {props.bankData.map((element,index)=>{
                     return(
@@ -67,7 +83,9 @@ const BankInfo = props => {
                                         />
                                         Sửa Tài Khoản
                                     </EditBankAcc>
-                                    <DeleteBankAccBtn>
+                                    <DeleteBankAccBtn
+                                        onClick={()=>{deleteBank(element.bank_id)}}
+                                    >
                                         <DeleteOutlined
                                             style={{
                                                 marginRight:'5px'
