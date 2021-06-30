@@ -69,7 +69,7 @@ const AddBank = props => {
                    openErr('Ngân hàng này đã có tài khoản')
                 }else {
                     props.setBankData(res.data.data)
-                    openSucc('Tạo Thành công')
+                    openSucc('Liên Kết Thành công')
                     history.push('/dashboard/profile/bank')
                 }
             })

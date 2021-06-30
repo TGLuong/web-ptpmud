@@ -75,7 +75,9 @@ const BankInfo = props => {
                                 </Col>
                                 <Col sm={12}>
                                     <h3>Chủ Tài Khoản : <span style={{fontWeight:'600'}}>{element.full_name}</span></h3>
-                                    <EditBankAcc>
+                                    <EditBankAcc
+                                        onClick={()=>{history.push('/dashboard/profile/bank/alter/'+element.bank_id)}}
+                                    >
                                         <EditOutlined 
                                             style={{
                                                 marginRight:'5px'

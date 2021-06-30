@@ -6,6 +6,7 @@ import {
 import {Card , Row, Col} from 'antd'
 import BankInfo from './BankInfo'
 import AddBank from './AddBank'
+import AlterBank from './AlterBank'
 
 const Bank = props => {
     return(
@@ -22,6 +23,13 @@ const Bank = props => {
                         <AddBank
                             userID={props.userID}
                             setBankData={props.setBankData}
+                        />
+                    </Route>
+                    <Route path="/dashboard/profile/bank/alter">
+                        <AlterBank
+                            userID={props.userID}
+                            setBankData={props.setBankData}
+                            bankData={props.bankData}
                         />
                     </Route>
                     <Route path="/dashboard/profile/bank">
