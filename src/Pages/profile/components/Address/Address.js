@@ -3,6 +3,7 @@
 import {Card , Row, Col} from 'antd'
 import { Switch , Route} from 'react-router-dom'
 import AddressInfo from './AddressInfo'
+import AddAddress from './AddAddress'
 
 const Address = props => {
     return(
@@ -15,6 +16,13 @@ const Address = props => {
                 }}
             >
                 <Switch>
+                    <Route path='/dashboard/profile/address/add'>
+                        <AddAddress
+                            addressData={props.addressData}
+                            setAddressData={props.setAddressData}
+                            userID={props.userID}
+                        />
+                    </Route>
                     <Route path='/dashboard/profile/address'>
                         <AddressInfo
                             addressData={props.addressData}

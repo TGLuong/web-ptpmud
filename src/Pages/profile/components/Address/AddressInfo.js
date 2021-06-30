@@ -10,7 +10,7 @@ import {baseUrl} from '../../../../config'
 
 const AddressInfo = props => {
     const history = useHistory()
-
+    
     const deleteAddress = id => {
         axios({
             method:'DELETE',
@@ -20,6 +20,7 @@ const AddressInfo = props => {
             }
         }).then(res=>{
             props.setAddressData(res.data.data)
+            sessionStorage.setItem('addresses',JSON.stringify(res.data.data))
         })
     }
 

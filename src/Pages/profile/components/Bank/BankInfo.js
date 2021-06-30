@@ -19,7 +19,6 @@ const BankInfo = props => {
         }).then(res=>{
             props.setBankData(res.data.data)
         })
-        
     }
 
 
