@@ -68,7 +68,7 @@ const AddressInfo = props => {
                             }}
                         >
                             <EditBankAcc
-                               onClick={()=>{history.push('/dashboard/profile/address/edit')}}
+                               onClick={()=>{history.push('/dashboard/profile/address/edit/'+element.id)}}
                             >
                                 <EditOutlined 
                                     style={{
