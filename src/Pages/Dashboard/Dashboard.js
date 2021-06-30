@@ -333,6 +333,8 @@ function Dashboard(props){
                         setUserData={setUserData}
                         bankData={bankData}
                         setBankData={setBankData}
+                        addressData={addressData}
+                        setAddressData={setAddressData}
                     />
                 </Route>
                 <Route path="/dashboard/laptop">

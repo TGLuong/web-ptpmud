@@ -110,7 +110,11 @@ const Profile = (props)=>{
                             />
                         </Route>
                         <Route path="/dashboard/profile/address">
-                            <Address/>
+                            <Address
+                                addressData={props.addressData}
+                                setAddressData={props.setAddressData}
+                                userID={props.userData.id}
+                            />
                         </Route>
                         <Route path="/dashboard/profile/password">
                             <Password/>
