@@ -10,6 +10,19 @@ import {baseUrl} from '../../../../config'
 
 const AddressInfo = props => {
     const history = useHistory()
+
+    const deleteAddress = id => {
+        axios({
+            method:'DELETE',
+            url:baseUrl+'/user/address/'+props.userID,
+            data:{
+                address_id:id
+            }
+        }).then(res=>{
+            props.setAddressData(res.data.data)
+        })
+    }
+
     return(
         <>
             <Row 
@@ -20,9 +33,10 @@ const AddressInfo = props => {
                 }}
             >
                 <h2>Địa chỉ người nhận</h2>
-                <AddBankCartBtn>
+                <AddBankCartBtn
+                    onClick={()=>{history.push('/dashboard/profile/address/add')}}
+                >
                     <PlusOutlined
-                        onClick={()=>{history.push('/dashboard/profile/address/add')}}
                         style={{
                             fontSize:'15px',
                             marginRight:'5px'
@@ -53,7 +67,7 @@ const AddressInfo = props => {
                             }}
                         >
                             <EditBankAcc
-                               
+                               onClick={()=>{history.push('/dashboard/profile/address/edit')}}
                             >
                                 <EditOutlined 
                                     style={{
@@ -63,6 +77,7 @@ const AddressInfo = props => {
                                 Sửa thông tin
                             </EditBankAcc>
                             <DeleteBankAccBtn
+                                onClick={()=>{deleteAddress(element.id)}}
                             >
                                 <DeleteOutlined
                                     style={{
