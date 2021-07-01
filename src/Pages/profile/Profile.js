@@ -122,7 +122,9 @@ const Profile = (props)=>{
                             />
                         </Route>
                         <Route path="/dashboard/profile/account">
-                            <Account/>
+                            <Account
+                                userID={props.userData.id}
+                            />
                         </Route>
                     </Switch>
                 </Col>

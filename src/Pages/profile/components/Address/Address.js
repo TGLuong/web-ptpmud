@@ -1,6 +1,6 @@
 
 
-import {Card , Row, Col} from 'antd'
+import {Card} from 'antd'
 import { Switch , Route} from 'react-router-dom'
 import AddressInfo from './AddressInfo'
 import AddAddress from './AddAddress'

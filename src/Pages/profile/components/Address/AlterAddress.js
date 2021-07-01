@@ -56,10 +56,10 @@ const AlterAddress = props => {
         const address = addressRef.current.state.value;
         const name = full_nameRef.current.state.value;
         const phone = phoneRef.current.state.value;
-        const phoneRe = /[0-9]{9,10}\b/
+        const phoneRe = /^[0-9]/
         if(address.length<=0||address.length>=100){
             openErr('Địa chỉ không hợp lệ','độ dài địa chỉ phải lớn hơn 0 và nhỏ hơn 100')
-        }else if(!phone.match(phoneRe)){
+        }else if(!phone.match(phoneRe)||phone.length!==10){
             openErr('Sai định dạng số điện thoại','')
         }else if(name.length<=0||name.length>=40){
             openErr('Tên người nhận không hợp lệ','độ dài tên phải lớn hơn 0 và nhỏ hơn 40')

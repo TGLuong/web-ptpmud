@@ -18,12 +18,12 @@ const UserInfo = props => {
         const email = document.getElementById('email').value
         const sdt = document.getElementById('sdt').value
         const emailRe = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        const phoneRe = /[0-9]{9,10}\b/
+        const phoneRe = /[^0-9]/
         if(hoTen.length<1||hoTen>40){
             openErr('Sai Tên','Độ dài tên không được bé hơn 1 và lớn hơn 40')
         }else if(!email.match(emailRe)){
             openErr('Sai Định dạng email','')
-        }else if(!sdt.match(phoneRe)){
+        }else if(sdt.match(phoneRe)||sdt.length!==10){
             openErr('Sai định dạng số điện thoại','')
         }else{
             axios({
