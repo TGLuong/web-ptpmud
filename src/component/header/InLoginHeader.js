@@ -336,7 +336,12 @@ function InLoginHdaer(props) {
                                                             </h3>
                                                             <h3 style={{color:'red'}}>{numberFormat(cartData.total)}</h3>
                                                         </div>
-                                                        <button id="thanh-toan">
+                                                        <button id="thanh-toan"
+                                                            onClick={()=>{
+                                                                history.push('/dashboard/checkout')
+                                                                onOffCart()
+                                                            }}
+                                                        >
                                                             Thanh Toán Hóa Đơn
                                                         </button>
                                                     </div>

@@ -1,0 +1,13 @@
+.checkout-root{
+    padding: 12% 6% 4% 6%;
+}
+.checkout-selectbank-btn{
+    outline: none;
+    border: 1px solid #757575;
+    border-radius: 5px;
+    background-color: inherit;
+    padding: 5px 20px;
+}
+.checkout-selectbank-btn:hover{
+    border: 1px solid #EF5350;
+}

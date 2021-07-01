@@ -11,6 +11,7 @@ import DashboardDisplay from './DashboardDisplay'
 import DashboardProductDisplay from './DashboardProductDisplay'
 import DashboardProduct from '../Product/DashboardProduct'
 import Profile from '../profile/Profile'
+import Checkout from '../Checkout/Checkout'
 
 import {baseUrl} from '../../config'
 
@@ -357,6 +358,13 @@ function Dashboard(props){
                     <DashboardProduct
                         addToCart={addToCart}
                         addToFavorites={addToFavorites}
+                    />
+                </Route>
+                <Route path="/dashboard/checkout">
+                    <Checkout
+                        cartData={cartData}
+                        addressData={addressData}
+                        bankData={bankData}
                     />
                 </Route>
                 <Route path='/dashboard'>
