@@ -1,9 +1,8 @@
-import {useEffect, useState} from 'react'
 import {
     Switch,
     Route
 } from 'react-router-dom'
-import {Card , Row, Col} from 'antd'
+import {Card} from 'antd'
 import BankInfo from './BankInfo'
 import AddBank from './AddBank'
 import AlterBank from './AlterBank'

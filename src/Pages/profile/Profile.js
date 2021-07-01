@@ -117,7 +117,9 @@ const Profile = (props)=>{
                             />
                         </Route>
                         <Route path="/dashboard/profile/password">
-                            <Password/>
+                            <Password
+                                userID={props.userData.id}
+                            />
                         </Route>
                         <Route path="/dashboard/profile/account">
                             <Account/>

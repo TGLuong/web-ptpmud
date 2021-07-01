@@ -2,7 +2,6 @@
 import {useHistory} from 'react-router-dom'
 import {GoBackBtn} from '../../../../component/Button'
 import {LeftOutlined,CheckOutlined,CloseCircleOutlined} from '@ant-design/icons'
-import { useRef } from 'react'
 import {
     Row,
     Col,

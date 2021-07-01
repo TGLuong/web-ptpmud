@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {Card , Input, Radio, Button, notification} from 'antd'
-import {CloseOutlined, CheckOutlined, ConsoleSqlOutlined} from '@ant-design/icons'
+import {CloseOutlined, CheckOutlined} from '@ant-design/icons'
 import PickDate from '../PickDate/PickDate'
 import axios from 'axios'
 

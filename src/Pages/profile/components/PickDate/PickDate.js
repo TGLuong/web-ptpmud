@@ -9,12 +9,11 @@ const PickDate = props => {
     const onChange = props.onChange || function(){}
     const dayRender = () => {
         let day = [];
-        if(month==2){
+        if(month===2){
             let maxDay = 0
-            if(year%4==0&&year%100!=0){
+            if(year%4===0&&year%100!==0){
                 maxDay = 29
             } else maxDay = 28
-
             for(let i=1;i<=maxDay;i++){
                 day.push(<Option key={i} value={i}>{i}</Option>)
             }
@@ -58,7 +57,7 @@ const PickDate = props => {
                     <Select 
                         onChange={(value,option)=>{
                             if(value===2&&day>28){
-                                if(year%4==0&&year%100!=0&&day>29){
+                                if(year%4===0&&year%100!==0&&day>29){
                                     setDay(29)
                                 }else setDay(28)
                                 

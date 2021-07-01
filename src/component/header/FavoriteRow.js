@@ -1,7 +1,7 @@
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
-import {Row, Col, Image, InputNumber,Button} from 'antd'
+import {Row, Col, Image,Button} from 'antd'
 import '../../Style/Header.css'
 import { baseUrl } from '../../config'
 
