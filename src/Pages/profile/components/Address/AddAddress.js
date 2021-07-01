@@ -74,46 +74,46 @@ const AddAddress = props => {
             <div style={{borderBottom:'1px solid #CFD8DC',margin:'20px 0px'}}></div>
             <h3>Thêm Địa Chỉ Nhận Hàng:</h3>
             <table>
-                    <tbody>
-                        <tr>
-                            <td className="label">Địa Chỉ</td>
-                            <td>
-                                <Input
-                                    id="receiver-address"
-                                    style={{
-                                        width:'400px'
-                                    }}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="label">Tên Người Nhận</td>
-                            <td>
-                                <Input
-                                    id="receiver-full-name"
-                                    style={{
-                                        width:'400px'
-                                    }}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="label">Số Điện Thoại</td>
-                            <td>
+                <tbody>
+                    <tr>
+                        <td className="label">Địa Chỉ</td>
+                        <td>
                             <Input
-                                id="receiver-phone-number"
+                                id="receiver-address"
                                 style={{
                                     width:'400px'
                                 }}
                             />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><Button type="primary" onClick={addAdd}>Thêm</Button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="label">Tên Người Nhận</td>
+                        <td>
+                            <Input
+                                id="receiver-full-name"
+                                style={{
+                                    width:'400px'
+                                }}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className="label">Số Điện Thoại</td>
+                        <td>
+                        <Input
+                            id="receiver-phone-number"
+                            style={{
+                                width:'400px'
+                            }}
+                        />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><Button type="primary" onClick={addAdd}>Thêm</Button></td>
+                    </tr>
+                </tbody>
+            </table>
         </>
     )
 }   
