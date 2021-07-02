@@ -356,6 +356,7 @@ function Dashboard(props){
                 </Route>
                 <Route path="/dashboard/product-detail">
                     <DashboardProduct
+                        isAdmin={userData.is_admin}
                         addToCart={addToCart}
                         addToFavorites={addToFavorites}
                     />

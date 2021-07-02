@@ -1,12 +1,9 @@
 
 .product-area{
-    
+    padding: 10% 6% 3% 6%;
     display: flex;
-    
     justify-content: space-between;
-    margin-top: 10%;
-    margin: 12% 6%;
-    margin-bottom: 6%;
+    
 } 
 
 

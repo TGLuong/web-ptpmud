@@ -17,7 +17,7 @@ const PickDate = props => {
             for(let i=1;i<=maxDay;i++){
                 day.push(<Option key={i} value={i}>{i}</Option>)
             }
-        }else if(['1','3','5','7','8','10','12'].includes(month)){
+        }else if([1,3,5,7,8,10,12].includes(month)){
             for(let i=1;i<=31;i++){
                 day.push(<Option key={i} value={i}>{i}</Option>)
             }
@@ -61,16 +61,21 @@ const PickDate = props => {
                                     setDay(29)
                                 }else setDay(28)
                                 
-                            }else if (value in [4,6,9,11]&&day>30) setDay(30)
+                            }else if ([4,6,9,11].filter(e=>e===value)&&day>30) setDay(30)
                             setMonth(value)
                         }}
-                        style={{width:'100px'}} value={month}
+                        style={{width:'100px'}} 
+                        value={month}
                     >
                         {monthRender()}
                     </Select>
                 </Col>
                 <Col md={5}>
-                    <Select style={{width:'100px'}} value={year}>
+                    <Select 
+                        style={{width:'100px'}} 
+                        value={year}
+                        onChange={setYear}
+                    >
                         {yearRender()}
                     </Select>
                 </Col>

@@ -89,19 +89,34 @@ function DashboardProduct(props) {
                         <Col md={14} className="detail-section">
                             <Row>
                                 <AddTocartButton
-                                    onClick={()=>{props.addToCart(detail.data)}}
+                                    onClick={()=>{
+                                        if(props.isAdmin){
+
+                                        }else{
+                                            props.addToCart(detail.data)
+                                        }
+                                    }}
                                 >
-                                    <h2 
-                                        style={{
+                                    {props.isAdmin?(
+                                        <h2 style={{
                                             color:'white',
                                             margin:'0px'
-                                        }}
-                                    >
-                                        THÊM VÀO GIỎ HÀNG
-                                    </h2>
-                                    <h4 style={{color:'white'}}>
-                                        GIAO HÀNG NHANH CHÓNG
-                                    </h4>
+                                        }}>Sửa thông tin</h2>
+                                    ):(
+                                        <>
+                                            <h2 
+                                                style={{
+                                                    color:'white',
+                                                    margin:'0px'
+                                                }}
+                                            >
+                                                THÊM VÀO GIỎ HÀNG
+                                            </h2>
+                                            <h4 style={{color:'white'}}>
+                                                GIAO HÀNG NHANH CHÓNG
+                                            </h4>
+                                        </>
+                                    )}
                                 </AddTocartButton>
                             </Row>
                             <Row>

@@ -118,7 +118,6 @@ function DashboardDisplay(props) {
                     );
                 })}
             </Row>
-            <div style={{height:'10px'}}></div>
             <div className="panigation">
                 <Pagination
                     current={props.products.paging.current_page}

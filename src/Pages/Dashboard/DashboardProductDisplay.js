@@ -134,9 +134,6 @@ function DashboardProductDisplay(props) {
                     );
                 })}
             </div>
-            <div style={{height:'50px'}}>
-
-            </div>
         </>
     );
 }
