@@ -38,6 +38,7 @@ const UserInfo = props => {
             }).then(res=>{
                 const data = res.data.user
                 props.setUserData(data)
+                props.setBankData(data.banks)
                 sessionStorage.setItem('userdata',JSON.stringify({
                     email:data.email,
                     full_name:data.full_name,
@@ -47,6 +48,7 @@ const UserInfo = props => {
                     phone:data.phone,
                     username:data.username
                 }))
+                sessionStorage.setItem('banks',JSON.stringify(data.banks))
                 openSucc('Sửa thành công')
             }).catch(err=>{
                 console.log(err)

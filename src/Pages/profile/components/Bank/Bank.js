@@ -20,6 +20,7 @@ const Bank = props => {
                 <Switch>
                     <Route path="/dashboard/profile/bank/add">
                         <AddBank
+                            userName={props.userName}
                             userID={props.userID}
                             setBankData={props.setBankData}
                         />

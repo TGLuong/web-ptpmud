@@ -16,6 +16,7 @@ const AddBank = props => {
             id:'',
         },
     ])
+    console.log(props.userName)
 
     useEffect(()=>{
         axios({
@@ -54,6 +55,8 @@ const AddBank = props => {
         const bankNumRe = /[^0-9]/
         if(bankNum.match(bankNumRe)||bankNum.length>=20||bankNum<=0){
             openErr('Sai định dạng số tài khoản')
+        }else if(props.userName===''){
+            openErr('Bạn chưa cập nhật đủ thông tin cá nhân','quay lại hồ sơ để cập nhật thông tin cá nhân')
         }else if(!bankSelected){
             openErr('Vui lòng chọn ngân hàng')
         }else{

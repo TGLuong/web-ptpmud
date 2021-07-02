@@ -97,13 +97,15 @@ const Profile = (props)=>{
                 <Col md={18} className="profile-detail-section">
                     <Switch>
                         <Route path="/dashboard/profile/userinfo">
-                            <UserInfo 
+                            <UserInfo
                                 userData={props.userData} 
                                 setUserData={props.setUserData}
+                                setBankData={props.setBankData}
                             />
                         </Route>
                         <Route path="/dashboard/profile/bank">
                             <Bank
+                                userName={props.userData.full_name}
                                 userID={props.userData.id}
                                 bankData={props.bankData}
                                 setBankData={props.setBankData}
@@ -128,9 +130,7 @@ const Profile = (props)=>{
                         </Route>
                     </Switch>
                 </Col>
-                
             </Row>
-            <div style={{height:'200px'}}></div>
         </div>
     )
 }
