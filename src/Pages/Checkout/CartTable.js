@@ -108,7 +108,6 @@ const CartTable = props => {
     ]
     return(
         <div
-            style={{height:'500px'}}
         >
             <h1>Giỏ Hàng</h1>
             <Table

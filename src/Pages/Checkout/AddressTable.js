@@ -57,7 +57,6 @@ const AddressTable = props => {
     ]
     return(
         <div
-            style={{height:'550px'}}
         >
             <h1>Địa Chỉ</h1>
             <Table
