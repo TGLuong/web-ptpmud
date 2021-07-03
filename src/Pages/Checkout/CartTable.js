@@ -6,7 +6,9 @@ import {
     Image,
     Button
 } from 'antd'
-
+import DeleteButton from './components/DeleteButton'
+import axios from 'axios'
+import {baseUrl} from '../../config'
 
 const CartTable = props => {
     // console.log(props.data)
@@ -27,6 +29,16 @@ const CartTable = props => {
             result+=stringfmt[i];
         }
         return result.split('').reverse().join('');
+    }
+    const removeProduct=(product_id,isLoading)=>{
+        axios({
+            method:'DELETE',
+            url:baseUrl+'/user/cart/'+props.userID+'/'+product_id
+        }).then(res=>{
+            isLoading(false)
+            sessionStorage.setItem('carts',JSON.stringify(res.data.carts))
+            props.setCartData(res.data.carts)
+        })
     }
     const columns = [
         {
@@ -100,23 +112,15 @@ const CartTable = props => {
             render:(text,record)=>{
                 return(
                     <>
-                        <Button danger>Xóa</Button>
+                        <DeleteButton
+                            text="Xóa"
+                            onClick={(isLoading)=>{removeProduct(record.product_id,isLoading)}}
+                        />
                     </>
                 )
             }
         }
     ]
-    const removeProduct=(product_id)=>{
-        // setRemoveDisable(true)
-        // axios({
-        //     method:'DELETE',
-        //     url:baseUrl+'/user/cart/'+props.userID+'/'+product_id
-        // }).then(res=>{
-        //     sessionStorage.setItem('carts',JSON.stringify(res.data.carts))
-        //     props.setCartData(res.data.carts)
-        //     setRemoveDisable(false)
-        // })
-    }
     return(
         <div
             style={{

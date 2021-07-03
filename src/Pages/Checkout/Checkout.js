@@ -116,6 +116,7 @@ const Checkout = props => {
                     <CartTable
                         userID={props.userID}
                         data={props.cartData}
+                        setCartData={props.setCartData}
                     /> 
                     <AddressTable
                         data={props.addressData}

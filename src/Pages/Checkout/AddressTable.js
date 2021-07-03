@@ -39,7 +39,7 @@ const AddressTable = props => {
             }
         },
         {
-            title:'Chọn địa',
+            title:'Chọn địa chỉ',
             key:'4',
             render:(text,record)=>{
                 return(
