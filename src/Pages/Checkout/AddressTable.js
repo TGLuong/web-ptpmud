@@ -4,7 +4,6 @@ import {
 } from 'react'
 import {
     Table,
-    Image,
     Button
 } from 'antd'
 
@@ -57,12 +56,28 @@ const AddressTable = props => {
         }
     ]
     return(
-        <>
+        <div
+            style={{height:'550px'}}
+        >
+            <h1>Địa Chỉ</h1>
             <Table
                 dataSource={props.data}
                 columns={columns}
+                pagination={false}
+                scroll={{y:350}}
             />
-        </>
+            <div
+                style={{
+                    height:'70px',
+                    display:'flex',
+                    alignItems:'center',
+                    justifyContent:'flex-end',
+                    padding:'0px 20px',
+                }}
+            >
+                <Button type="primary">Địa Chỉ Mới</Button>
+            </div>
+        </div>
     )
 }
 export default memo(AddressTable)

@@ -11,6 +11,7 @@ import '.././../Style/Checkout.css'
 import CartTable from './CartTable'
 import BankTable from './BankTable'
 import AddressTable from './AddressTable'
+import Paymenttype from './Paymenttype'
 
 const {TabPane} = Tabs;
 const Checkout = props => {
@@ -34,47 +35,39 @@ const Checkout = props => {
         <div className="checkout-root">
             <Row>
                 <Col md={18}>
-                    <Tabs>
-                        <TabPane
-                            tab={'Giỏ Hàng'}
-                            key="1"
-                        >
-                            <CartTable
-                                data={props.cartData}
-                            />
-                        </TabPane>
-                        <TabPane
-                            tab={'Ngân Hàng'}
-                            key="2"
-                        >
-                            <BankTable
-                                data={props.bankData}
-                            />
-                        </TabPane>
-                        <TabPane
-                            tab={'Địa Chỉ'}
-                            key="3"
-                        >
-                            <AddressTable
-                                data={props.addressData}
-                            />
-                        </TabPane>
-
-                    </Tabs>
+                    <CartTable
+                        data={props.cartData}
+                    />
+                    <AddressTable
+                        data={props.addressData}
+                    />
+                    <Paymenttype
+                        
+                    />
+                    {/* <BankTable
+                        data={props.bankData}
+                    /> */}
                 </Col>
-                <Col 
+                <Col
                     md={6}
-                    style={{
-                        border:'1px solid black',
-                        padding:'30px 0px 0px 20px'
-                    }}
                 >
-                    <h4>Tổng hóa đơn:</h4>
-                    <h2>
-                        {numberFormat(props.cartData.reduce((total, value, index, array)=>{
-                            return total+value.total_price;
-                        },0))} Đ
-                    </h2>
+                    <div
+                        style={{
+                            position:'fixed',
+                            border:'1px solid black',
+                            height:'400px',
+                            width:'100%',
+                            padding:'30px 0px 0px 20px',
+                        }}
+                    >
+                        <h4>Tổng hóa đơn:</h4>
+                        <h2>
+                            {numberFormat(props.cartData.reduce((total, value, index, array)=>{
+                                return total+value.total_price;
+                            },0))} Đ
+                        </h2>
+                    </div>
+                
                 </Col>
             </Row>
         </div>

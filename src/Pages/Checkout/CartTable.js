@@ -107,12 +107,17 @@ const CartTable = props => {
         }
     ]
     return(
-        <>
+        <div
+            style={{height:'500px'}}
+        >
+            <h1>Giỏ Hàng</h1>
             <Table
                 dataSource={props.data}
                 columns={columns}
+                pagination={false}
+                scroll={{y:350}}
             />
-        </>
+        </div>
     )
 }
 export default memo(CartTable)
