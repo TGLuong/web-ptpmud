@@ -46,6 +46,9 @@ const BankTable = props => {
                     <>
                         <button
                             className="checkout-selectbank-btn"
+                            onClick={()=>{
+                                props.setSelectedBank(record.bank_id)
+                            }}
                         >
                             Chọn
                         </button>

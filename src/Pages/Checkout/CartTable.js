@@ -106,6 +106,17 @@ const CartTable = props => {
             }
         }
     ]
+    const removeProduct=(product_id)=>{
+        // setRemoveDisable(true)
+        // axios({
+        //     method:'DELETE',
+        //     url:baseUrl+'/user/cart/'+props.userID+'/'+product_id
+        // }).then(res=>{
+        //     sessionStorage.setItem('carts',JSON.stringify(res.data.carts))
+        //     props.setCartData(res.data.carts)
+        //     setRemoveDisable(false)
+        // })
+    }
     return(
         <div
             style={{

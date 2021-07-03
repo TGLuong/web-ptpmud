@@ -364,7 +364,9 @@ function Dashboard(props){
                 </Route>
                 <Route path="/dashboard/checkout">
                     <Checkout
+                        userID={userData.id}
                         cartData={cartData}
+                        setCartData={setCartData}
                         addressData={addressData}
                         bankData={bankData}
                     />

@@ -9,7 +9,6 @@ import {
 
 
 const AddressTable = props => {
-    console.log(props.data)
     const columns = [
         {
             title:'Địa chỉ',
@@ -47,6 +46,7 @@ const AddressTable = props => {
                     <>
                         <button
                             className="checkout-selectbank-btn"
+                            onClick={()=>{props.setSelectedAddress(record.id)}}
                         >
                             Chọn
                         </button>

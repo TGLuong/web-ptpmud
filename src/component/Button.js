@@ -273,3 +273,24 @@ export const GoBackBtn = styled.button`
         background-color:#ECEFF1;
     }
 `;
+export const CheckoutButton = styled.button`
+    border:4px solid #607D8B;
+    outline:none;
+    font-size:26px;
+    text-transform:uppercase;
+    border-radius:3px;
+    padding:10px 20px;
+    font-weight:500;
+    width:100%;
+    color:white;
+    transition:120ms;
+    background-color:#607D8B;
+    &:hover{
+        background-color:white;
+        border:4px solid #607D8B;
+        color:#607D8B;
+    }
+    &:active{
+        background-color:#CFD8DC;
+    }
+`;
