@@ -57,6 +57,9 @@ const AddressTable = props => {
     ]
     return(
         <div
+            style={{
+                marginBottom:'50px'
+            }}
         >
             <h1>Địa Chỉ</h1>
             <Table
@@ -75,6 +78,11 @@ const AddressTable = props => {
                 }}
             >
                 <Button type="primary">Địa Chỉ Mới</Button>
+            </div>
+            <div
+                
+            >
+
             </div>
         </div>
     )

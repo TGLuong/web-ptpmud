@@ -13,8 +13,8 @@ const UserInfo = props => {
     }
     useEffect(()=>{
         setGender(props.userData.gender)
-        if(props.userData.date_of_bitrh){
-            const birth = props.userData.date_of_bitrh.split('/')
+        if(props.userData.date_of_birth!==""){
+            const birth = props.userData.date_of_birth.split('/')
             setDateofbirth([parseInt(birth[0]),parseInt(birth[1]),parseInt(birth[2])])
         }
     },[props.userData])
@@ -71,10 +71,6 @@ const UserInfo = props => {
             })
 
         }
-        
-        
-
-        
     }
     const openSucc = (message,description) => {
         notification.open({

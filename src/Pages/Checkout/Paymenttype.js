@@ -1,29 +1,20 @@
 import {
     useState,
-    useEffect
+    useEffect,
+    memo
 } from 'react'
 import {
     Select
 } from 'antd'
-import {baseUrl} from '../../config'
-import axios from 'axios'
+
 
 
 
 const Paymenttype = props => {
-    const [paymenttype,setPaymenttype] = useState([])
-
-    useEffect(()=>{
-        axios({
-            method:'GET',
-            url:baseUrl+'/paymenttype',
-        }).then(res=>{
-            setPaymenttype(res.data.data)
-        })
-    },[])
+    
 
     const optionRender = () => {
-        return paymenttype.map((element)=>{
+        return props.paymenttype.map((element)=>{
             return(
                 <Select.Option key={element.id} value={element.id}>
                     {element.name}
@@ -31,10 +22,19 @@ const Paymenttype = props => {
             )
         })
     }
+    const changePayment = (value) => {
+        if(value===2){
+            props.setBankVisiable(true)
+        }else {
+            props.setBankVisiable(false)
+        }
+        props.setPayment(value)
+    }
 
     return(
-        <>
-        {console.log(paymenttype)}
+        <div
+            style={{marginBottom:'50px'}}
+        >
             <h1>Phương thức thanh toán</h1>
             <Select
                 style={{
@@ -42,11 +42,11 @@ const Paymenttype = props => {
                 }}
                 placeholder="Chọn hình thức thanh toán"
                 size="large"
+                onChange={(value)=>{changePayment(value)}}
             >
                 {optionRender()}
             </Select>
-            <div style={{height:'150px'}}></div>
-        </>
+        </div>
     )
 }
-export default Paymenttype
+export default memo(Paymenttype)

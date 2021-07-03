@@ -108,6 +108,9 @@ const CartTable = props => {
     ]
     return(
         <div
+            style={{
+                marginBottom:'50px'
+            }}
         >
             <h1>Giỏ Hàng</h1>
             <Table

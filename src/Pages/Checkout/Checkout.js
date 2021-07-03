@@ -5,8 +5,11 @@ import {
 } from 'antd'
 import {
     useState,
+    useEffect,
 } from 'react'
 import '.././../Style/Checkout.css'
+import {baseUrl} from '../../config'
+import axios from 'axios'
 
 import CartTable from './CartTable'
 import BankTable from './BankTable'
@@ -15,6 +18,9 @@ import Paymenttype from './Paymenttype'
 
 const {TabPane} = Tabs;
 const Checkout = props => {
+    const [bankVisiable,setBankVisiable] = useState(false)
+    const [paymenttype,setPaymenttype] = useState([])
+    const [payment,setPayment] = useState(null)
     const [selectedBank,setSelectedBank]=useState(null)
     const [selectedAddress,setSelectedAddress]=useState(null)
     const numberFormat = (num) => {
@@ -31,6 +37,15 @@ const Checkout = props => {
         }
         return result.split('').reverse().join('');
     }
+    useEffect(()=>{
+        axios({
+            method:'GET',
+            url:baseUrl+'/paymenttype',
+        }).then(res=>{
+            setPaymenttype(res.data.data)
+        })
+    },[])
+
     return(
         <div className="checkout-root">
             <Row>
@@ -40,13 +55,20 @@ const Checkout = props => {
                     />
                     <AddressTable
                         data={props.addressData}
+                        setSelectedAddress={setSelectedAddress}
                     />
                     <Paymenttype
-                        
+                        setBankVisiable={setBankVisiable}
+                        paymenttype={paymenttype}
+                        setPayment={setPayment}
                     />
-                    {/* <BankTable
-                        data={props.bankData}
-                    /> */}
+                    {bankVisiable?
+                        <BankTable
+                            data={props.bankData}
+                            setSelectedBank={setSelectedBank}
+                        />:
+                        null
+                    }
                 </Col>
                 <Col
                     md={6}
@@ -67,7 +89,6 @@ const Checkout = props => {
                             },0))} Đ
                         </h2>
                     </div>
-                
                 </Col>
             </Row>
         </div>

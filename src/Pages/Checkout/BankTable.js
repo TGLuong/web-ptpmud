@@ -56,6 +56,9 @@ const BankTable = props => {
     ]
     return(
         <div
+            style={{
+                marginBottom:'50px'
+            }}
         >
             <h1>Ngân Hàng</h1>
             <Table
