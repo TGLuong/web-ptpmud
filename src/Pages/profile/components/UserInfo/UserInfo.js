@@ -6,13 +6,17 @@ import axios from 'axios'
 import {baseUrl} from '../../../../config'
 
 const UserInfo = props => {
-    const [dateofbrith,setDateofbirth] = useState([1,1,2000])
+    const [dateofbrith,setDateofbirth] = useState([1,1,1970])
     const [gender,setGender] = useState(null)
     const changeGender = event => {
         setGender(event.target.value)
     }
     useEffect(()=>{
         setGender(props.userData.gender)
+        if(props.userData.date_of_bitrh){
+            const birth = props.userData.date_of_bitrh.split('/')
+            setDateofbirth([parseInt(birth[0]),parseInt(birth[1]),parseInt(birth[2])])
+        }
     },[props.userData])
     const submitForm = () => {
         const hoTen = document.getElementById('ho-ten').value
@@ -154,7 +158,7 @@ const UserInfo = props => {
                             <td className="label">Ngày Sinh</td>
                             <td>
                                 <PickDate 
-                                    dateOfBirth={props.userData.date_of_birth}
+                                    dateOfBirth={dateofbrith}
                                     onChange={(day,month,year)=>{
                                         setDateofbirth([day,month,year])
                                     }}

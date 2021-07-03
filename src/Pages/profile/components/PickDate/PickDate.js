@@ -2,9 +2,9 @@ import {useEffect, useState} from 'react'
 import {Row,Col,Select} from 'antd'
 const {Option} = Select
 const PickDate = props => {
-    const [day,setDay] = useState(1)
-    const [month,setMonth] = useState(1)
-    const [year,setYear] = useState(new Date().getFullYear())
+    const [day,setDay] = useState(props.dateOfBirth[0])
+    const [month,setMonth] = useState(props.dateOfBirth[1])
+    const [year,setYear] = useState(props.dateOfBirth[2])
     
     const onChange = props.onChange || function(){}
     const dayRender = () => {
@@ -42,12 +42,6 @@ const PickDate = props => {
         }
         return year
     }
-    useEffect(()=>{
-        const birth = props.dateOfBirth.split('/')
-        setDay(parseInt(birth[0]))
-        setMonth(parseInt(birth[1]))
-        setYear(parseInt(birth[2]))
-    },[props.dateOfBirth])
     useEffect(()=>{
         onChange(day,month,year)
     },[day,month,year])
