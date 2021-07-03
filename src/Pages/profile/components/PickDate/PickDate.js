@@ -5,7 +5,7 @@ const PickDate = props => {
     const [day,setDay] = useState(1)
     const [month,setMonth] = useState(1)
     const [year,setYear] = useState(new Date().getFullYear())
-
+    
     const onChange = props.onChange || function(){}
     const dayRender = () => {
         let day = [];
@@ -42,6 +42,12 @@ const PickDate = props => {
         }
         return year
     }
+    useEffect(()=>{
+        const birth = props.dateOfBirth.split('/')
+        setDay(parseInt(birth[0]))
+        setMonth(parseInt(birth[1]))
+        setYear(parseInt(birth[2]))
+    },[props.dateOfBirth])
     useEffect(()=>{
         onChange(day,month,year)
     },[day,month,year])

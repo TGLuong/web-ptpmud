@@ -90,7 +90,7 @@ const Profile = (props)=>{
                                 src={ColorCart}
                                 alt="cart"
                             />
-                            Đơn dã mua
+                            Đơn đã mua
                         </button>
                     </div>
                 </Col>

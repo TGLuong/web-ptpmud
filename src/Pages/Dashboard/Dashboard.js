@@ -136,6 +136,7 @@ function Dashboard(props){
         id: 0,
         full_name:'',
         is_admin: false,
+        date_of_birth:'',
         phone:'',
         username: '',
         gender:null,

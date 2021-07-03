@@ -3,6 +3,7 @@ import {Card , Input, Radio, Button, notification} from 'antd'
 import {CloseOutlined, CheckOutlined} from '@ant-design/icons'
 import PickDate from '../PickDate/PickDate'
 import axios from 'axios'
+import {baseUrl} from '../../../../config'
 
 const UserInfo = props => {
     const [dateofbrith,setDateofbirth] = useState([1,1,2000])
@@ -28,25 +29,36 @@ const UserInfo = props => {
         }else{
             axios({
                 method:'PUT',
-                url:'http://47.254.253.64:5000/user/'+props.userData.id,
+                url:baseUrl+'/user/'+props.userData.id,
                 data:{
                     email:email,
                     full_name:hoTen,
                     phone:sdt,
-                    gender:gender
+                    gender:gender,
+                    date_of_birth:dateofbrith.join('/')
                 }
             }).then(res=>{
                 const data = res.data.user
-                props.setUserData(data)
-                props.setBankData(data.banks)
-                sessionStorage.setItem('userdata',JSON.stringify({
+                props.setUserData({
                     email:data.email,
-                    full_name:data.full_name,
-                    gender:data.gender,
                     id:data.id,
                     is_admin:data.is_admin,
                     phone:data.phone,
-                    username:data.username
+                    full_name:data.full_name,
+                    username:data.username,
+                    gender:data.gender,
+                    date_of_birth:data.date_of_birth
+                })
+                props.setBankData(data.banks)
+                sessionStorage.setItem('userdata',JSON.stringify({
+                    email:data.email,
+                    id:data.id,
+                    is_admin:data.is_admin,
+                    phone:data.phone,
+                    full_name:data.full_name,
+                    username:data.username,
+                    gender:data.gender,
+                    date_of_birth:data.date_of_birth
                 }))
                 sessionStorage.setItem('banks',JSON.stringify(data.banks))
                 openSucc('Sửa thành công')
@@ -140,7 +152,14 @@ const UserInfo = props => {
                         </tr>
                         <tr>
                             <td className="label">Ngày Sinh</td>
-                            <td><PickDate onChange={(day,month,year)=>{setDateofbirth([day,month,year])}} /></td>
+                            <td>
+                                <PickDate 
+                                    dateOfBirth={props.userData.date_of_birth}
+                                    onChange={(day,month,year)=>{
+                                        setDateofbirth([day,month,year])
+                                    }}
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td className="label"></td>
