@@ -119,8 +119,10 @@ const Checkout = props => {
                         setCartData={props.setCartData}
                     /> 
                     <AddressTable
+                        userID={props.userID}
                         data={props.addressData}
                         setSelectedAddress={setSelectedAddress}
+                        setAddressData ={props.setAddressData}
                     />
                     <Paymenttype
                         setBankVisiable={setBankVisiable}

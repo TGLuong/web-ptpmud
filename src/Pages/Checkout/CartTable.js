@@ -7,6 +7,7 @@ import {
     Button
 } from 'antd'
 import DeleteButton from './components/DeleteButton'
+import AmountInput from './components/AmountInput'
 import axios from 'axios'
 import {baseUrl} from '../../config'
 
@@ -90,7 +91,11 @@ const CartTable = props => {
             render:(text,record)=>{
                 return(
                     <>
-                    <h4>{record.amount}</h4>
+                    <AmountInput
+                        setCartData={props.setCartData}
+                        product={record}
+                        userID={props.userID}
+                    />
                     </>
                 )
             }

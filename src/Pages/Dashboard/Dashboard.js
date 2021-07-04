@@ -368,6 +368,7 @@ function Dashboard(props){
                         cartData={cartData}
                         setCartData={setCartData}
                         addressData={addressData}
+                        setAddressData={setAddressData}
                         bankData={bankData}
                     />
                 </Route>
