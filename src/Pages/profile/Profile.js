@@ -11,6 +11,7 @@ import Bank from './components/Bank/Bank'
 import Address from './components/Address/Address'
 import Password from './components/Password/Password'
 import Account from './components/Account/Account'
+import Bill from './components/Bill/Bill'
 
 
 const Profile = (props)=>{
@@ -84,6 +85,9 @@ const Profile = (props)=>{
                                 outline:'none',
                                 fontSize:'24px'
                             }}
+                            onClick={()=>{
+                                history.push('/dashboard/profile/bill')
+                            }}
                         >
                             <img
                                 className="profile-icon"
@@ -125,6 +129,11 @@ const Profile = (props)=>{
                         </Route>
                         <Route path="/dashboard/profile/account">
                             <Account
+                                userID={props.userData.id}
+                            />
+                        </Route>
+                        <Route path="/dashboard/profile/bill">
+                            <Bill
                                 userID={props.userData.id}
                             />
                         </Route>
