@@ -151,33 +151,33 @@ const Checkout = props => {
                         }}
                     >
                         <h3>Chi tiết hóa đơn:</h3>
-                        <h1 >
+                        <h2 >
                             {numberFormat(props.cartData.reduce((total, value, index, array)=>{
                                 return total+value.total_price;
                             },0))} Đ
-                        </h1>
+                        </h2>
                         <h4>Địa chỉ:</h4>
-                        <h1>
+                        <h2>
                             {props.addressData.reduce((result,value)=>{
                                 return value.id===selectedAddress?value.address:result
                             },'')}
-                        </h1>
+                        </h2>
                         <h4>Phương thức thanh toán đã chọn:</h4>
-                        <h1 >
+                        <h2 >
                             {paymenttype.reduce((result,value)=>{
                                 return value.id===payment?value.name:result
                             },'')}
-                        </h1>
+                        </h2>
                         {
                             bankVisiable?
                             (
                                 <>
                                 <h4>Ngân hàng:</h4>
-                                <h1>
+                                <h2>
                                     {props.bankData.reduce((result,value)=>{
                                         return selectedBank===value.bank_id?value.bank_name:result
                                     },'')}
-                                </h1>
+                                </h2>
                                 </>
                             ):
                             null
