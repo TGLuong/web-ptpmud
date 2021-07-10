@@ -43,95 +43,12 @@ function Dashboard(props){
         }
     });
 
-    const [laptopData,setLaptopData] = useState([
-        {
-            brand:'',
-            id:0,
-            products:[
-                {
-                    brand:'',
-                    brand_id:0,
-                    id:0,
-                    images:[
-                        '',
-                    ],
-                    price:0.0,
-                    productName:'',
-                    productSummary:'',
-                    quantity:'',
-                    warranty:''
-                },
-            ]
-        },
-    ]);
-
-    const [cameraData,setCameraData] = useState([
-        {
-            brand:'',
-            id:0,
-            products:[
-                {
-                    brand:'',
-                    brand_id:0,
-                    id:0,
-                    images:[
-                        '',
-                    ],
-                    price:0.0,
-                    productName:'',
-                    productSummary:'',
-                    quantity:'',
-                    warranty:''
-                },
-            ]
-        },
-    ]);
-
-    const [cartData,setCartData] = useState([
-        {
-            amount: 0,
-            id: 0,
-            product: {
-                image:'',
-                name:'',
-                price:0.0,
-            },
-            product_id: 0,
-            total_price: 0,
-            user_id: 0
-        },
-    ])
-    const [favoriteData,setFavoriteData] = useState([
-        {
-            id: 0,
-            product: {
-                image:'',
-                name:'',
-                price:0.0,
-            },
-            product_id: 0,
-            user_id: 0
-        }
-    ])
-    const [addressData, setAddressData] = useState([
-        {
-            address:'',
-            full_name:'',
-            id:0,
-            phone:'',
-            user_id:0,
-        }
-    ])
-    const [bankData, setBankData] = useState([
-        {
-            bank_id:0,
-            bank_name:'',
-            bank_number:'',
-            full_name:'',
-            id:0,
-            user_id:0,
-        },
-    ])
+    const [laptopData,setLaptopData] = useState([]);
+    const [cameraData,setCameraData] = useState([]);
+    const [cartData,setCartData] = useState([])
+    const [favoriteData,setFavoriteData] = useState([])
+    const [addressData, setAddressData] = useState([])
+    const [bankData, setBankData] = useState([])
     const [userData,setUserData] = useState({
         email:'',
         id: 0,
@@ -142,35 +59,9 @@ function Dashboard(props){
         username: '',
         gender:null,
     })
-    const [billData,setBillData]=useState([
-        // {
-        //     address: {
-        //         address: '',
-        //         full_name: '',
-        //         id: 0,
-        //         phone: '',
-        //         user_id: 0
-        //     },
-        //     address_id: 0,
-        //     admin_confirm: false,
-        //     created_at: '',
-        //     id: 0,
-        //     payment_type: '',
-        //     payment_type_id: 0,
-        //     products: [
-        //         {
-        //             amount: 0,
-        //             productName: '',
-        //             total_price: 0.0
-        //         }
-        //     ],
-        //     status: '',
-        //     total: 0.0,
-        //     updated_at: '',
-        //     user_id: 0
-        // },
-    ])
+    const [billData,setBillData]=useState([])
     const [paymenttype,setPaymenttype] = useState([])
+    const [admin_userData,setAdmin_userData] = useState([])
     const history = useHistory()
 
     useEffect(()=>{
@@ -198,6 +89,14 @@ function Dashboard(props){
             }).then(res=>{
                 setBillData(res.data.data)
             })
+            if(data.is_admin){
+                axios({
+                    method:'GET',
+                    url:baseUrl+'/alluser'
+                }).then(res=>{
+                    setAdmin_userData(res.data.users)
+                })
+            }
         }
     },[]);
 
@@ -420,7 +319,8 @@ function Dashboard(props){
                 </Route>
                 <Route path='/dashboard/manage'>
                     <Manage
-                        
+                        userData={admin_userData}
+                        setUserData={setAdmin_userData}
                     />
                 </Route>
                 <Route path='/dashboard'>

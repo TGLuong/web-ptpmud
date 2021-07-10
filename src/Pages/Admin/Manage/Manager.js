@@ -25,8 +25,10 @@ const Manager = (props)=>{
                         </button>
                     }
                 >
+                    {console.log(props.userData)}
                     <User
-
+                        userData={props.userData}
+                        setUserData={props.setUserData}
                     />
                 </Tabs.TabPane>
                 <Tabs.TabPane 
@@ -54,7 +56,7 @@ const Manager = (props)=>{
                     }
                 >
                     <AccessFrequence
-                        
+
                     />
                 </Tabs.TabPane>
             </Tabs>
