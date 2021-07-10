@@ -6,6 +6,7 @@ import {LeftOutlined} from '@ant-design/icons'
 
 const DetailScreen = props => {
     const date = props.data.created_at.split(' ')[0].split('-')
+    const time = props.data.created_at.split(' ')[1].split(':')
     const columns = [
         {
             title:'Số lượng',
@@ -66,6 +67,10 @@ const DetailScreen = props => {
                 <tr style={{height:'50px'}}>
                     <td style={{width:'200px'}}>Ngày đặt hàng:</td>
                     <td style={{fontWeight:600}}>{date[2]}/{date[1]}/{date[0]}</td>
+                </tr>
+                <tr style={{height:'50px'}}>
+                    <td style={{width:'200px'}}>Giờ đặt hàng:</td>
+                    <td style={{fontWeight:600}}>{time[0]} giờ, {time[1]} Phút, {time[2].slice(0,2)} Giây</td>
                 </tr>
                 <tr style={{height:'50px'}}>
                     <td style={{width:'200px'}}>Địa chỉ:</td>

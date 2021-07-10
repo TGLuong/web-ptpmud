@@ -135,6 +135,8 @@ const Profile = (props)=>{
                         <Route path="/dashboard/profile/bill">
                             <Bill
                                 userID={props.userData.id}
+                                billData={props.billData}
+                                setBillData={props.setBillData}
                             />
                         </Route>
                     </Switch>

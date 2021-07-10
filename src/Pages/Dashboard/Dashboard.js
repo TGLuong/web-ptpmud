@@ -141,6 +141,35 @@ function Dashboard(props){
         username: '',
         gender:null,
     })
+    const [billData,setBillData]=useState([
+        // {
+        //     address: {
+        //         address: '',
+        //         full_name: '',
+        //         id: 0,
+        //         phone: '',
+        //         user_id: 0
+        //     },
+        //     address_id: 0,
+        //     admin_confirm: false,
+        //     created_at: '',
+        //     id: 0,
+        //     payment_type: '',
+        //     payment_type_id: 0,
+        //     products: [
+        //         {
+        //             amount: 0,
+        //             productName: '',
+        //             total_price: 0.0
+        //         }
+        //     ],
+        //     status: '',
+        //     total: 0.0,
+        //     updated_at: '',
+        //     user_id: 0
+        // },
+    ])
+    const [paymenttype,setPaymenttype] = useState([])
     const history = useHistory()
 
     useEffect(()=>{
@@ -156,6 +185,18 @@ function Dashboard(props){
             setHomeData(JSON.parse(sessionStorage.getItem('homeData')))
             setLaptopData(JSON.parse(sessionStorage.getItem('laptopData')))
             setCameraData(JSON.parse(sessionStorage.getItem('cameraData')))
+            axios({
+                method:'GET',
+                url:baseUrl+'/paymenttype',
+            }).then(res=>{
+                setPaymenttype(res.data.data)
+            })
+            axios({
+                method:'GET',
+                url:baseUrl+'/payment/'+data.id
+            }).then(res=>{
+                setBillData(res.data.data)
+            })
         }
     },[]);
 
@@ -337,6 +378,8 @@ function Dashboard(props){
                         setBankData={setBankData}
                         addressData={addressData}
                         setAddressData={setAddressData}
+                        billData={billData}
+                        setBillData={setBillData}
                     />
                 </Route>
                 <Route path="/dashboard/laptop">
@@ -367,9 +410,11 @@ function Dashboard(props){
                         userID={userData.id}
                         cartData={cartData}
                         setCartData={setCartData}
+                        paymenttype={paymenttype}
                         addressData={addressData}
                         setAddressData={setAddressData}
                         bankData={bankData}
+                        setBillData={setBillData}
                     />
                 </Route>
                 <Route path='/dashboard'>

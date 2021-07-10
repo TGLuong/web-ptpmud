@@ -28,7 +28,7 @@ const {TabPane} = Tabs;
 const Checkout = props => {
     const history = useHistory()
     const [bankVisiable,setBankVisiable] = useState(false)
-    const [paymenttype,setPaymenttype] = useState([])
+    // const [paymenttype,setPaymenttype] = useState([])
     const [payment,setPayment] = useState(null)
     const [selectedBank,setSelectedBank]=useState(null)
     const [selectedAddress,setSelectedAddress]=useState(null)
@@ -70,14 +70,14 @@ const Checkout = props => {
             
         })
     }
-    useEffect(()=>{
-        axios({
-            method:'GET',
-            url:baseUrl+'/paymenttype',
-        }).then(res=>{
-            setPaymenttype(res.data.data)
-        })
-    },[])
+    // useEffect(()=>{
+    //     axios({
+    //         method:'GET',
+    //         url:baseUrl+'/paymenttype',
+    //     }).then(res=>{
+    //         setPaymenttype(res.data.data)
+    //     })
+    // },[])
     useEffect(()=>{
         if(props.cartData.length===0)history.push('/dashboard')
     })
@@ -97,6 +97,7 @@ const Checkout = props => {
                     payment_type_id:payment
                 }
             }).then(res=>{
+                props.setBillData(res.data.data)
                 axios({
                     method:'GET',
                     url:baseUrl+'/user/cart/'+props.userID
@@ -126,7 +127,7 @@ const Checkout = props => {
                     />
                     <Paymenttype
                         setBankVisiable={setBankVisiable}
-                        paymenttype={paymenttype}
+                        paymenttype={props.paymenttype}
                         setPayment={setPayment}
                     />
                     {bankVisiable?
@@ -164,7 +165,7 @@ const Checkout = props => {
                         </h2>
                         <h4>Phương thức thanh toán đã chọn:</h4>
                         <h2 >
-                            {paymenttype.reduce((result,value)=>{
+                            {props.paymenttype.reduce((result,value)=>{
                                 return value.id===payment?value.name:result
                             },'')}
                         </h2>
