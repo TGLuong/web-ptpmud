@@ -5,7 +5,7 @@
 
 const Bills = props => {
     return(
-        <div>
+        <div style={{height:'420px'}}>
         </div>
     )
 }
