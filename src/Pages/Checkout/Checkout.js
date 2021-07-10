@@ -154,19 +154,31 @@ const Checkout = props => {
                         }}
                     >
                         <h3>Chi tiết hóa đơn:</h3>
-                        <h2 >
+                        <h2 style={{color:'#EF5350',margin:'0px'}}>
                             {numberFormat(props.cartData.reduce((total, value, index, array)=>{
                                 return total+value.total_price;
                             },0))} Đ
                         </h2>
                         <h4>Địa chỉ:</h4>
-                        <h2>
+                        <h2 style={{color:'#EF5350',margin:'0px'}}>
                             {props.addressData.reduce((result,value)=>{
                                 return value.id===selectedAddress?value.address:result
                             },'')}
                         </h2>
+                        <h4>Tên người nhận:</h4>
+                        <h2 style={{color:'#EF5350',margin:'0px'}}>
+                            {props.addressData.reduce((result,value)=>{
+                                return value.id===selectedAddress?value.full_name:result
+                            },'')}
+                        </h2>
+                        <h4>Số điện thoại:</h4>
+                        <h2 style={{color:'#EF5350',margin:'0px'}}>
+                            {props.addressData.reduce((result,value)=>{
+                                return value.id===selectedAddress?value.phone:result
+                            },'')}
+                        </h2>
                         <h4>Phương thức thanh toán đã chọn:</h4>
-                        <h2 >
+                        <h2 style={{color:'#EF5350',margin:'0px'}}>
                             {props.paymenttype.reduce((result,value)=>{
                                 return value.id===payment?value.name:result
                             },'')}
@@ -176,7 +188,7 @@ const Checkout = props => {
                             (
                                 <>
                                 <h4>Ngân hàng:</h4>
-                                <h2>
+                                <h2 style={{color:'#EF5350',margin:'0px'}}>
                                     {props.bankData.reduce((result,value)=>{
                                         return selectedBank===value.bank_id?value.bank_name:result
                                     },'')}
