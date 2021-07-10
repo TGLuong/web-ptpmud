@@ -99,6 +99,9 @@ const User = props => {
             width:'110px',
             key:'1',
             dataIndex:'username',
+            render:text=>{
+                return text?text:'- -'
+            },
             sorter:{
                 compare:(a,b)=>{
                     return b.username.localeCompare(a.username)
@@ -111,6 +114,9 @@ const User = props => {
             key:'2',
             width:'120px',
             dataIndex:'full_name',
+            render:text=>{
+                return text?text:'- -'
+            },
             ...fill(2,fillNameRef)
         },
         {
@@ -118,12 +124,18 @@ const User = props => {
             key:'3',
             width:'85px',
             dataIndex:'gender',
+            render:text=>{
+                return text?text:'- -'
+            },
         },
         {
             title:'Số điện thoại',
             key:'4',
             width:'100px',
             dataIndex:'phone',
+            render:text=>{
+                return text?text:'- -'
+            },
             ...fill(4,fillPhoneRef)
         },
         {
@@ -131,6 +143,9 @@ const User = props => {
             key:'5',
             width:'150px',
             dataIndex:'email',
+            render:text=>{
+                return text?text:'- -'
+            },
             ...fill(5,fillMailRef)
         },
         {
