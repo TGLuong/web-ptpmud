@@ -119,7 +119,7 @@ const AddressTable = props => {
                 return(
                     <>
                         <button
-                            className="checkout-selectbank-btn"
+                            className={`checkout-selectbank-btn ${props.selectedAddress===record.id?"is-selected":''}`}
                             onClick={()=>{props.setSelectedAddress(record.id)}}
                         >
                             Chọn

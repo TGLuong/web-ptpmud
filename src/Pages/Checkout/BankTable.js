@@ -45,7 +45,7 @@ const BankTable = props => {
                 return(
                     <>
                         <button
-                            className="checkout-selectbank-btn"
+                            className={`checkout-selectbank-btn ${props.selectedBank===record.bank_id?"is-selected":null}`}
                             onClick={()=>{
                                 props.setSelectedBank(record.bank_id)
                             }}

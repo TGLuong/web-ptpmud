@@ -123,6 +123,7 @@ const Checkout = props => {
                         userID={props.userID}
                         data={props.addressData}
                         setSelectedAddress={setSelectedAddress}
+                        selectedAddress={selectedAddress}
                         setAddressData ={props.setAddressData}
                     />
                     <Paymenttype
@@ -134,6 +135,7 @@ const Checkout = props => {
                         <BankTable
                             data={props.bankData}
                             setSelectedBank={setSelectedBank}
+                            selectedBank={selectedBank}
                         />:
                         null
                     }
