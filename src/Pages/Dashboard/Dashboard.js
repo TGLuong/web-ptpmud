@@ -12,6 +12,7 @@ import DashboardProductDisplay from './DashboardProductDisplay'
 import DashboardProduct from '../Product/DashboardProduct'
 import Profile from '../profile/Profile'
 import Checkout from '../Checkout/Checkout'
+import Manage from '../Admin/Manage/Manager'
 
 import {baseUrl} from '../../config'
 
@@ -415,6 +416,11 @@ function Dashboard(props){
                         setAddressData={setAddressData}
                         bankData={bankData}
                         setBillData={setBillData}
+                    />
+                </Route>
+                <Route path='/dashboard/manage'>
+                    <Manage
+                        
                     />
                 </Route>
                 <Route path='/dashboard'>

@@ -197,7 +197,12 @@ function InLoginHdaer(props) {
                         {props.userData.is_admin?(
                             <div>
                                 <span style={{margin:'0px 4px'}}>|</span>
-                                <ProfileBtn className="admin_section">
+                                <ProfileBtn 
+                                    className="admin_section"
+                                    onClick={()=>{
+                                        history.push('/dashboard/manage')
+                                    }}
+                                >
                                     QUẢN LÝ
                                 </ProfileBtn>
                             </div>
