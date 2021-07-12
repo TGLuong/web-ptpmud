@@ -86,6 +86,14 @@ const User = props => {
                             }}
                         />
                         <Button type="primary" onClick={()=>{fillClick(key)}}>Lọc</Button>
+                        <Button 
+                            onClick={()=>{
+                                setFillData(props.userData)
+                            }}
+                            style={{marginLeft:'20px'}}
+                        >
+                            Reset
+                        </Button>
                     </div>
                 )
             },

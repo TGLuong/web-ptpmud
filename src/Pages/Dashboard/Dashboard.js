@@ -62,6 +62,7 @@ function Dashboard(props){
     const [billData,setBillData]=useState([])
     const [paymenttype,setPaymenttype] = useState([])
     const [admin_userData,setAdmin_userData] = useState([])
+    const [admin_billData,setAdmin_billdata] = useState([])
     const history = useHistory()
 
     useEffect(()=>{
@@ -95,6 +96,14 @@ function Dashboard(props){
                     url:baseUrl+'/alluser'
                 }).then(res=>{
                     setAdmin_userData(res.data.users)
+                })
+            }
+            if(data.is_admin){
+                axios({
+                    method:'GET',
+                    url:baseUrl+'/allpayment'
+                }).then(res=>{
+                    setAdmin_billdata(res.data.payments)
                 })
             }
         }
@@ -321,6 +330,8 @@ function Dashboard(props){
                     <Manage
                         userData={admin_userData}
                         setUserData={setAdmin_userData}
+                        billData={admin_billData}
+                        setBillData={setAdmin_billdata}
                     />
                 </Route>
                 <Route path='/dashboard'>

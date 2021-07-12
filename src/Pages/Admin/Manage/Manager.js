@@ -25,7 +25,6 @@ const Manager = (props)=>{
                         </button>
                     }
                 >
-                    {console.log(props.userData)}
                     <User
                         userData={props.userData}
                         setUserData={props.setUserData}
@@ -42,7 +41,8 @@ const Manager = (props)=>{
                     }
                 >
                     <Bills
-                    
+                        billData={props.billData}
+                        setBillData={props.setBillData}
                     />
                 </Tabs.TabPane>
                 <Tabs.TabPane

@@ -32,7 +32,7 @@ function App() {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/admin"><AdminDashboard/></Route>
+        {/* <Route path="/admin"><AdminDashboard/></Route> */}
         <Route path="/dashboard"><Dashboard/></Route>
         <Route path="/"><Home/></Route>
       </Switch>
