@@ -13,6 +13,7 @@ import DashboardProduct from '../Product/DashboardProduct'
 import Profile from '../profile/Profile'
 import Checkout from '../Checkout/Checkout'
 import Manage from '../Admin/Manage/Manager'
+import Upload from '../Admin/Upload'
 
 import {baseUrl} from '../../config'
 
@@ -332,6 +333,11 @@ function Dashboard(props){
                         setUserData={setAdmin_userData}
                         billData={admin_billData}
                         setBillData={setAdmin_billdata}
+                    />
+                </Route>
+                <Route path="/dashboard/upload">
+                    <Upload
+                        isAdmin={userData.is_admin}
                     />
                 </Route>
                 <Route path='/dashboard'>

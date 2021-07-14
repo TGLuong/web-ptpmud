@@ -267,12 +267,20 @@ function InLoginHdaer(props) {
                                     alignItems:'center',
                                 }}
                             >
-                                <AddProductBtn>
+                                <Dropdown 
+                                    overlay={<Menu>
+                                        <Menu.Item onClick={()=>{history.push('/dashboard/upload')}} >Thêm Mặt Hàng</Menu.Item>
+                                    </Menu>}
+                                    
+                                >
+                                    <AddProductBtn>
                                     <PlusCircleOutlined style={{color:'white',fontSize:'32px'}} />
-                                    <p style={{color:'white',margin:'0px'}}>
-                                        Thêm
-                                    </p>
-                                </AddProductBtn>
+                                        <p style={{color:'white',margin:'0px'}}>
+                                            Thêm
+                                        </p>
+                                    </AddProductBtn>
+                                </Dropdown>
+                                
                             </Col>
                         ):(
                             <>
