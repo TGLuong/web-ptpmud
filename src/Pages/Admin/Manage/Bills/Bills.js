@@ -232,7 +232,7 @@ const Bills = props => {
                     dataSource={fillData}
                     columns={columns}
                     pagination={false}
-                    scroll={{y:350,x:false}}
+                    scroll={{y:500,x:false}}
                 />
             )}
         </div>
