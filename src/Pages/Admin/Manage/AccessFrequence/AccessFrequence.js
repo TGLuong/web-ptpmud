@@ -17,8 +17,8 @@ const AccessFrequence = props => {
             method:"GET",
             url:baseUrl+'/visitor'
         }).then(res=>{
-            setLabel(Object.keys(res.data))
-            setData(Object.values(res.data))
+            setLabel(Object.keys(res.data).reverse())
+            setData(Object.values(res.data).reverse())
         })
     },[])
     return(
@@ -26,7 +26,7 @@ const AccessFrequence = props => {
             <h1 style={{fontWeight:500}}>Lưu lượng truy cập 7 ngày gần nhất</h1>
             <ReactECharts
                 style={{
-                    height:'500px'
+                    height:'470px'
                 }}
                 option={
                     {
