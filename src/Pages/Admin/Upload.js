@@ -19,11 +19,12 @@ import {
     SyncLoader
 } from 'react-spinners'
 import { jsxAttribute } from '@babel/types'
+import { select } from 'async'
 
 
 const Upload = props => {
     const history = useHistory()
-    const [selectValue, setSelectValue] = useState('')
+    const [selectValue, setSelectValue] = useState(null)
     const [loading, setLoading] = useState(false)
     useEffect(()=>{
         if(props.isAdmin===false){
@@ -45,7 +46,6 @@ const Upload = props => {
     const submit=()=>{
         setLoading(true)
         var formData = new FormData();
-        var brand_id = document.querySelector("#brand_id")
         var productName = document.querySelector("#productName")
         var quantity = document.querySelector("#quantity")
         var price = document.querySelector("#price")
@@ -54,22 +54,54 @@ const Upload = props => {
         var img_1 = document.querySelector('#img_1');
         var img_2 = document.querySelector('#img_2')
 
-        formData.append("brand_id", selectValue)
-        formData.append("productName", productName.value)
-        formData.append("quantity", parseInt(quantity.value))
-        formData.append("price", parseFloat(price.value))
-        formData.append("productSummary", productSummary.value)
-        formData.append("warranty", warranty.value)
-        formData.append("img_1", img_1.files[0]);
-        formData.append("img_2",img_2.files[0])
-        axios.post(baseUrl+'/product', formData, {
-            headers: {
-            'Content-Type': 'multipart/form-data'
-            }
-        }).then(res=>{
-            openSucc('thêm ảnh thành công')
+        if(selectValue===null){
+            alert('vui lòng chọn hãng')
             setLoading(false)
-        })
+        }else
+        if(productName.value.length===0){
+            alert('vui lòng nhập tên sản phẩm')
+            setLoading(false)
+        }else
+        if(quantity.value.length===0){
+            alert('vui lòng nhập số lượng')
+            setLoading(false)
+        }else
+        if(price.value.length===0){
+            alert('vui lòng nhập giá')
+            setLoading(false)
+        }else
+        if(productSummary.value.length===0){
+            alert('vui lòng nhập mô tả sản phẩm')
+            setLoading(false)
+        }else
+        if(warranty.value.length===0){
+            alert('vui lòng nhập bảo hành')
+            setLoading(false)
+        }else
+        if(img_1.files[0]===undefined||img_2.files[0]===undefined){
+            alert('vui lòng chọn ảnh')
+            setLoading(false)
+        }else{
+            formData.append("brand_id", selectValue)
+            formData.append("productName", productName.value)
+            formData.append("quantity", parseInt(quantity.value))
+            formData.append("price", parseFloat(price.value))
+            formData.append("productSummary", productSummary.value)
+            formData.append("warranty", warranty.value)
+            formData.append("img_1", img_1.files[0]);
+            formData.append("img_2",img_2.files[0])
+            axios.post(baseUrl+'/product', formData, {
+                headers: {
+                'Content-Type': 'multipart/form-data'
+                }
+            }).then(res=>{
+                openSucc('thêm ảnh thành công')
+                setLoading(false)
+                history.push('/dashboard/product-detail?id='+res.data.product_id)
+            })
+        }
+
+        
     }
     return(
         <div className="upload">
@@ -139,7 +171,7 @@ const Upload = props => {
                     <tr>
                         <td className="upload-table-label"></td>
                         <td>
-                            <button onClick={submit} disabled={loading} className={`submit ${loading?'disable':''}`}>Thêm ảnh</button>
+                            <button onClick={submit} disabled={loading} className={`submit ${loading?'disable':''}`}>Thêm sản phẩm</button>
                         </td>
                     </tr>
                     <tr>
