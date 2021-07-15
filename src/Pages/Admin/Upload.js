@@ -98,6 +98,8 @@ const Upload = props => {
                 openSucc('thêm ảnh thành công')
                 setLoading(false)
                 history.push('/dashboard/product-detail?id='+res.data.product_id)
+            }).catch(err=>{
+                setLoading(false)
             })
         }
 
@@ -145,27 +147,27 @@ const Upload = props => {
                         <td><input className="input" name="productName" id="productName" type="text" /></td>
                     </tr>
                     <tr>
-                        <td className="upload-table-label"><label>số lượng</label></td>
-                        <td><input className="input" name="quantity" id="quantity" type="text" /></td>
+                        <td className="upload-table-label"><label>Số lượng</label></td>
+                        <td><input className="input" name="quantity" id="quantity" type="number" /></td>
                     </tr>
                     <tr>
-                        <td className="upload-table-label"><label>giá</label></td>
-                        <td><input className="input" name="price" id="price" type="text" /></td>
+                        <td className="upload-table-label"><label>Giá</label></td>
+                        <td><input className="input" name="price" id="price" type="number" /></td>
                     </tr>
                     <tr>
-                        <td className="upload-table-label"><label>mô tả</label></td>
+                        <td className="upload-table-label"><label>Mô tả</label></td>
                         <td><input className="input" name="productSummary" id="productSummary" type="text" /></td>
                     </tr>
                     <tr>
-                        <td className="upload-table-label"><label>bảo hành</label></td>
+                        <td className="upload-table-label"><label>Bảo hành</label></td>
                         <td><input className="input" name="warranty" id="warranty" type="text" /></td>
                     </tr>
                     <tr>
-                        <td className="upload-table-label"><label>ảnh</label></td>
-                        <td><input  name="img_1" id="img_1" type="file" /></td>
+                        <td className="upload-table-label"><label>Ảnh 1</label></td>
+                        <td><input name="img_1" id="img_1" type="file" /></td>
                     </tr>
                     <tr>
-                        <td className="upload-table-label"><label>ảnh</label></td>
+                        <td className="upload-table-label"><label>Ảnh 2</label></td>
                         <td><input name="img_2" id="img_2" type="file" /></td>
                     </tr>
                     <tr>
