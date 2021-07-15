@@ -1,0 +1,65 @@
+.upload{
+    padding-top: 10%;
+    display: flex;
+    justify-content: center;
+    background-color: #F5F5F5;
+}
+.upload .upload-wrap{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    width: 800px;
+    border-radius: 10px 10px 0px 0px;
+    padding: 40px;
+    border-left: 10px solid #4FC3F7;
+    flex-direction: column;
+}
+.upload .upload-wrap h1{
+    font-size: 28px;
+    font-weight: 700;
+    width: 90%;
+    border-bottom: 1px solid #CFD8DC;
+}
+.upload table tr{
+    height: 40px;
+}
+.upload table tr .input {
+    border: 1px solid #CFD8DC;
+    outline: none;
+    width: 100%;
+    height: 30px;
+    padding: 0px 10px;
+    border-radius: 2px;
+}
+.upload table tr .submit{
+    border: 4px solid black;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5mm;
+    width: 100%;
+    transition: 140ms;
+    height: 60px;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.upload table tr .submit:active{
+    background-color: #CFD8DC;
+}
+.upload table tr .submit:hover{
+    background-color: white;
+    color: black;
+}
+.upload table tr .disable{
+    background-color: #757575;
+    cursor: not-allowed;
+    border: 4px solid #757575;
+}
+.upload table tr .disable:hover{
+    background-color: #757575;
+    color: white;
+}
+.upload-table-label{
+    width: 100px;
+}

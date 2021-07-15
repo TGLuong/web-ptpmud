@@ -338,6 +338,7 @@ function Dashboard(props){
                 <Route path="/dashboard/upload">
                     <Upload
                         isAdmin={userData.is_admin}
+                        homeData={homeData}
                     />
                 </Route>
                 <Route path='/dashboard'>
