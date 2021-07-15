@@ -161,7 +161,7 @@ function Home(props){
         if(e.key==='Enter'){
             history.push('/')
             const keyword = document.getElementById('search-input').value;
-            const res = axios.get('http://47.254.253.64:5000/home?search='+keyword)
+            const res = axios.get(baseUrl+'/home?search='+keyword)
             res.then((res)=>{
                 console.log(res.data)
                 setData(res.data.data)

@@ -92,9 +92,27 @@ const Upload = props => {
                 headers: {
                 'Content-Type': 'multipart/form-data'
                 }
-            }).then(res=>{
-                openSucc('thêm ảnh thành công')
+            }).then(res => {
+                axios({
+                    method:'GET',
+                    url:baseUrl+'home?page=1'
+                }).then(res=>{
+                    props.setHomeData(res.data.data)
+                })
+                axios({
+                    method:'GET',
+                    url:baseUrl+'/product/camera'
+                }).then(res=>{
+                    props.setCameraData(res.data.data)
+                })
+                axios({
+                    method:'GET',
+                    url:baseUrl+'/product/laptop'
+                }).then(res=>{
+                    props.setLaptopData(res.data.data)
+                })
                 setLoading(false)
+                openSucc('thêm ảnh thành công')
                 history.push('/dashboard/product-detail?id='+res.data.product_id)
             }).catch(err=>{
                 setLoading(false)

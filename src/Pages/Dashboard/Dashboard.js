@@ -43,7 +43,6 @@ function Dashboard(props){
             }
         }
     });
-
     const [laptopData,setLaptopData] = useState([]);
     const [cameraData,setCameraData] = useState([]);
     const [cartData,setCartData] = useState([])
@@ -67,6 +66,7 @@ function Dashboard(props){
     const history = useHistory()
 
     useEffect(()=>{
+        console.log('mount')
         const data = JSON.parse(sessionStorage.getItem('userdata'))
         if(data===null){
             history.push('/')
@@ -108,7 +108,7 @@ function Dashboard(props){
                 })
             }
         }
-    },[history]);
+    },[]);
 
     const openSucc = (message,description) => {
         notification.open({
@@ -339,6 +339,9 @@ function Dashboard(props){
                     <Upload
                         isAdmin={userData.is_admin}
                         homeData={homeData}
+                        setHomeData={setHomeData}
+                        setLaptopData={setLaptopData}
+                        setCameraData={setCameraData}
                     />
                 </Route>
                 <Route path='/dashboard'>
