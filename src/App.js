@@ -5,7 +5,6 @@ import './Style/App.css'
 import {useHistory} from 'react-router-dom'
 import Home from './Pages/Home/Home'
 import Dashboard from './Pages/Dashboard/Dashboard'
-import AdminDashboard from './Pages/Admin/AdminDashboard'
 
 function App() {
   const history = useHistory()
@@ -15,7 +14,7 @@ function App() {
       const cartPopup = document.getElementById('cart-popup')
       if(cartPopup){
         if(!cartPopup.contains(e.target)){
-          if(cartPopup.style.visibility=="visible") cartPopup.style.visibility="hidden"
+          if(cartPopup.style.visibility==="visible") cartPopup.style.visibility="hidden"
         }
       }
     }
@@ -24,7 +23,7 @@ function App() {
       const favoritePopup = document.getElementById('favorite-popup')
       if(favoritePopup){
         if(!favoritePopup.contains(e.target)){
-          if(favoritePopup.style.visibility=="visible") favoritePopup.style.visibility="hidden"
+          if(favoritePopup.style.visibility==="visible") favoritePopup.style.visibility="hidden"
         }
       }
     }

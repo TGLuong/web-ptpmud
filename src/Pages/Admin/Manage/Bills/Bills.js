@@ -52,21 +52,26 @@ const Bills = props => {
                     return element.address.address.toUpperCase().indexOf(fillAddressRef.current.state.value.toUpperCase())!==-1?true:false
                 })
                 setFillData(a)
+                break;
             }
             case 2:{
                 const a = props.billData.filter(element=>{
                     return element.address.full_name.toUpperCase().indexOf(fillNameRef.current.state.value.toUpperCase())!==-1?true:false
                 })
                 setFillData(a)
+                break;
             }
             case 3:{
                 const a = props.billData.filter(element=>{
                     return element.address.phone.toUpperCase().indexOf(fillPhoneRef.current.state.value.toUpperCase())!==-1?true:false
                 })
                 setFillData(a)
-            }
-            default:
                 break;
+            }
+            default:{
+                break;
+            }
+                
         }
     }
 

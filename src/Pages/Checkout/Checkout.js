@@ -1,5 +1,4 @@
 import {
-    Tabs,
     Row,
     Col,
     notification
@@ -24,7 +23,6 @@ import BankTable from './BankTable'
 import AddressTable from './AddressTable'
 import Paymenttype from './Paymenttype'
 
-const {TabPane} = Tabs;
 const Checkout = props => {
     const history = useHistory()
     const [bankVisiable,setBankVisiable] = useState(false)

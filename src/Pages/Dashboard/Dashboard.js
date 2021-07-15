@@ -108,7 +108,7 @@ function Dashboard(props){
                 })
             }
         }
-    },[]);
+    },[history]);
 
     const openSucc = (message,description) => {
         notification.open({

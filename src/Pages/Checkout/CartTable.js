@@ -4,7 +4,6 @@ import {
 import {
     Table,
     Image,
-    Button
 } from 'antd'
 import DeleteButton from './components/DeleteButton'
 import AmountInput from './components/AmountInput'

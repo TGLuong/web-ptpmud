@@ -269,7 +269,7 @@ function InLoginHdaer(props) {
                             >
                                 <Dropdown 
                                     overlay={<Menu>
-                                        <Menu.Item onClick={()=>{history.push('/dashboard/upload')}} >Thêm Mặt Hàng</Menu.Item>
+                                        <Menu.Item key={1} onClick={()=>{history.push('/dashboard/upload')}} >Thêm Mặt Hàng</Menu.Item>
                                     </Menu>}
                                     
                                 >

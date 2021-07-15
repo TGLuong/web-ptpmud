@@ -18,8 +18,6 @@ import '../../Style/Upload.css'
 import {
     SyncLoader
 } from 'react-spinners'
-import { jsxAttribute } from '@babel/types'
-import { select } from 'async'
 
 
 const Upload = props => {
@@ -30,7 +28,7 @@ const Upload = props => {
         if(props.isAdmin===false){
             history.push('/dashboard')
         }
-    },[])
+    },[history,props.isAdmin])
     const openSucc = (message,description) => {
         notification.open({
             message:message,
@@ -110,90 +108,92 @@ const Upload = props => {
             <div className="upload-wrap">
                 <h1>Thêm sản phẩm</h1>
                 <table>
-                    <tr>
-                        <td className="upload-table-label"><label>Hãng</label></td>
-                        <td>
-                            <Select
-                                style={{width:'100%'}}
-                                onSelect={(e)=>{
-                                    setSelectValue(e)
+                    <tbody>
+                        <tr>
+                            <td className="upload-table-label"><label>Hãng</label></td>
+                            <td>
+                                <Select
+                                    style={{width:'100%'}}
+                                    onSelect={(e)=>{
+                                        setSelectValue(e)
+                                    }}
+                                >
+                                    {props.homeData.laptop_brands.map(element=>{
+                                        return(
+                                            <Select.Option
+                                                key={element.id}
+                                                value={element.id}
+                                            >
+                                                {element.brand}
+                                            </Select.Option>
+                                        )
+                                    })}
+                                    {props.homeData.camera_brands.map(element=>{
+                                        return(
+                                            <Select.Option
+                                                key={element.id}
+                                                value={element.id}
+                                            >
+                                                {element.brand}
+                                            </Select.Option>
+                                        )
+                                    })}
+                                </Select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td className="upload-table-label"><label>Tên sản phẩm</label></td>
+                            <td><input className="input" name="productName" id="productName" type="text" /></td>
+                        </tr>
+                        <tr>
+                            <td className="upload-table-label"><label>Số lượng</label></td>
+                            <td><input className="input" name="quantity" id="quantity" type="number" /></td>
+                        </tr>
+                        <tr>
+                            <td className="upload-table-label"><label>Giá</label></td>
+                            <td><input className="input" name="price" id="price" type="number" /></td>
+                        </tr>
+                        <tr>
+                            <td className="upload-table-label"><label>Mô tả</label></td>
+                            <td><input className="input" name="productSummary" id="productSummary" type="text" /></td>
+                        </tr>
+                        <tr>
+                            <td className="upload-table-label"><label>Bảo hành</label></td>
+                            <td><input className="input" name="warranty" id="warranty" type="text" /></td>
+                        </tr>
+                        <tr>
+                            <td className="upload-table-label"><label>Ảnh 1</label></td>
+                            <td><input name="img_1" id="img_1" type="file" /></td>
+                        </tr>
+                        <tr>
+                            <td className="upload-table-label"><label>Ảnh 2</label></td>
+                            <td><input name="img_2" id="img_2" type="file" /></td>
+                        </tr>
+                        <tr>
+                            <td className="upload-table-label"></td>
+                            <td>
+                                <button onClick={submit} disabled={loading} className={`submit ${loading?'disable':''}`}>Thêm sản phẩm</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td
+                                style={{
+                                    display:'flex',
+                                    justifyContent:'center',
+                                    alignItems:'center',
+                                    height:'60px',
                                 }}
                             >
-                                {props.homeData.laptop_brands.map(element=>{
-                                    return(
-                                        <Select.Option
-                                            key={element.id}
-                                            value={element.id}
-                                        >
-                                            {element.brand}
-                                        </Select.Option>
-                                    )
-                                })}
-                                {props.homeData.camera_brands.map(element=>{
-                                    return(
-                                        <Select.Option
-                                            key={element.id}
-                                            value={element.id}
-                                        >
-                                            {element.brand}
-                                        </Select.Option>
-                                    )
-                                })}
-                            </Select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="upload-table-label"><label>Tên sản phẩm</label></td>
-                        <td><input className="input" name="productName" id="productName" type="text" /></td>
-                    </tr>
-                    <tr>
-                        <td className="upload-table-label"><label>Số lượng</label></td>
-                        <td><input className="input" name="quantity" id="quantity" type="number" /></td>
-                    </tr>
-                    <tr>
-                        <td className="upload-table-label"><label>Giá</label></td>
-                        <td><input className="input" name="price" id="price" type="number" /></td>
-                    </tr>
-                    <tr>
-                        <td className="upload-table-label"><label>Mô tả</label></td>
-                        <td><input className="input" name="productSummary" id="productSummary" type="text" /></td>
-                    </tr>
-                    <tr>
-                        <td className="upload-table-label"><label>Bảo hành</label></td>
-                        <td><input className="input" name="warranty" id="warranty" type="text" /></td>
-                    </tr>
-                    <tr>
-                        <td className="upload-table-label"><label>Ảnh 1</label></td>
-                        <td><input name="img_1" id="img_1" type="file" /></td>
-                    </tr>
-                    <tr>
-                        <td className="upload-table-label"><label>Ảnh 2</label></td>
-                        <td><input name="img_2" id="img_2" type="file" /></td>
-                    </tr>
-                    <tr>
-                        <td className="upload-table-label"></td>
-                        <td>
-                            <button onClick={submit} disabled={loading} className={`submit ${loading?'disable':''}`}>Thêm sản phẩm</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td
-                            style={{
-                                display:'flex',
-                                justifyContent:'center',
-                                alignItems:'center',
-                                height:'60px',
-                            }}
-                        >
-                            <SyncLoader
-                                color={'#03A9F4'}
-                                width={"100%"}
-                                loading={loading}
-                                size={15}
-                            />
-                        </td>
-                    </tr>
+                                <SyncLoader
+                                    color={'#03A9F4'}
+                                    width={"100%"}
+                                    loading={loading}
+                                    size={15}
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

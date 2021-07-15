@@ -1,15 +1,11 @@
 import '../../../Style/Manage.css'
-import {useHistory} from 'react-router-dom'
-import {Row, Col, Tabs} from 'antd'
-
-import { Route, Switch } from 'react-router'
+import { Tabs} from 'antd'
 import User from './User/User'
 import Bills from './Bills/Bills'
 import AccessFrequence from './AccessFrequence/AccessFrequence'
 
 
 const Manager = (props)=>{
-    const history = useHistory()
     return(
         <div className="mamage-root">
             <Tabs

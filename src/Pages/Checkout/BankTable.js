@@ -3,9 +3,7 @@ import {
     
 } from 'react'
 import {
-    Table,
-    Image,
-    Button
+    Table,    
 } from 'antd'
 
 

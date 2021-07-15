@@ -1,5 +1,4 @@
-import { Select, Input, Button, notification} from 'antd'
-import {useState, useEffect} from 'react'
+import { Input, Button, notification} from 'antd'
 import {GoBackBtn} from '../../../../component/Button'
 import {LeftOutlined,CheckOutlined,CloseCircleOutlined} from '@ant-design/icons'
 import {useHistory} from 'react-router-dom'

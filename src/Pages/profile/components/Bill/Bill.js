@@ -1,46 +1,15 @@
 import {
     useState,
-    useEffect
 } from 'react'
 import {
     Table,
     Button
 } from 'antd'
-import axios from 'axios'
-import {baseUrl} from '../../../../config'
 import DetailScreen from './DetailScreen'
 
 
 
 const Bill = props => {
-    // const [billData,setBillData]=useState([
-    //     {
-    //         address: {
-    //             address: '',
-    //             full_name: '',
-    //             id: 0,
-    //             phone: '',
-    //             user_id: 0
-    //         },
-    //         address_id: 0,
-    //         admin_confirm: false,
-    //         created_at: '',
-    //         id: 0,
-    //         payment_type: '',
-    //         payment_type_id: 0,
-    //         products: [
-    //             {
-    //                 amount: 0,
-    //                 productName: '',
-    //                 total_price: 0.0
-    //             }
-    //         ],
-    //         status: '',
-    //         total: 0.0,
-    //         updated_at: '',
-    //         user_id: 0
-    //     },
-    // ])
     const [detailScreenData,setDetailScreenData]=useState(null)
     const columns = [
         {

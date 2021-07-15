@@ -1,5 +1,5 @@
 import {useHistory} from 'react-router-dom'
-import { Row, Col} from 'antd'
+import { Row} from 'antd'
 import {AddBankCartBtn, DeleteBankAccBtn, EditBankAcc} from '../../../../component/Button'
 import {PlusOutlined, DeleteOutlined, EditOutlined} from '@ant-design/icons'
 import axios from 'axios'

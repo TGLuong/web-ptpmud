@@ -9,7 +9,6 @@ import '../../../../Style/Bank.css'
 const AddBank = props => {
     const history = useHistory()
     const [bankSelected,setBankSelected] = useState(null)
-    const [bankNumber, setBankNumber] = useState('')
     const [listBank,setListBank] = useState([
         {
             bank_name:'',
