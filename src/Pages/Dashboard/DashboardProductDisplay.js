@@ -48,7 +48,7 @@ function DashboardProductDisplay(props) {
     return(
         <>
             <div className="product-display" onLoad={toBrand}>
-                {props.productData.data.map((element,index)=>{
+                {props.productData.data&&props.productData.data.map((element,index)=>{
                     return(
                         <div 
                             id={element.id} 

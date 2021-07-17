@@ -70,8 +70,10 @@ function Signin(props) {
                     history.push('/dashboard'+location.pathname+location.search)
                 }
             }).catch(err=>{
-                    document.getElementById('login_err').style.visibility="visible"
-                    setLoading(false)
+                    if(document.getElementById('login_err')){
+                        document.getElementById('login_err').style.visibility="visible"
+                        setLoading(false)
+                    }
             })
             
         }

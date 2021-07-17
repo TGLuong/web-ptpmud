@@ -64,7 +64,7 @@ function Dashboard(props){
     const [admin_userData,setAdmin_userData] = useState([])
     const [admin_billData,setAdmin_billdata] = useState([])
     const history = useHistory()
-
+    console.log('laptop: ', laptopData)
     useEffect(()=>{
         console.log('mount')
         const data = JSON.parse(sessionStorage.getItem('userdata'))
