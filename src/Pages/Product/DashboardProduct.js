@@ -3,13 +3,14 @@ import {Row, Col, Image} from 'antd'
 import {useLocation} from 'react-router-dom'
 import axios from 'axios'
 import '../../Style/Product.css'
-
+import {useHistory} from 'react-router-dom'
 import {AddTocartButton} from '../../component/Button'
 
 import {baseUrl} from '../../config'
 
 
 function DashboardProduct(props) {
+    const history = useHistory()
     const [detail, setDetail] = useState({
         data:{
             brand:'',
@@ -91,7 +92,7 @@ function DashboardProduct(props) {
                                 <AddTocartButton
                                     onClick={()=>{
                                         if(props.isAdmin){
-
+                                            history.push('/dashboard/alter?id='+product_id)
                                         }else{
                                             props.addToCart(detail.data)
                                         }

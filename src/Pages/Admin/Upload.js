@@ -28,7 +28,7 @@ const Upload = props => {
         if(props.isAdmin===false){
             history.push('/dashboard')
         }
-    },[history,props.isAdmin])
+    },[history.location])
     const openSucc = (message,description) => {
         notification.open({
             message:message,
@@ -95,7 +95,7 @@ const Upload = props => {
             }).then(res => {
                 axios({
                     method:'GET',
-                    url:baseUrl+'home?page=1'
+                    url:baseUrl+'/home?page=1'
                 }).then(res=>{
                     props.setHomeData(res.data.data)
                 })
@@ -179,13 +179,32 @@ const Upload = props => {
                             <td className="upload-table-label"><label>Bảo hành</label></td>
                             <td><input className="input" name="warranty" id="warranty" type="text" /></td>
                         </tr>
-                        <tr>
+                        <tr
+                        >
                             <td className="upload-table-label"><label>Ảnh 1</label></td>
-                            <td><input name="img_1" id="img_1" type="file" /></td>
+                            <td>
+                                <input 
+                                    name="img_1" 
+                                    id="img_1" 
+                                    type="file" 
+                                    style={{
+                                        overflow:'hidden',
+                                    }}
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td className="upload-table-label"><label>Ảnh 2</label></td>
-                            <td><input name="img_2" id="img_2" type="file" /></td>
+                            <td>
+                                <input 
+                                    name="img_2" 
+                                    id="img_2" 
+                                    type="file" 
+                                    style={{
+                                        overflow:'hidden'
+                                    }}
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <td className="upload-table-label"></td>

@@ -14,6 +14,7 @@ import Profile from '../profile/Profile'
 import Checkout from '../Checkout/Checkout'
 import Manage from '../Admin/Manage/Manager'
 import Upload from '../Admin/Upload'
+import AlterProduct from '../Admin/AlterProduct'
 
 import {baseUrl} from '../../config'
 
@@ -64,9 +65,7 @@ function Dashboard(props){
     const [admin_userData,setAdmin_userData] = useState([])
     const [admin_billData,setAdmin_billdata] = useState([])
     const history = useHistory()
-    console.log('laptop: ', laptopData)
     useEffect(()=>{
-        console.log('mount')
         const data = JSON.parse(sessionStorage.getItem('userdata'))
         if(data===null){
             history.push('/')
@@ -337,6 +336,15 @@ function Dashboard(props){
                 </Route>
                 <Route path="/dashboard/upload">
                     <Upload
+                        isAdmin={userData.is_admin}
+                        homeData={homeData}
+                        setHomeData={setHomeData}
+                        setLaptopData={setLaptopData}
+                        setCameraData={setCameraData}
+                    />
+                </Route>
+                <Route path="/dashboard/alter">
+                    <AlterProduct
                         isAdmin={userData.is_admin}
                         homeData={homeData}
                         setHomeData={setHomeData}

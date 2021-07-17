@@ -4,7 +4,7 @@ import '../../Style/HomeDisplay.css'
 import {DashboardCellButton,AlterButton} from '../../component/Button'
 import shoppingCart from '../../img/core-img/shopping-cart.png'
 import love from '../../img/core-img/love.png'
-
+import { useHistory } from 'react-router-dom'
 
 
 
@@ -12,6 +12,7 @@ import love from '../../img/core-img/love.png'
 
 
 function DashboardDisplay(props) {
+    const history = useHistory()
     function convertLongString(string){
         if(string.length>58) return(string.slice(0,58)+'...');
         else return(string);
@@ -90,7 +91,13 @@ function DashboardDisplay(props) {
                                             align="middle"
                                         >
                                             {props.isAdmin?(
-                                                <AlterButton>Sửa</AlterButton>
+                                                <AlterButton
+                                                    onClick={()=>{
+                                                        history.push('/dashboard/alter?id='+element.id)
+                                                    }}
+                                                >
+                                                    Sửa
+                                                </AlterButton>
                                             ):
                                                 <>
                                                     <DashboardCellButton

@@ -1,0 +1,22 @@
+.alter-product{
+    padding: 10% 10%;
+    background-color: #FAFAFA;
+    display: flex;
+    justify-content: center;
+}
+.alter-product .board{
+    width: 800px;
+    background-color: white;
+    border-radius: 25px;
+    border-left: 10px solid #42A5F5;
+    padding:25px 80px 80px 25px;
+}
+.alter-product .board h1{
+    font-weight: 600;
+}
+.alter-product .board .ant-form label{
+    width: 120px;
+}
+.alter-product .board .ant-form .ant-form-item{
+    margin-bottom: 15px;
+}
