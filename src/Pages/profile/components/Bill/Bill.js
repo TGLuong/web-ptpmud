@@ -80,7 +80,11 @@ const Bill = props => {
     // },[])
 
     return(
-        <>
+        <div
+            style={{
+                minHeight:'500px'
+            }}
+        >
             <h1>Các đơn đã đặt</h1>
             {detailScreenData?(
                 <DetailScreen
@@ -94,7 +98,7 @@ const Bill = props => {
                     pagination={{pageSize:'5'}}
                 />
             )}
-        </>
+        </div>
     )
 }
 export default Bill

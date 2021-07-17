@@ -104,6 +104,12 @@ const Checkout = props => {
                     props.setCartData(res.data.carts)
                     sessionStorage.setItem('carts',JSON.stringify(res.data.carts))
                 })
+                axios({
+                    method:'GET',
+                    url:baseUrl+'/payment/'+props.userID
+                }).then(res=>{
+                    props.setBillData(res.data.data)
+                })
             })
         }
     }
